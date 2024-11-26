@@ -24,11 +24,12 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  color: #fff;
+  color: white;
 }
 
 .form-section h2 {
   margin-bottom: 20px;
+  font-size: 30px;
 }
 
 .form-section form {
@@ -39,9 +40,14 @@
 .form-section input {
   width: 100%;
   margin-bottom: 15px;
-  padding: 10px;
+  padding: 15px;
   border: none;
   border-radius: 5px;
+}
+
+.form-section p{
+  margin: 30px;
+
 }
 
 .password-wrapper {
@@ -65,19 +71,19 @@
   background-color: #720dca;
   color: white;
   width: 100%;
-  padding: 10px;
+  padding: 15px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
 }
 
 .register-button:hover {
-  background-color: #5a09a2;
+  background-color: #a300ff;
 }
 
 .social-icons {
   display: flex;
-  gap: 10px;
+  gap: 15px;
 }
 
 .social-button {
@@ -106,10 +112,19 @@
 
 .info-section h2 {
   margin-bottom: 10px;
+  font-size: 50px;
+  font-weight: 600;
+  transform: translateX(-30%);
+}
+
+.info-section p {
+  transform: translateX(-30%);
 }
 
 .info-section span {
   color: #720dca;
+  font-weight: 300;
+  font-size: 35px;
 }
 
 .info-section a {
@@ -146,7 +161,7 @@
   right: 0;
   height: 250px;
   width: 250px;
-  transform: translateY(-50%);
+  transform: translateY(-80%);
 }
 
 .images-container img:nth-child(2) {
@@ -156,7 +171,7 @@
   /* transform: translate(-50%, -50%); */
   width: 250px;
   height: 250px;
-  transform: translate(25%,-90%);
+  transform: translate(25%,-140%);
 }
 
 .images-container img:nth-child(3) {
