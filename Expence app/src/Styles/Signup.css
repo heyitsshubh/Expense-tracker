@@ -214,3 +214,39 @@
   height: 250px;
   transform: translate( 45%,80%);
 }
+
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .signup-box {
+    flex-direction: column; /* Stack sections vertically */
+  }
+
+  .form-section, .info-section {
+    width: 100%;
+    border-radius: 0; /* Remove rounded corners */
+    padding: 20px;
+  }
+
+  .info-section h2 {
+    font-size: 30px;
+    transform: none;
+  }
+
+  .info-section p {
+    transform: none;
+  }
+
+  .images-container img {
+    height: 100px;
+    width: 100px;
+  }
+
+  .images-container img:nth-child(1){
+    display: none;
+  }
+
+  .images-container img:nth-child(2){
+    display: none;
+  }
+}
