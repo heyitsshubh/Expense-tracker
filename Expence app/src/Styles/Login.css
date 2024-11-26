@@ -72,16 +72,45 @@ html, body {
     margin: 0.5rem 0 1rem 0;
     cursor: pointer;
     font-style: medium;
-    font-family: 'poppins', sans-serif;
+    font-family: 'poppins',sans-serif;
+    text-shadow:5px 5px 4px #b968e7;
   }
+
+   @font-palette-values  {
+	base-palette: 2;
+}
+
+.text-content h2 {
+	animation: depth 1s ease-in-out alternate infinite;
+	position: relative;
+	display: inline-block;
+	font-variation-settings: "EDPT" 30;
+	@for $i from 1 through 12 {
+		&:nth-child(#{$i}) {
+			animation-delay: $i * 0.1s;
+		}
+	}
+}
+
+@keyframes depth {
+	0% {
+		transform: translatex(0) translatey(0);
+	}
+	100% {
+		font-variation-settings: "EDPT" 200;
+		transform: translatex(0.15em) translatey(0.1em);
+	}
+} 
   
   .register-text {
     color: black;
   }
   
-  .register-text span {
-    color: #a300ff;
+  .register-text button {
+    background:  #a300ff;
+    color: white;
     cursor: pointer;
+    border: none;
   }
   
   .bottom-section {
