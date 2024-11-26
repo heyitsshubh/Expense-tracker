@@ -105,7 +105,8 @@ import Calculator from '../assets/Calculator.png';
          {/* Right section: Info and Images */}
          <div className="info-section">
            <h2>
-             Sign Up to <span>Cash Cue</span>
+             Sign Up to <br />
+             <span>Cash Cue</span>
            </h2>
            <p>
              If you already have an account
@@ -113,7 +114,7 @@ import Calculator from '../assets/Calculator.png';
              You can <a href="#register">Register here</a>!
            </p>
            <div className="images-container">
-             <img src={Calculator} alt="Calculator" />
+             <img src={Calculator} alt="Calculator" className='calc' />
              <img src={Money} alt="Money" />
              <img src={Chart} alt="Chart" />
            </div>
