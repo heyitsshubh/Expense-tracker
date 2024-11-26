@@ -1,0 +1,225 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'poppins',sans-serif;
+}
+/* LoginPage.css */
+.login-page {
+    display: flex;
+    height: 100vh;
+    background: #ffffff;
+  }
+  
+  /* Left Side Styles */
+  .left-side {
+    flex: 1;
+    padding: 1.5rem; 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+  }
+  
+  .top-section {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  
+  .logo-container {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .calculator-icon {
+    width: 276px;
+    height: 276px;
+    object-fit: contain;
+    padding: 12px;
+    border-radius: 12px;
+    margin-left: -55px;
+    margin-bottom: 165px;
+  }
+
+  .text-content{
+    margin-left: 117px;
+    margin-top: 114px;
+  }
+  
+  .text-content h1 {
+    font-size: 50px;
+    font-weight: 600;
+    margin: 0;
+    font-family: 'poppins',sans-serif;
+
+  }
+  
+  .text-content h2 {
+    font-size: 35px;
+    font-weight: 300;
+    color: black;
+    margin: 0.5rem 0 1rem 0;
+    cursor: pointer;
+    font-style: medium;
+    font-family: 'poppins', sans-serif;
+  }
+  
+  .register-text {
+    color: black;
+  }
+  
+  .register-text span {
+    color: #a300ff;
+    cursor: pointer;
+  }
+  
+  .bottom-section {
+    position: relative;
+    height: 200px;
+  }
+  
+  .money-icon {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 280px;
+    height: 280px;
+    transform: translateX(62px);
+  }
+  
+  .chart-icon {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    transform: translateX(115px);
+    width: 287px;
+    height: 287px;
+    margin-bottom: 210px;
+  }
+  
+  /* Right Side Styles */
+  .right-side {
+    flex: 1;
+    background: #b968e7;
+    border-radius: 90px 0 0 90px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 7rem;
+  }
+  
+  .login-container {
+    width: 100%;
+    max-width: 400px;
+    color: white;
+  }
+  
+  .login-container h2 {
+    font-size: 30px;
+    margin-bottom: 2rem;
+  }
+  
+  .input-field {
+    margin-bottom: 1.5rem;
+  }
+  
+  .input-field input {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    background: rgba(255, 255, 255, 0.9);
+  }
+  
+  .input-field input::placeholder {
+    color: #666;
+  }
+  
+  .forgot-password {
+    text-align: right;
+    margin-top: 0.5rem;
+  }
+  
+  .forgot-password span {
+    color: rgba(255, 255, 255, 0.8);
+    cursor: pointer;
+    font-size: 0.9rem;
+  }
+  
+  .login-button {
+    width: 100%;
+    padding: 12px;
+    background: #a300ff;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    margin: 1rem 0 2rem 0;
+    transition: background 0.3s ease;
+  }
+  
+  .social-login {
+    text-align: center;
+  }
+  
+  .social-login p {
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 1rem;
+  }
+  
+  .social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+  }
+  
+  .social-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: white;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease;
+  }
+  
+  .social-btn:hover {
+    transform: scale(1.05);
+  }
+  
+  .social-btn img {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .login-page {
+      flex-direction: column;
+    }
+  
+    .right-side {
+      border-radius: 40px 40px 0 0;
+    }
+  
+    .bottom-section {
+      display: none;
+    }
+  
+    .left-side {
+      padding: 2rem 2rem 0 2rem;
+    }
+  }
+  
+  /* Focus States */
+  .input-field input:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.3);
+  }
