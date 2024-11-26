@@ -97,6 +97,8 @@
   justify-content: center;
   align-items: center;
   font-size: 18px;
+  overflow: hidden;
+  background: transparent;
 }
 
 .info-section {
@@ -122,13 +124,13 @@
 }
 
 .info-section span {
-  color: #720dca;
+  color: black;
   font-weight: 300;
   font-size: 35px;
 }
 
 .info-section a {
-  color: #720dca;
+  color:  #b968e7;;
   text-decoration: none;
   font-weight: bold;
 }

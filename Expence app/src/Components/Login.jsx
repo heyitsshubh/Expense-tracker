@@ -75,11 +75,11 @@ const LoginPage = () => {
           <div className="social-login">
             <p>or continue with</p>
             <div className="social-icons">
-              <button className="social-btn">
+             <button className="social-btn">
                 <img src={facebk} alt="Facebook" />
               </button>
               <button className="social-btn">
-                <img src={apple} alt="Apple" />
+                <img src= {apple} alt="Apple" />
               </button>
               <button className="social-btn">
                 <img src={google} alt="Google" />

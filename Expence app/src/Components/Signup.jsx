@@ -3,9 +3,9 @@ import '../Styles/Signup.css'
 import Calculator from '../assets/Calculator.png';
  import Money from '../assets/Money.png';
  import Chart from '../assets/Chart.png';
-//  import facebk from '../assets/facebk.png';
-//  import apple from '../assets/apple.png';
-//  import google from '../assets/google.png';
+  import facebk from '../assets/facebk.png';
+  import apple from '../assets/apple.png';
+  import google from '../assets/google.png';
  
  function Signup() {
    // State to manage form inputs
@@ -96,9 +96,15 @@ import Calculator from '../assets/Calculator.png';
            </form>
            <p>or continue with</p>
            <div className="social-icons">
-             <button className="social-button facebook">f</button>
-             <button className="social-button apple"></button>
-             <button className="social-button google">G</button>
+           <button className="social-button Facebook">
+                <img src={facebk} alt="Facebook" />
+              </button>
+              <button className="social-button Apple">
+                <img src= {apple} alt="Apple" />
+              </button>
+              <button className="social-button Google">
+                <img src={google} alt="Google" />
+              </button>
            </div>
          </div>
  
