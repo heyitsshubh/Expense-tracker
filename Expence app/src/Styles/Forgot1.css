@@ -5,8 +5,9 @@
     height: 100vh;
     background-image: url('../assets/forgotimg.png');
     background-size: cover;
-    background-position: center;  
-    width: 100vw;
+    background-position: center; 
+    background-repeat: no-repeat;
+    width: 100%;
     font-family: 'Poppins', sans-serif;
   }
 
@@ -39,6 +40,7 @@
     border-radius: 5px;
     font-size: 1rem;
     outline: none;
+    background: #a33ceb;
     /* background: #A33ceb; */
   }
   

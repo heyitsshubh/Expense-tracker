@@ -93,7 +93,7 @@ const LoginPage = () => {
             </button>
           </form>
 
-          <div className="social-login">
+          {/* <div className="social-login">
             <p>or continue with</p>
             <div className="social-icons">
              <button className="social-btn">
@@ -106,7 +106,7 @@ const LoginPage = () => {
                 <img src={google} alt="Google" />
               </button>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

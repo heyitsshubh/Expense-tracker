@@ -28,13 +28,15 @@
 }
 
 .form-section h2 {
-  margin-bottom: 20px;
+  margin-bottom: 20px; 
   font-size: 30px;
+  transform: translate(-80%,190%);
 }
 
 .form-section form {
   width: 100%;
   max-width: 300px;
+  margin-top: 70px;
 }
 
 .form-section input {

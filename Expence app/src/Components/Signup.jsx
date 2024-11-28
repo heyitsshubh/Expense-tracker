@@ -40,13 +40,7 @@ import Calculator from '../assets/Calculator.png';
           email,
           password,
         },
-        {
-          headers: {
-            'Content-Type': 'application/json', // Required for sending JSON data
-            'Authorization': `Bearer YOUR_TOKEN_HERE`, // If authentication is required
-          },
-           withCredentials: true, // If the request involves credentials like cookies
-        }
+        
       );
   
       setSuccessMessage('Signup successful!');
@@ -123,7 +117,7 @@ import Calculator from '../assets/Calculator.png';
                Register
              </button>
            </form>
-           <p>or continue with</p>
+           {/* <p>or continue with</p>
            <div className="social-icons">
            <button className="social-button Facebook">
                 <img src={facebk} alt="Facebook" />
@@ -134,7 +128,7 @@ import Calculator from '../assets/Calculator.png';
               <button className="social-button Google">
                 <img src={google} alt="Google" />
               </button>
-           </div>
+           </div> */}
          </div>
  
          {/* Right section: Info and Images */}
