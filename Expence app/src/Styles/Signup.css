@@ -219,12 +219,12 @@
 /* Responsive Adjustments */
 @media (max-width: 768px) {
   .signup-box {
-    flex-direction: column; /* Stack sections vertically */
+    flex-direction: column; 
   }
 
   .form-section, .info-section {
     width: 100%;
-    border-radius: 0; /* Remove rounded corners */
+    border-radius: 0; 
     padding: 20px;
   }
 

@@ -6,14 +6,34 @@ import React, { useState } from 'react';
  import facebk from '../assets/facebk.png';
  import apple from '../assets/apple.png';
  import google from '../assets/google.png';
+ import axios from 'axios';
+ import { useNavigate } from 'react-router-dom'; 
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
-  const handleSubmit = (e) => {
+  const navigate = useNavigate(); // Initialize navigate
+
+  const handleForgotPassword = () => {
+    navigate('/forgot'); // Navigate to Forgot Password page
+  };
+
+  const handleSubmit =async (e) => {
     e.preventDefault();
-    console.log('Login attempt with:', email);
+    try {
+      const response = await axios.post('https://cash-cue.onrender.com/user/signin', {
+        email,
+        password,
+      });
+      console.log('Login successful:', response.data);
+      // Save token or perform other actions like redirecting
+    } catch (error) {
+      console.error('Error logging in:', error.response?.data || error.message);
+      setErrorMessage(error.response?.data?.message || 'Failed to log in.');
+    }
+    
   };
 
   return (
@@ -44,7 +64,8 @@ const LoginPage = () => {
       <div className="right-side">
         <div className="login-container">
           <h2>Sign in</h2>
-          
+          {errorMessage && <p className="error-message">{errorMessage}</p>}
+
           <form onSubmit={handleSubmit}>
             <div className="input-field">
               <input
@@ -63,7 +84,7 @@ const LoginPage = () => {
                 onChange={(e) => setPassword(e.target.value)}
               />
               <div className="forgot-password">
-                <span>Forgot password?</span>
+                <span onClick={handleForgotPassword} style={{ cursor: 'pointer', color: 'black' }}>Forgot password?</span>
               </div>
             </div>
 

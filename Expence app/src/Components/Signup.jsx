@@ -6,29 +6,62 @@ import Calculator from '../assets/Calculator.png';
   import facebk from '../assets/facebk.png';
   import apple from '../assets/apple.png';
   import google from '../assets/google.png';
+  import axios from 'axios';
  
  function Signup() {
    // State to manage form inputs
    const [email, setEmail] = useState("");
    const [username, setUsername] = useState("");
-   const [contact, setContact] = useState("");
+  //  const [contact, setContact] = useState("");
    const [password, setPassword] = useState("");
    const [confirmPassword, setConfirmPassword] = useState("");
    
    // State to toggle password visibility
    const [showPassword, setShowPassword] = useState(false);
    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
+    // State for error and success messages
+  const [errorMessage, setErrorMessage] = useState('');
+  const [successMessage, setSuccessMessage] = useState('');
  
-   const handleSubmit = (e) => {
-     e.preventDefault();
-     if (password !== confirmPassword) {
-       alert("Passwords do not match!");
-       return;
-     }
-     alert("Form Submitted Successfully!");
-     // You can now send this data to an API or perform further processing.
-     console.log({ email, username, contact, password });
-   };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    
+    if (password !== confirmPassword) {
+      setErrorMessage('Passwords do not match!');
+      return;
+    }
+  
+    try {
+      const response = await axios.post(
+        'https://cash-cue.onrender.com/user/signup', 
+        {
+          username,
+          email,
+          password,
+        },
+        {
+          headers: {
+            'Content-Type': 'application/json', // Required for sending JSON data
+            'Authorization': `Bearer YOUR_TOKEN_HERE`, // If authentication is required
+          },
+           withCredentials: true, // If the request involves credentials like cookies
+        }
+      );
+  
+      setSuccessMessage('Signup successful!');
+      setErrorMessage('');
+      console.log('Signup response:', response.data);
+    } catch (error) {
+      console.error('Error during signup:', error.response?.data || error.message);
+      setErrorMessage(
+        error.response?.data?.message || 'An error occurred during signup. Please try again.'
+      );
+      setSuccessMessage('');
+    }
+  };
+  
+
  
    return (
      <div className="signup-container">
@@ -36,28 +69,24 @@ import Calculator from '../assets/Calculator.png';
          {/* Left section: Form */}
          <div className="form-section">
            <h2>Sign Up</h2>
+           {errorMessage && <p className="error-message">{errorMessage}</p>}
+           {successMessage && <p className="success-message">{successMessage}</p>}
            <form onSubmit={handleSubmit}>
-             <input
-               type="email"
-               placeholder="Enter Email"
-               value={email}
-               onChange={(e) => setEmail(e.target.value)}
-               required
-             />
-             <input
+           <input
                type="text"
                placeholder="Create User name"
                value={username}
                onChange={(e) => setUsername(e.target.value)}
                required
              />
-             <input
-               type="text"
-               placeholder="Contact number"
-               value={contact}
-               onChange={(e) => setContact(e.target.value)}
-               required
-             />
+        <input 
+        type="email" 
+        placeholder="Enter Email" 
+        value={email} 
+        onChange={(e) => setEmail(e.target.value)} 
+        required 
+        />
+   
              <div className="password-wrapper">
                <input
                  type={showPassword ? "text" : "password"}
