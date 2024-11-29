@@ -13,7 +13,7 @@ const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
-
+  const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate(); // Initialize navigate
 
   const handleForgotPassword = () => {
@@ -34,6 +34,9 @@ const LoginPage = () => {
       setErrorMessage(error.response?.data?.message || 'Failed to log in.');
     }
     
+  };
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword); // Toggle the password visibility state
   };
 
   return (
@@ -78,13 +81,21 @@ const LoginPage = () => {
 
             <div className="input-field">
               <input
-                type="password"
+                type={showPassword ? 'text' : 'password'} // 
                 placeholder="Password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
               <div className="forgot-password">
                 <span onClick={handleForgotPassword} style={{ cursor: 'pointer', color: 'black' }}>Forgot password?</span>
+              </div>
+              <div className="password-toggle">
+                <span 
+                  onClick={togglePasswordVisibility} 
+                  style={{ cursor: 'pointer', color: 'black' }}
+                >
+                  {showPassword ? 'Hide password' : 'Show password'}
+                </span>
               </div>
             </div>
 

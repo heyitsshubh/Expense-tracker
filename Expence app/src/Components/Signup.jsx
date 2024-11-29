@@ -11,7 +11,7 @@ import Calculator from '../assets/Calculator.png';
  function Signup() {
    // State to manage form inputs
    const [email, setEmail] = useState("");
-   const [username, setUsername] = useState("");
+   const [name, setUsername] = useState("");
   //  const [contact, setContact] = useState("");
    const [password, setPassword] = useState("");
    const [confirmPassword, setConfirmPassword] = useState("");
@@ -32,27 +32,33 @@ import Calculator from '../assets/Calculator.png';
       return;
     }
   
-    try {
-      const response = await axios.post(
-        'https://cash-cue.onrender.com/user/signup', 
-        {
-          username,
-          email,
-          password,
-        },
-        
-      );
-  
-      setSuccessMessage('Signup successful!');
-      setErrorMessage('');
-      console.log('Signup response:', response.data);
-    } catch (error) {
-      console.error('Error during signup:', error.response?.data || error.message);
-      setErrorMessage(
-        error.response?.data?.message || 'An error occurred during signup. Please try again.'
-      );
-      setSuccessMessage('');
+   try {
+  const response = await axios.post(
+    'https://cash-cue.onrender.com/user/signup',
+    {
+      name,
+      email,
+      password,
+    },
+    {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      withCredentials: true, // Ensures cookies are sent with the request if required
     }
+  );
+
+  setSuccessMessage('Signup successful!');
+  setErrorMessage('');
+  console.log('Signup response:', response.data);
+} catch (error) {
+  console.error('Error during signup:', error.response?.data || error.message);
+  setErrorMessage(
+    error.response?.data?.message || 'An error occurred during signup. Please try again.'
+  );
+  setSuccessMessage('');
+}
+
   };
   
 
@@ -69,7 +75,7 @@ import Calculator from '../assets/Calculator.png';
            <input
                type="text"
                placeholder="Create User name"
-               value={username}
+               value={name}
                onChange={(e) => setUsername(e.target.value)}
                required
              />
