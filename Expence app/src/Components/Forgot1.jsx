@@ -15,7 +15,7 @@ import React, { useState } from 'react'; // Make sure useState is imported
   
       try {
         // Send the email to the backend API
-        const response = await axios.post('', { email });
+        const response = await axios.post('https://cash-cue.onrender.com/user/Forgot-password', { email });
   
         // Handle success (show a success message)
         setMessage('If this email exists in our system, a reset link has been sent.');
@@ -49,7 +49,7 @@ import React, { useState } from 'react'; // Make sure useState is imported
         {error && <p style={{ color: 'red', marginTop: '1rem' }}>{error}</p>}
         <p
           onClick={() => navigate('/')} // Navigate back to Login on click
-          style={{ cursor: 'pointer', color: 'blue', marginTop: '1rem' }}
+          style={{ cursor: 'pointer', color: 'black', marginTop: '1rem' }}
         >
           Back to Login
         </p>
