@@ -107,11 +107,8 @@ html, body {
     color: black;
   }
   
-  .register-text button {
-    background:  #a300ff;
-    color: white;
-    cursor: pointer;
-    border: none;
+  .register-text span{
+    color:  #a300ff;
   }
   
   .bottom-section {

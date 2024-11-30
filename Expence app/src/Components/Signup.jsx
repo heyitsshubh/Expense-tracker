@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import '../Styles/Signup.css'
+import { useNavigate } from 'react-router-dom';
 import Calculator from '../assets/Calculator.png';
  import Money from '../assets/Money.png';
  import Chart from '../assets/Chart.png';
@@ -23,6 +24,9 @@ import Calculator from '../assets/Calculator.png';
     // State for error and success messages
   const [errorMessage, setErrorMessage] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
+
+  const [isSliding, setIsSliding] = useState(false); // State to handle sliding animation
+  const navigate = useNavigate();
  
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -51,6 +55,9 @@ import Calculator from '../assets/Calculator.png';
   setSuccessMessage('Signup successful!');
   setErrorMessage('');
   console.log('Signup response:', response.data);
+  // Trigger sliding animation and navigate to Login
+  setIsSliding(true);
+  setTimeout(() => navigate('/signup'), 1000); // Wait for the animation to complete
 } catch (error) {
   console.error('Error during signup:', error.response?.data || error.message);
   setErrorMessage(
@@ -59,6 +66,11 @@ import Calculator from '../assets/Calculator.png';
   setSuccessMessage('');
 }
 
+  };
+  const handleclick = () => {
+    // Trigger sliding animation when clicking "Login here"
+    setIsSliding(true);
+    setTimeout(() => navigate('/signup'), 500);
   };
   
 
@@ -146,7 +158,7 @@ import Calculator from '../assets/Calculator.png';
            <p>
              If you already have an account
              <br />
-             You can <a href="#register">Register here</a>!
+             You can <a href="#register" onClick={handleclick}>Register here</a>!
            </p>
            <div className="images-container">
              <img src={Calculator} alt="Calculator" className='calc' />

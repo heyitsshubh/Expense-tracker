@@ -17,7 +17,7 @@
 }
 
 .form-section {
-  background-color: #b968e7;
+   background-color: #b968e7; 
   border-radius: 0 90px 90px 0;
   width: 70%;
   padding: 40px;
@@ -45,6 +45,7 @@
   padding: 15px;
   border: none;
   border-radius: 5px;
+  background: white;
 }
 
 .form-section p{
@@ -78,7 +79,7 @@
   border-radius: 5px;
   cursor: pointer;
 }
-
+/* 
 .social-icons {
   display: flex;
   gap: 15px;
@@ -102,7 +103,7 @@
 
 .social-button:hover {
   transform: scale(1.05);
-}
+} */
 
 .info-section {
   background-color: #fff;

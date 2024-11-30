@@ -52,7 +52,7 @@ const LoginPage = () => {
             <h2>Cash Cue</h2>
             <p className="register-text">
               If you don't have an account register <br />
-              You can <button>Register here !</button>
+              You can <span>Register here !</span>
             </p>
           </div>
         </div>
