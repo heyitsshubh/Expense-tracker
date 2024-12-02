@@ -4,9 +4,9 @@ import { useNavigate } from 'react-router-dom';
 import Calculator from '../assets/Calculator.png';
  import Money from '../assets/Money.png';
  import Chart from '../assets/Chart.png';
-  import facebk from '../assets/facebk.png';
+ import facebk from '../assets/facebk.png';
   import apple from '../assets/apple.png';
-  import google from '../assets/google.png';
+   import google from '../assets/google.png';
   import axios from 'axios';
  
  function Signup() {
@@ -28,9 +28,18 @@ import Calculator from '../assets/Calculator.png';
   const [isSliding, setIsSliding] = useState(false); // State to handle sliding animation
   const navigate = useNavigate();
  
+  const passwordRegex = /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
   const handleSubmit = async (e) => {
     e.preventDefault();
     
+        // Validate password criteria
+        if (!passwordRegex.test(password)) {
+          setErrorMessage(
+            "Password must be at least 8 characters long and include at least one number and one symbol"
+          );
+          return;
+        }
+        
     if (password !== confirmPassword) {
       setErrorMessage('Passwords do not match!');
       return;
@@ -57,7 +66,7 @@ import Calculator from '../assets/Calculator.png';
   console.log('Signup response:', response.data);
   // Trigger sliding animation and navigate to Login
   setIsSliding(true);
-  setTimeout(() => navigate('/signup'), 1000); // Wait for the animation to complete
+  setTimeout(() => navigate('/'), 1000); // Wait for the animation to complete
 } catch (error) {
   console.error('Error during signup:', error.response?.data || error.message);
   setErrorMessage(
@@ -70,7 +79,7 @@ import Calculator from '../assets/Calculator.png';
   const handleclick = () => {
     // Trigger sliding animation when clicking "Login here"
     setIsSliding(true);
-    setTimeout(() => navigate('/signup'), 500);
+    setTimeout(() => navigate('/'), 500);
   };
   
 
@@ -135,18 +144,18 @@ import Calculator from '../assets/Calculator.png';
                Register
              </button>
            </form>
-           {/* <p>or continue with</p>
+           <p>or continue with</p>
            <div className="social-icons">
-           <button className="social-button Facebook">
+           {/* <button className="social-button Facebook">
                 <img src={facebk} alt="Facebook" />
-              </button>
-              <button className="social-button Apple">
+              </button> */}
+              {/* <button className="social-button Apple">
                 <img src= {apple} alt="Apple" />
-              </button>
+              </button> */}
               <button className="social-button Google">
                 <img src={google} alt="Google" />
               </button>
-           </div> */}
+           </div>
          </div>
  
          {/* Right section: Info and Images */}
@@ -158,7 +167,7 @@ import Calculator from '../assets/Calculator.png';
            <p>
              If you already have an account
              <br />
-             You can <a href="#register" onClick={handleclick}>Register here</a>!
+             You can <a href="#register" onClick={handleclick}>Sign In</a>!
            </p>
            <div className="images-container">
              <img src={Calculator} alt="Calculator" className='calc' />

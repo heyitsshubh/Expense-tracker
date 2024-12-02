@@ -3,7 +3,7 @@ import '../Styles/Forgot1.css';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-const Forgot1 = () => {
+  const Forgot1 = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');

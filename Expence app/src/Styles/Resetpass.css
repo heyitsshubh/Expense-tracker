@@ -64,6 +64,26 @@
   /* button:hover {
     background-color: #8e63e6;
   } */
+
+  .password-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  
+  .password-wrapper input {
+    flex: 1;
+  }
+  
+  .toggle-password {
+    background: none;
+    border: none;
+    position: absolute;
+    right: 10px;
+    cursor: pointer;
+    font-size: 18px;
+  }
+  
   @media (max-width: 480px) {
     h1 {
         font-size: 18px;

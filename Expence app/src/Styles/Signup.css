@@ -50,25 +50,46 @@
 
 .form-section p{
   margin: 30px;
+  color: white;
+  font-size: 20px;
 
 }
 
 .password-wrapper {
+  position: relative; /* Enables absolute positioning for the icon */
   display: flex;
   align-items: center;
 }
 
 .password-wrapper input {
   flex-grow: 1;
+  padding-right: 40px; /* Add space for the icon */
+  width: 100%;
+  margin-bottom: 15px;
+  padding: 15px;
+  border: none;
+  border-radius: 5px;
+  background: white;
+  font-size: 1rem;
 }
 
+/* Icon inside the password field */
 .toggle-password {
-  background: none;
-  border: none;
-  font-size: 1rem;
+  position: absolute;
+  right: 10px; /* Align to the right edge of the input */
+  top: 50%;
+  transform: translateY(-70%);
+  font-size: 1.2rem; /* Adjust size as needed */
   cursor: pointer;
-  margin-left: 10px;
+  color: #666;
+  transition: color 0.3s ease;
 }
+
+/* Change color on hover */
+.toggle-password:hover {
+  color: #333;
+}
+
 
 .register-button {
   background-color: #a300ff;
@@ -79,7 +100,7 @@
   border-radius: 5px;
   cursor: pointer;
 }
-/* 
+
 .social-icons {
   display: flex;
   gap: 15px;
@@ -103,7 +124,7 @@
 
 .social-button:hover {
   transform: scale(1.05);
-} */
+}
 
 .info-section {
   background-color: #fff;
@@ -222,7 +243,7 @@
 /* Responsive Adjustments */
 @media (max-width: 768px) {
   .signup-box {
-    flex-direction: column; 
+    flex-direction:  column; 
   }
 
   .form-section, .info-section {

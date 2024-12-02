@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
- import '../Styles/Login.css'
- import Calculator from '../assets/Calculator.png';
- import Money from '../assets/Money.png';
- import Chart from '../assets/Chart.png';
- import facebk from '../assets/facebk.png';
- import apple from '../assets/apple.png';
- import google from '../assets/google.png';
- import axios from 'axios';
- import { useNavigate } from 'react-router-dom'; 
+import '../Styles/Login.css';
+import Calculator from '../assets/Calculator.png';
+import Money from '../assets/Money.png';
+import Chart from '../assets/Chart.png';
+import facebk from '../assets/facebk.png';
+import apple from '../assets/apple.png';
+import google from '../assets/google.png';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom'; 
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
@@ -20,7 +20,7 @@ const LoginPage = () => {
     navigate('/forgot'); // Navigate to Forgot Password page
   };
 
-  const handleSubmit =async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const response = await axios.post('https://cash-cue.onrender.com/user/signin', {
@@ -33,10 +33,15 @@ const LoginPage = () => {
       console.error('Error logging in:', error.response?.data || error.message);
       setErrorMessage(error.response?.data?.message || 'Failed to log in.');
     }
-    
   };
+
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword); // Toggle the password visibility state
+  };
+
+  // Navigate to the Signup page
+  const handleclick = () => {
+    navigate('/signup'); // Directly navigate to the signup page
   };
 
   return (
@@ -52,8 +57,13 @@ const LoginPage = () => {
             <h2>Cash Cue</h2>
             <p className="register-text">
               If you don't have an account register <br />
-              You can <span>Register here !</span>
-            </p>
+              <span className='register'
+                style={{ cursor: 'pointer', color: '#b968e7' }} 
+                onClick={handleclick}
+              >
+                Register here
+              </span>!
+             </p>
           </div>
         </div>
 
@@ -81,20 +91,20 @@ const LoginPage = () => {
 
             <div className="input-field">
               <input
-                type={showPassword ? 'text' : 'password'} // 
+                type={showPassword ? 'text' : 'password'} // Toggle between text and password
                 placeholder="Password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
               <div className="forgot-password">
-                <span onClick={handleForgotPassword} style={{ cursor: 'pointer', color: 'black' }}>Forgot password?</span>
+                <span onClick={handleForgotPassword} style={{ cursor: 'pointer', color: 'white' }}>Forgot password?</span>
               </div>
-              <div className="password-toggle">
+              <div className="password-emoji">
                 <span 
                   onClick={togglePasswordVisibility} 
                   style={{ cursor: 'pointer', color: 'black' }}
                 >
-                  {showPassword ? 'Hide password' : 'Show password'}
+                     {showPassword ? '🙈' : '👁️'}
                 </span>
               </div>
             </div>
@@ -104,20 +114,20 @@ const LoginPage = () => {
             </button>
           </form>
 
-          {/* <div className="social-login">
+          <div className="social-login">
             <p>or continue with</p>
             <div className="social-icons">
-             <button className="social-btn">
+              <button className="social-btn">
                 <img src={facebk} alt="Facebook" />
               </button>
-              <button className="social-btn">
-                <img src= {apple} alt="Apple" />
-              </button>
+              {/* <button className="social-btn">
+                <img src={apple} alt="Apple" />
+              </button> */}
               <button className="social-btn">
                 <img src={google} alt="Google" />
               </button>
             </div>
-          </div> */}
+          </div>
         </div>
       </div>
     </div>

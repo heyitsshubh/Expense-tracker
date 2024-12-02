@@ -1,16 +1,22 @@
 import React, { useState } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import "../Styles/Resetpass.css";
 
 const ResetPassword = () => {
-  const [password, setPassword] = useState("");
+  const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [message, setMessage] = useState(""); // For success messages
-  const [error, setError] = useState(""); // For error messages
-  const [loading, setLoading] = useState(false); // For loading state
+  const [showNewPassword, setShowNewPassword] = useState(false); // For toggling new password visibility
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false); // For toggling confirm password visibility
+  const [message, setMessage] = useState("");
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+
   const navigate = useNavigate();
-  const location = useLocation(); // To get the token from the URL
+  const { token } = useParams();
+  console.log(token);
+
+  const passwordRegex = /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/; // Password validation regex
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -18,32 +24,41 @@ const ResetPassword = () => {
     setMessage("");
     setLoading(true);
 
-    if (password !== confirmPassword) {
+    // Validate password criteria
+    if (!passwordRegex.test(newPassword)) {
+      setError(
+        "Password must be at least 8 characters long and include at least one number and one symbol"
+      );
+      setLoading(false);
+      return;
+    }
+
+    if (newPassword !== confirmPassword) {
       setError("Passwords do not match!");
       setLoading(false);
       return;
     }
 
-    // Extract token from the URL path
-    const resettoken = location.pathname.split("/reset-password/")[1];
-
-    if (!resettoken) {
-      setError("Invalid or missing reset token. Please try again.");
-      setLoading(false);
-      return;
-    }
-
     try {
-      // Replace with your actual reset password API endpoint
-      const response = await axios.post("https://cash-cue.onrender.com/user/reset-password/:token", {
-        password,
-        resettoken, // Send token for backend verification
-      });
-
+      console.log(token);
+      console.log(newPassword);
+      
+      
+      const response = await axios.post(
+        "http://cash-cue.onrender.com/user/reset-password/:token",
+        {
+            token,        
+            newPassword,   
+        },
+        {
+            headers: { "Content-Type": "application/json" },
+            withCredentials: true, 
+        }
+    );
       if (response.status === 200) {
         setMessage("Password has been reset successfully!");
         setTimeout(() => {
-          navigate("/"); // Redirect to login page
+          navigate("/");
         }, 2000);
       }
     } catch (err) {
@@ -63,20 +78,40 @@ const ResetPassword = () => {
         {error && <p className="message error">{error}</p>}
 
         <form onSubmit={handleSubmit}>
-          <input
-            type="password"
-            placeholder="New Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-          <input
-            type="password"
-            placeholder="Confirm Password"
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-            required
-          />
+          <div className="password-wrapper">
+            <input
+              type={showNewPassword ? "text" : "password"}
+              placeholder="New Password"
+              value={newPassword}
+              onChange={(e) => setNewPassword(e.target.value)}
+              required
+            />
+            <button
+              type="button"
+              className="toggle-password"
+              onClick={() => setShowNewPassword(!showNewPassword)}
+            >
+              {showNewPassword ? "🙈" : "👁️"}
+            </button>
+          </div>
+
+          <div className="password-wrapper">
+            <input
+              type={showConfirmPassword ? "text" : "password"}
+              placeholder="Confirm Password"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              required
+            />
+            <button
+              type="button"
+              className="toggle-password"
+              onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+            >
+              {showConfirmPassword ? "🙈" : "👁️"}
+            </button>
+          </div>
+
           <button type="submit" disabled={loading}>
             {loading ? "Resetting..." : "Reset Password"}
           </button>

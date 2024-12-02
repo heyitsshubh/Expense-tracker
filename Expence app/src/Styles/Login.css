@@ -71,13 +71,12 @@ html, body {
     font-weight: 300;
     color: black;
     margin: 0.5rem 0 1rem 0;
-    cursor: pointer;
     font-style: medium;
     font-family: 'poppins',sans-serif;
     text-shadow:5px 5px 4px #b968e7;
   }
 
-   @font-palette-values  {
+   /* @font-palette-values  {
 	base-palette: 2;
 }
 
@@ -101,16 +100,12 @@ html, body {
 		font-variation-settings: "EDPT" 200;
 		transform: translatex(0.15em) translatey(0.1em);
 	}
-} 
+}  */
   
   .register-text {
     color: black;
   }
-  
-  .register-text span{
-    color:  #a300ff;
-  }
-  
+
   .bottom-section {
     position: relative;
     height: 200px;
@@ -134,7 +129,22 @@ html, body {
     height: 287px;
     margin-bottom: 210px;
   }
+ 
+/* .calculator-icon,
+.money-icon,
+.chart-icon {
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.calculator-icon:hover,
+.money-icon:hover,
+.chart-icon:hover {
+  transform: scale(1.1); /* Slightly enlarge on hover */
+   /* opacity: 0.9;          */
+
+
   
+
   /* Right Side Styles */
   .right-side {
     flex: 1;
@@ -145,6 +155,8 @@ html, body {
     justify-content: center;
     padding: 7rem;
   }
+
+  
   
   .login-container {
     width: 100%;
@@ -158,12 +170,30 @@ html, body {
   }
   
   .input-field {
+    position: relative; /* Ensure relative positioning for child elements */
     margin-bottom: 1.5rem;
   }
-  
+   /* In Login.css */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+} 
+
+.text-content h1, 
+.text-content h2, 
+.register-text {
+  animation: fadeInUp 2s ease-out;
+}
+
   .input-field input {
     width: 100%;
-    padding: 12px;
+    padding: 12px 40px 12px 12px; /* Add right padding to make space for the emoji */
     border: none;
     border-radius: 8px;
     font-size: 1rem;
@@ -173,6 +203,28 @@ html, body {
   .input-field input::placeholder {
     color: #666;
   }
+  
+  /* .login-page a{
+  color: #b968e7;
+  cursor: pointer;
+  } */
+  /* Add the emoji container */
+  .password-emoji {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-90%);
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #666;
+    transition: color 0.3s ease;
+  }
+  
+  /* Emoji hover effect */
+  .password-emoji:hover {
+    color: #333;
+  }
+  
   
   .forgot-password {
     text-align: right;
@@ -196,21 +248,28 @@ html, body {
     cursor: pointer;
     margin: 1rem 0 2rem 0;
     transition: background 0.3s ease;
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2);
   }
-  
+  /* In Login.css */
+
+/* .login-button:hover {
+  /* transform: scale(1.05); */
+  /* box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2); */
+ 
+
   .social-login {
     text-align: center;
   }
   
   .social-login p {
-    color: rgba(255, 255, 255, 0.8);
+    color: white;
     margin-bottom: 1rem;
+    font-size: 20px;
   }
   
   .social-icons {
     display: flex;
     justify-content: center;
-    gap: 1rem;
   }
   
   .social-btn {
@@ -223,6 +282,7 @@ html, body {
     display: flex;
     align-items: center;
     justify-content: center;
+    background: transparent;
     transition: transform 0.3s ease;
   }
   
@@ -231,9 +291,9 @@ html, body {
   }
   
   .social-btn img {
-    width: 20px;
-    height: 20px;
-    object-fit: contain;
+    width: 40px;
+    height: 40px;
+    /* object-fit: contain; */
   }
   
   /* Responsive Design */
