@@ -41,7 +41,7 @@ import Calculator from '../assets/Calculator.png';
   
    try {
   const response = await axios.post(
-    'https://cash-cue.onrender.com/user/signup',
+    'https://cash-cue-web.onrender.com/user/signup',
     {
       name,
       email,

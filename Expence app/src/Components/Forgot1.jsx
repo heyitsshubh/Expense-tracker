@@ -18,7 +18,7 @@ import axios from 'axios';
 
     try {
       const response = await axios.post(
-        'https://cash-cue.onrender.com/user/Forgot-password',
+        'https://cash-cue-web.onrender.com/user/Forgot-password',
         { email }
       );
 

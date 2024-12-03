@@ -24,7 +24,7 @@ const LoginPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('https://cash-cue.onrender.com/user/signin', {
+      const response = await axios.post('https://cash-cue-web.onrender.com/user/signin', {
         email,
         password,
       });

@@ -6,6 +6,7 @@ import LoginPage from './Login';
 import SignUp from './Signup';
 import Forgot1 from './Forgot1';
 import ResetPassword from './Resetpass';
+ import DashboardLayout from './Dashboard Layout';
 
 
 function App() {
@@ -17,7 +18,7 @@ function App() {
         <Route path="/signup" element={<SignUp/>} />
         <Route path="/forgot" element={<Forgot1 />} />
         <Route path="/reset-password/:token" element={<ResetPassword />} />
- 
+         <Route path="/dashboard" element={<DashboardLayout />} /> 
       </Routes>
     </Router>
   );

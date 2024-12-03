@@ -44,7 +44,7 @@ const ResetPassword = () => {
       
       
       const response = await axios.post(
-        `https://cash-cue.onrender.com/user/reset-password/${token}`,
+        `https://cash-cue-web.onrender.com/user/reset-password/${token}`,
         {       
             newPassword,   
         },
