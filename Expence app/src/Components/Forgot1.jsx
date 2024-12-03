@@ -8,7 +8,7 @@ import axios from 'axios';
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
   const [error, setError] = useState('');
-  const [loading, setLoading] = useState(false); // Loading state
+  const [loading, setLoading] = useState(false);
 
   const handleEmailSubmit = async (e) => {
     e.preventDefault();
@@ -22,11 +22,9 @@ import axios from 'axios';
         { email }
       );
 
-      // If email is successfully sent
       setMessage('If this email exists in our system, a reset link has been sent to your email.');
       setError('');
     } catch (err) {
-      // Handle errors
       setError(
         err.response?.data?.message || 'Error sending email. Please try again.'
       );
@@ -44,7 +42,7 @@ import axios from 'axios';
           Don't worry! It happens. Please enter the email address<br /> linked with your account.
         </p>
 
-        {/* Display success or error messages */}
+
         {message && <p className="message success">{message}</p>}
         {error && <p className="message error">{error}</p>}
 
@@ -60,7 +58,7 @@ import axios from 'axios';
           <button
             type="submit"
             className="send-email-button"
-            disabled={loading} // Disable button while loading
+            disabled={loading} 
           >
             {loading ? 'Sending...' : 'Send Email'}
           </button>

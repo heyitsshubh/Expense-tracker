@@ -9,30 +9,24 @@ import Calculator from '../assets/Calculator.png';
    import google from '../assets/google.png';
   import axios from 'axios';
  
- function Signup() {
-   // State to manage form inputs
-   const [email, setEmail] = useState("");
+ function Signup() {   
+  const [email, setEmail] = useState("");
    const [name, setUsername] = useState("");
-  //  const [contact, setContact] = useState("");
    const [password, setPassword] = useState("");
    const [confirmPassword, setConfirmPassword] = useState("");
-   
-   // State to toggle password visibility
-   const [showPassword, setShowPassword] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
-    // State for error and success messages
   const [errorMessage, setErrorMessage] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
 
-  const [isSliding, setIsSliding] = useState(false); // State to handle sliding animation
+  const [isSliding, setIsSliding] = useState(false); 
   const navigate = useNavigate();
  
   const passwordRegex = /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
-        // Validate password criteria
+  
         if (!passwordRegex.test(password)) {
           setErrorMessage(
             "Password must be at least 8 characters long and include at least one number and one symbol"
@@ -57,16 +51,16 @@ import Calculator from '../assets/Calculator.png';
       headers: {
         'Content-Type': 'application/json',
       },
-      withCredentials: true, // Ensures cookies are sent with the request if required
+       withCredentials: true, 
     }
   );
 
   setSuccessMessage('Signup successful!');
   setErrorMessage('');
   console.log('Signup response:', response.data);
-  // Trigger sliding animation and navigate to Login
+ 
   setIsSliding(true);
-  setTimeout(() => navigate('/'), 1000); // Wait for the animation to complete
+  setTimeout(() => navigate('/'), 1000); 
 } catch (error) {
   console.error('Error during signup:', error.response?.data || error.message);
   setErrorMessage(
@@ -77,7 +71,6 @@ import Calculator from '../assets/Calculator.png';
 
   };
   const handleclick = () => {
-    // Trigger sliding animation when clicking "Login here"
     setIsSliding(true);
     setTimeout(() => navigate('/'), 500);
   };
@@ -87,7 +80,6 @@ import Calculator from '../assets/Calculator.png';
    return (
      <div className="signup-container">
        <div className="signup-box">
-         {/* Left section: Form */}
          <div className="form-section">
            <h2>Sign Up</h2>
            {errorMessage && <p className="error-message">{errorMessage}</p>}
@@ -157,8 +149,7 @@ import Calculator from '../assets/Calculator.png';
               </button>
            </div>
          </div>
- 
-         {/* Right section: Info and Images */}
+
          <div className="info-section">
            <h2>
              Sign Up to <br />

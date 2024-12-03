@@ -13,7 +13,11 @@ html, body {
   font-family: 'poppins',sans-serif;
   overflow-x: hidden;
 }
-
+.register-text span {
+  color: #b968e7;
+  cursor: pointer;
+  text-decoration: underline; /* Indicate it is clickable */
+}
 
 /* LoginPage.css */
 .login-page {
@@ -31,6 +35,7 @@ html, body {
     justify-content: space-between;
     position: relative;
   }
+
   
   .top-section {
     display: flex;
@@ -200,10 +205,6 @@ html, body {
     background: rgba(255, 255, 255, 0.9);
   }
   
-  .input-field input::placeholder {
-    color: #666;
-  }
-  
   /* .login-page a{
   color: #b968e7;
   cursor: pointer;
@@ -296,6 +297,55 @@ html, body {
     /* object-fit: contain; */
   }
   
+  /* For the images in the right-side (Calculator, Money, and Chart) */
+.calculator-icon, .money-icon, .chart-icon {
+  animation-duration: 2s;
+  animation-fill-mode: both; /* Retain the final state of the animation */
+}
+
+/* Calculator icon animation */
+.calculator-icon {
+  animation: bounceIn 2s ease-in-out;
+}
+
+@keyframes bounceIn {
+0% { transform: scale(0); opacity: 0; }
+50% { transform: scale(1.1); }
+100% { transform: scale(1); opacity: 1; }
+}
+
+/* Money icon animation */
+.money-icon {
+  animation: shakeX 2s ease-in-out;
+}
+
+@keyframes shakeX {
+0%, 100% { transform: translateX(0); }
+25% { transform: translateX(-10px); }
+50% { transform: translateX(15px); }
+75% { transform: translateX(-10px); }
+}
+
+/* Chart icon animation */
+.chart-icon {
+  animation: flipInX 2s ease-in-out;
+}
+
+@keyframes flipInX {
+0% { transform: rotateX(90deg); opacity: 0; }
+100% { transform: rotateX(0deg); opacity: 1; }
+}
+
+/* .fade-out {
+  opacity: 0;
+  transition: opacity 0.5s ease-out;
+}
+
+.fade-in {
+  opacity: 1;
+  transition: opacity 0.5s ease-in;
+} */
+
   /* Responsive Design */
   @media (max-width: 768px) {
     .login-page {

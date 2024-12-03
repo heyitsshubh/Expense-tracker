@@ -6,8 +6,8 @@ import "../Styles/Resetpass.css";
 const ResetPassword = () => {
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [showNewPassword, setShowNewPassword] = useState(false); // For toggling new password visibility
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false); // For toggling confirm password visibility
+  const [showNewPassword, setShowNewPassword] = useState(false); 
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false); 
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
@@ -16,7 +16,7 @@ const ResetPassword = () => {
   const { token } = useParams();
   console.log(token);
 
-  const passwordRegex = /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/; // Password validation regex
+  const passwordRegex = /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/; 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -24,7 +24,6 @@ const ResetPassword = () => {
     setMessage("");
     setLoading(true);
 
-    // Validate password criteria
     if (!passwordRegex.test(newPassword)) {
       setError(
         "Password must be at least 8 characters long and include at least one number and one symbol"
@@ -40,14 +39,13 @@ const ResetPassword = () => {
     }
 
     try {
-      console.log(token);
-      console.log(newPassword);
+      // console.log(token);
+      // console.log(newPassword);
       
       
       const response = await axios.post(
-        "http://cash-cue.onrender.com/user/reset-password/:token",
-        {
-            token,        
+        `http://cash-cue.onrender.com/user/reset-password/${token}`,
+        {       
             newPassword,   
         },
         {
@@ -62,7 +60,11 @@ const ResetPassword = () => {
         }, 2000);
       }
     } catch (err) {
+      console.log("Error Response:", err);
+
       setError(err.response?.data?.message || "Failed to reset password. Please try again.");
+
+      console.log(err.response);
     } finally {
       setLoading(false);
     }

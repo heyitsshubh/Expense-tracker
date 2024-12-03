@@ -14,10 +14,11 @@ const LoginPage = () => {
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const [showPassword, setShowPassword] = useState(false);
-  const navigate = useNavigate(); // Initialize navigate
+  const [fadeClass, setFadeClass] = useState('');  
+  const navigate = useNavigate(); 
 
   const handleForgotPassword = () => {
-    navigate('/forgot'); // Navigate to Forgot Password page
+    navigate('/forgot'); 
   };
 
   const handleSubmit = async (e) => {
@@ -28,7 +29,7 @@ const LoginPage = () => {
         password,
       });
       console.log('Login successful:', response.data);
-      // Save token or perform other actions like redirecting
+
     } catch (error) {
       console.error('Error logging in:', error.response?.data || error.message);
       setErrorMessage(error.response?.data?.message || 'Failed to log in.');
@@ -36,17 +37,31 @@ const LoginPage = () => {
   };
 
   const togglePasswordVisibility = () => {
-    setShowPassword(!showPassword); // Toggle the password visibility state
+    setShowPassword(!showPassword); 
   };
 
-  // Navigate to the Signup page
   const handleclick = () => {
-    navigate('/signup'); // Directly navigate to the signup page
+    setFadeClass('fade-out');  
+    navigate('/signup'); 
   };
+
+
+
+  const handleGoogleLogin = async () => {
+    try {
+
+      const response = await axios.get('https://cash-cue.onrender.com/user/auth/google'); 
+      window.location.href = response.data.googleAuthUrl;
+    } catch (error) {
+      console.error('Error initiating Google login:', error.response?.data || error.message);
+      setErrorMessage('Failed to initiate Google login.');
+    }
+  };
+
 
   return (
-    <div className="login-page">
-      {/* Left Section */}
+    <div className={`login-page ${fadeClass}`}>
+
       <div className="left-side">
         <div className="top-section">
           <div className="logo-container">
@@ -55,14 +70,14 @@ const LoginPage = () => {
           <div className="text-content">
             <h1>Sign in to</h1>
             <h2>Cash Cue</h2>
-            <p className="register-text">
-              If you don't have an account register <br />
-              <span className='register'
-                style={{ cursor: 'pointer', color: '#b968e7' }} 
+            <span
+                style={{ cursor:'pointer' ,color: '#b968e7' }} 
                 onClick={handleclick}
               >
                 Register here
               </span>!
+            <p className="register-text">
+              If you don't have an account  <br />
              </p>
           </div>
         </div>
@@ -73,7 +88,7 @@ const LoginPage = () => {
         </div>
       </div>
 
-      {/* Right Section */}
+    
       <div className="right-side">
         <div className="login-container">
           <h2>Sign in</h2>
@@ -91,7 +106,7 @@ const LoginPage = () => {
 
             <div className="input-field">
               <input
-                type={showPassword ? 'text' : 'password'} // Toggle between text and password
+                type={showPassword ? 'text' : 'password'} 
                 placeholder="Password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
@@ -117,14 +132,14 @@ const LoginPage = () => {
           <div className="social-login">
             <p>or continue with</p>
             <div className="social-icons">
-              <button className="social-btn">
+              {/* <button className="social-btn">
                 <img src={facebk} alt="Facebook" />
-              </button>
+              </button> */}
               {/* <button className="social-btn">
                 <img src={apple} alt="Apple" />
               </button> */}
               <button className="social-btn">
-                <img src={google} alt="Google" />
+                <img src={google} alt="Google"  onClick={handleGoogleLogin}/>
               </button>
             </div>
           </div>
