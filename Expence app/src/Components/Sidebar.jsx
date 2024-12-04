@@ -1,34 +1,42 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import '../Styles/Sidebar.css';// Create a CSS file for styling
+import homeIcon from'../assets/hme.png';
+import walletIcon from '../assets/wallet.png';
+import groupIcon from '../assets/group.png';
+import graphIcon from '../assets/Graph.png';
+import userIcon from '../assets/User.png';
+
 // import "./Sidebar.css"; 
 
 function Sidebar() {
   const menuItems = [
-    { path: "/dashboard/dashboard", label: "Dashboard" },
-    { path: "/dashboard/transactions", label: "Transactions" },
-    { path: "/dashboard/income", label: "Expense/Income" },
-    { path: "/dashboard/groups", label: "Groups" },
-    { path: "/dashboard/stats", label: "Statistics" },
-    { path: "/dashboard/user", label: "User" },
+    { path: "/dashboard", label: "Dashboard" , icon: homeIcon },
+    { path: "/dashboard/transactions", label: "Transactions" , icon: walletIcon },
+    { path: "/dashboard/income", label: "Expense/Income", icon: walletIcon},
+    { path: "/dashboard/groups", label: "Groups" , icon: groupIcon},
+    { path: "/dashboard/stats", label: "Statistics", icon: graphIcon },
+    { path: "/dashboard/user", label: "User", icon:userIcon },
   ];
 
   return (
-    <aside className="sidebar">
-      <h2>Cash Cue</h2>
-      <ul>
-        {menuItems.map((item) => (
-          <li key={item.path}>
-            <NavLink
-              to={item.path}
-              className={({ isActive }) => (isActive ? "active" : "")}
-            >
+      <aside className="sidebar">
+        <h2 className="sidebar-title">Cash Cue</h2>
+        <ul className="menu-items">
+          {menuItems.map((item) => (
+            <li key={item.path} className="menu-item">
+              <NavLink
+                to={item.path}
+                className={({ isActive }) => (isActive ? "active" : "")}
+              >
+              <img src={item.icon} alt={item.label} style={{ width: 20, marginRight: 10 }} />
               {item.label}
-            </NavLink>
-          </li>
-        ))}
-      </ul>
-    </aside>
-  );
+              </NavLink>
+            </li>
+          ))}
+        </ul>
+      </aside>
+    );
 }
 
 export default Sidebar;

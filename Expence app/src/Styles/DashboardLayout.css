@@ -1,0 +1,17 @@
+.dashboard-layout {
+  display: flex;
+  height: 100vh; /* Full height of the screen */
+}
+
+.sidebar {
+  width: 250px; /* Adjust based on your Sidebar design */
+  background-color: #f4f4f4; /* Sidebar background color */
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.dashboard-content {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto; /* Enable scrolling if the content overflows */
+  background-color: #ffffff; /* Main content background color */
+}
