@@ -16,6 +16,19 @@
   margin-bottom: 40px;
 }
 
+.lg{
+  display: flex;
+}
+
+.logo{
+  transform: translate(15%,-30%);
+}
+
+h2{
+  font-weight: 500;
+  font-size: 19px;
+  color: black;
+}
 .menu-items {
   list-style: none;
   padding: 0;

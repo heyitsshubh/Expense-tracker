@@ -31,20 +31,26 @@
     border-radius: 10px;
     flex: 1;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    /* width: 40%; */
   }
   
   .recent-transactions ul,
   .activities ul {
     list-style-type: none;
     padding: 0;
+    gap: 2px;
   }
   
   .recent-transactions ul li,
   .activities ul li {
     display: flex;
     justify-content: space-between;
-    padding: 10px 0;
-    border-bottom: 1px solid #eee;
+    padding: 30px 15px;
+    /* border-bottom: 1px solid #eee; */
+    border-radius: 10px;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    background: #f9f9f9;
+    margin: 10px;
   }
   
   .activities {

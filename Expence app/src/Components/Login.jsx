@@ -29,6 +29,7 @@ const LoginPage = () => {
         password,
       });
       console.log('Login successful:', response.data);
+      navigate('/dashboard');
 
     } catch (error) {
       console.error('Error logging in:', error.response?.data || error.message);
