@@ -56,7 +56,7 @@ h2{
 }
 
 .menu-item a:hover {
-  background-color: #e3e6f3;
+  background-color: rgba(182, 76, 242, 0.62);
   color: #3b3f6e;
 }
 

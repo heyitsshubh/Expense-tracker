@@ -3,6 +3,9 @@ import '../Styles/Dashboard.css';// Create a CSS file for styling
 import AverageMoneySpentChart from './Averagemoneychart'; 
 import YearlyAnalysisChart from './YearlyAnalysischart'
 import avtar from '../assets/avatar.png'; // Import the image
+import balance from '../assets/balance.png'; 
+import expense from '../assets/expense.png'; 
+import Income from '../assets/Income.png'; 
 
 function Dashboard() {
   return (
@@ -18,26 +21,30 @@ function Dashboard() {
       </div>
       <div className="overview">
         <div className="card">
-          <h3>Food</h3>
+          <h1>Balance</h1>
           <p>₹3456</p>
+          <img src={balance} alt="" />
         </div>
         <div className="card">
-          <h3>Transportation</h3>
+          <h1>Income</h1>
           <p>₹2431</p>
+          <img src={expense} alt="" />
         </div>
         <div className="card">
-          <h3>Shopping</h3>
+          <h1>Expense</h1>
           <p>₹1358</p>
+          <img src={Income} alt="" />
         </div>
-        <div className="card">
+        {/* <div className="card">
           <h3>Subscription</h3>
           <p>₹2909</p>
-        </div>
+        </div> */}
       </div>
 
       <div className="analytics">
         <div className="chart">
           <h3>Average Money Spent</h3>
+          <p> ₹1000</p>
           {/* Add a chart library or static chart */}
           <AverageMoneySpentChart/>
         </div>

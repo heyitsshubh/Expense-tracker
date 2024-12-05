@@ -1,0 +1,19 @@
+
+.expense-income-page {
+    display: flex;
+    justify-content: space-between;
+    padding: 30px;
+    gap: 20px;
+  }
+  
+  .form-section {
+    flex: 1;
+    /* max-width: 480px; */
+  }
+  
+  .recent-expenses-section {
+    flex: 1;
+    max-width: 500px;
+  }
+  
+  

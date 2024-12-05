@@ -20,7 +20,7 @@
    background-color: #b968e7; 
   border-radius: 0 90px 90px 0;
   width: 70%;
-  padding: 40px;
+  padding: 80px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -31,6 +31,8 @@
   margin-bottom: 20px; 
   font-size: 30px;
   /* transform: translate(-80%,190%); */
+  color: white;
+  transform: translateX(-85%);
 }
 
 .form-section form {

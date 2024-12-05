@@ -19,7 +19,16 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     flex: 1;
   }
+
+  .card p{
+    margin: 5px;
+    font-size: 15px;
+    font-weight: 500;
+  }
   
+  /* .card img{
+    transform: translate(-210%,-100%);
+  } */
   .analytics {
     display: flex;
     gap: 20px;
@@ -32,6 +41,12 @@
     flex: 1;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     /* width: 40%; */
+  }
+
+  .chart p{
+    margin: 10px;
+    font-size: 22px;
+    font-weight: 600;
   }
   
   .recent-transactions ul,

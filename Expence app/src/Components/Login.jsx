@@ -29,6 +29,11 @@ const LoginPage = () => {
         password,
       });
       console.log('Login successful:', response.data);
+      const token = response.data.token;
+      if (token) {
+        sessionStorage.setItem('authToken', token);  // Store token in sessionStorage
+        console.log('Token saved to sessionStorage:', token);
+      }
       navigate('/dashboard');
 
     } catch (error) {
