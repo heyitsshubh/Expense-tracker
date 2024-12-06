@@ -1,24 +1,86 @@
-.transactions {
-    border: 1px solid #ddd;
-    padding: 20px;
-    background-color: #f9f9f9;
-    margin-top: 20px;
+/* Transactions.css */
+
+/* Container styling */
+/* Container for the entire transactions section */
+.transactions-container {
+  width: 80%;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.transactions h2 {
-    margin-bottom: 20px;
+.transactions-container h2 {
+  font-size: 24px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 20px;
+  text-align: center;
 }
 
-.transactions ul {
-    list-style-type: none;
-    padding: 0;
+/* Styling for the transaction list */
+.transactions-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
 }
 
-.transaction {
-    border-bottom: 1px solid #ddd;
-    padding: 10px 0;
+.transaction-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px;
+  margin-bottom: 12px;
+  background-color: #fff;
+  border-radius: 6px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  transition: background-color 0.3s;
 }
 
-.transaction:last-child {
-    border-bottom: none;
+.transaction-item:hover {
+  background-color: #f1f1f1;
+}
+
+/* Styling for the transaction details section */
+.transaction-details {
+  max-width: 70%;
+}
+
+.transaction-description {
+  font-size: 16px;
+  font-weight: 500;
+  color: #555;
+  margin: 0;
+}
+
+.transaction-date {
+  font-size: 14px;
+  color: #888;
+  margin-top: 5px;
+}
+
+/* Styling for the transaction amount section */
+.transaction-amount {
+  font-size: 18px;
+  font-weight: bold;
+  text-align: right;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-left: 10px;
+}
+
+.transaction-amount.income {
+  color: #2ecc71; /* Green for income */
+}
+
+.transaction-amount.expense {
+  color: #e74c3c; /* Red for expense */
+}
+
+/* Additional styling for no transactions found */
+.transactions-container p {
+  font-size: 16px;
+  text-align: center;
+  color: #777;
 }

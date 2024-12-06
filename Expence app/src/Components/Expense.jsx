@@ -1,30 +1,33 @@
-import axios from 'axios';
-import React, { useState } from 'react';
-import '../Styles/Expense.css';
+import React, { useState, useContext } from "react";
+import axios from "axios";
+import "../Styles/Expense.css";
+import { TransactionsContext } from "./TransactionContext";
 
-function Expense({ onAddTransaction }) {
-  const [amount, setAmount] = useState('');
-  const [description, setDescription] = useState('');
-  const [date, setDatetime] = useState('');
-  const [searchQuery, setSearchQuery] = useState('');
+const Expense = () => {
+  const [amount, setAmount] = useState("");
+  const [description, setDescription] = useState("");
+  const [date, setDatetime] = useState("");
+  const [searchQuery, setSearchQuery] = useState("");
   const [isExpense, setIsExpense] = useState(true); // Toggle between expense and income
+
+  const { triggerRefresh } = useContext(TransactionsContext); // Use triggerRefresh from context
 
   const handleAddTransaction = async () => {
     try {
-      const token = sessionStorage.getItem('authToken');
+      const token = sessionStorage.getItem("authToken");
       if (!token) {
-        console.error('No token found');
+        console.error("No token found");
         return;
       }
 
       // API call to add a transaction (income or expense)
       const response = await axios.post(
-        'https://cash-cue-web.onrender.com/transaction/add',
+        "https://cash-cue-web.onrender.com/transaction/add",
         {
           amount, // Ensure amount is sent as a number
           description,
           date,
-          type: isExpense ? 'Expense' : 'Income', // Distinguish between income and expense
+          type: isExpense ? "Expense" : "Income", // Distinguish between income and expense
         },
         {
           headers: {
@@ -33,17 +36,18 @@ function Expense({ onAddTransaction }) {
         }
       );
 
-      console.log('Transaction added successfully:', response.data);
+      console.log("Transaction added successfully:", response.data);
 
-      // Update the recent transactions list
-      if (onAddTransaction) onAddTransaction(response.data);
+      // Trigger refresh to update transactions
+      triggerRefresh(); // This should trigger the refresh mechanism
+      console.log("Triggering refresh...");
 
       // Clear the form
-      setAmount('');
-      setDescription('');
-      setDatetime('');
+      setAmount("");
+      setDescription("");
+      setDatetime("");
     } catch (error) {
-      console.error('Error adding transaction:', error.response || error.message);
+      console.error("Error adding transaction:", error.response || error.message);
     }
   };
 
@@ -67,13 +71,13 @@ function Expense({ onAddTransaction }) {
       {/* Toggle buttons for Expense/Income */}
       <div className="toggle-buttons">
         <button
-          className={isExpense ? 'active' : ''}
+          className={isExpense ? "active" : ""}
           onClick={() => setIsExpense(true)}
         >
           Expense
         </button>
         <button
-          className={!isExpense ? 'active' : ''}
+          className={!isExpense ? "active" : ""}
           onClick={() => setIsExpense(false)}
         >
           Income
@@ -81,7 +85,7 @@ function Expense({ onAddTransaction }) {
       </div>
 
       {/* Amount Display */}
-      <h2 className="amount-display">₹ {amount || '0'}</h2>
+      <h2 className="amount-display">₹ {amount || "0"}</h2>
 
       {/* Form */}
       <form className="form">
@@ -114,13 +118,15 @@ function Expense({ onAddTransaction }) {
         className="add-transaction-btn"
         onClick={handleAddTransaction}
       >
-        {isExpense ? 'Add New Expense' : 'Add New Income'}
+        {isExpense ? "Add New Expense" : "Add New Income"}
       </button>
     </div>
   );
-}
+};
 
 export default Expense;
+
+
 
 
 
