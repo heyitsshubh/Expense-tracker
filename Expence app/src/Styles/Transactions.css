@@ -1,86 +1,170 @@
-/* Transactions.css */
-
-/* Container styling */
-/* Container for the entire transactions section */
+/* Container for Transactions Page */
+/* Container for Transactions Page */
 .transactions-container {
-  width: 80%;
-  margin: 20px auto;
   padding: 20px;
-  background-color: #f9f9f9;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #f4f4f4;
+  font-family: Arial, sans-serif;
 }
 
-.transactions-container h2 {
-  font-size: 24px;
-  font-weight: 600;
+/* Header with hamburger and title */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgba(185, 104, 231, 1);
+  padding: 15px 20px;
+  color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.header h2 {
+  margin: 0;
+  font-size: 1.8rem;
+}
+
+.hamburger {
+  font-size: 2rem;
+  cursor: pointer;
+  padding: 10px;
+  background-color: transparent;
+  border: none;
+  color: #fff;
+}
+
+/* Hamburger Menu */
+.hamburger-menu {
+  position: absolute;
+  top: 60px;
+  right: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  width: 200px;
+  padding: 10px 0;
+  z-index: 10;
+
+}
+
+.hamburger-menu.active {
+  display: block;
+}
+
+.hamburger-menu button {
+  width: 100%;
+  padding: 12px 20px;
+  text-align: left;
+  border: none;
+  background: #f8f8f8;
   color: #333;
-  margin-bottom: 20px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.hamburger-menu button:hover {
+  background-color: #007bff;
+  color: #fff;
+}
+
+/* Transaction Categories */
+h3 {
+  font-size: 1.6rem;
+  color: #333;
+  margin-top: 30px;
   text-align: center;
 }
 
-/* Styling for the transaction list */
 .transactions-list {
-  list-style-type: none;
+  list-style: none;
   padding: 0;
-  margin: 0;
+  margin: 20px 0;
 }
 
 .transaction-item {
   display: flex;
   justify-content: space-between;
-  padding: 12px;
-  margin-bottom: 12px;
+  align-items: center;
   background-color: #fff;
-  border-radius: 6px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-  transition: background-color 0.3s;
+  padding: 15px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.transaction-item:hover {
-  background-color: #f1f1f1;
+.transaction-item.income {
+  border-left: 5px solid #28a745;
 }
 
-/* Styling for the transaction details section */
+.transaction-item.expense {
+  border-left: 5px solid #dc3545;
+}
+
 .transaction-details {
-  max-width: 70%;
+  display: flex;
+  flex-direction: column;
+  font-size: 1.1rem;
 }
 
 .transaction-description {
-  font-size: 16px;
   font-weight: 500;
-  color: #555;
   margin: 0;
 }
 
 .transaction-date {
-  font-size: 14px;
-  color: #888;
-  margin-top: 5px;
+  font-size: 0.9rem;
+  color: #666;
 }
 
-/* Styling for the transaction amount section */
 .transaction-amount {
-  font-size: 18px;
+  font-size: 1.3rem;
   font-weight: bold;
-  text-align: right;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  padding-left: 10px;
+  padding: 5px 10px;
+  border-radius: 5px;
 }
 
 .transaction-amount.income {
-  color: #2ecc71; /* Green for income */
+  color: #28a745;
 }
 
 .transaction-amount.expense {
-  color: #e74c3c; /* Red for expense */
+  color: #dc3545;
 }
 
-/* Additional styling for no transactions found */
-.transactions-container p {
-  font-size: 16px;
+/* Empty State */
+p {
+  font-size: 1.2rem;
+  color: #888;
   text-align: center;
-  color: #777;
+  margin-top: 40px;
+}
+
+/* Responsive Design for Mobile */
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .hamburger-menu {
+    top: 70px;
+    right: 10px;
+    width: 180px;
+  }
+
+  h3 {
+    font-size: 1.4rem;
+  }
+
+  .transaction-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .transaction-details {
+    margin-bottom: 10px;
+  }
+
+  .transaction-amount {
+    font-size: 1.1rem;
+  }
 }

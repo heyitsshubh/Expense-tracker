@@ -5,6 +5,9 @@ import axios from "axios";
 
 const Transactions = () => {
   const [transactions, setTransactions] = useState([]);
+  const [filter, setFilter] = useState("daily");
+  const [sortType, setSortType] = useState("all");
+  const [showMenu, setShowMenu] = useState(false);
   const { refreshTransactions } = useContext(TransactionsContext); // Refresh trigger from context
 
   // Function to fetch transactions
@@ -15,20 +18,20 @@ const Transactions = () => {
         console.error("No token found. Please log in.");
         return;
       }
-  
+
       // Make API call with token in Authorization header
       const response = await axios.get(
-        "https://cash-cue-web.onrender.com/transaction/list", 
+        "https://cash-cue-web.onrender.com/transaction/list",
         {
           headers: {
             Authorization: `Bearer ${token}`, // Include the token for authentication
           },
         }
       );
-  
+
       // Log the full response to check the structure
       console.log("Transactions fetched:", response.data);
-  
+
       // Access the transactions array from the response
       if (response.data.status === "SUCCESS") {
         setTransactions(response.data.transactions); // Update state with the transactions array
@@ -43,23 +46,25 @@ const Transactions = () => {
   // Function to categorize transactions by date
   const categorizeTransactions = (transactions) => {
     const today = new Date();
-    const yesterday = new Date(today);
-    yesterday.setDate(today.getDate() - 1);
-
     const grouped = {
       today: [],
-      yesterday: [],
+      thisWeek: [],
+      thisMonth: [],
       older: [],
     };
 
     transactions.forEach((transaction) => {
       const transactionDate = new Date(transaction.date);
-      
-      // Check if transaction is today, yesterday, or older
-      if (isSameDay(transactionDate, today)) {
+      const diffDays = Math.floor((today - transactionDate) / (1000 * 3600 * 24));
+      const diffWeeks = Math.floor(diffDays / 7);
+      const diffMonths = today.getMonth() - transactionDate.getMonth() + (12 * (today.getFullYear() - transactionDate.getFullYear()));
+
+      if (filter === "daily" && diffDays <= 1) {
         grouped.today.push(transaction);
-      } else if (isSameDay(transactionDate, yesterday)) {
-        grouped.yesterday.push(transaction);
+      } else if (filter === "weekly" && diffWeeks <= 1) {
+        grouped.thisWeek.push(transaction);
+      } else if (filter === "monthly" && diffMonths <= 1) {
+        grouped.thisMonth.push(transaction);
       } else {
         grouped.older.push(transaction);
       }
@@ -67,38 +72,58 @@ const Transactions = () => {
 
     // Sort transactions within each group by date (descending)
     grouped.today.sort((a, b) => new Date(b.date) - new Date(a.date));
-    grouped.yesterday.sort((a, b) => new Date(b.date) - new Date(a.date));
+    grouped.thisWeek.sort((a, b) => new Date(b.date) - new Date(a.date));
+    grouped.thisMonth.sort((a, b) => new Date(b.date) - new Date(a.date));
     grouped.older.sort((a, b) => new Date(b.date) - new Date(a.date));
 
     return grouped;
   };
 
-  // Helper function to compare if two dates are the same day
-  const isSameDay = (date1, date2) => {
-    return (
-      date1.getDate() === date2.getDate() &&
-      date1.getMonth() === date2.getMonth() &&
-      date1.getFullYear() === date2.getFullYear()
-    );
-  };
-
-  // Fetch transactions on component mount and whenever `refreshTransactions` changes
+  // Fetch transactions on component mount and whenever `refreshTransactions` or `filter` changes
   useEffect(() => {
     fetchTransactions();
-  }, [refreshTransactions]);
+  }, [refreshTransactions, filter]);
 
   const groupedTransactions = categorizeTransactions(transactions);
 
+  const toggleMenu = () => setShowMenu(!showMenu);
+
+  const handleSortChange = (type) => {
+    setSortType(type);
+    setShowMenu(false);
+  };
+
+  const filteredTransactions = (group) => {
+    if (sortType === "income") {
+      return group.filter(transaction => transaction.type === "Income");
+    } else if (sortType === "expense") {
+      return group.filter(transaction => transaction.type === "Expense");
+    }
+    return group;
+  };
+
   return (
     <div className="transactions-container">
-      <h2> Transactions</h2>
+      <div className="header">
+        <h2>Transactions</h2>
+        <div className="hamburger" onClick={toggleMenu}>
+          &#9776;
+        </div>
+        {showMenu && (
+          <div className="hamburger-menu">
+            <button onClick={() => handleSortChange("all")}>All</button>
+            <button onClick={() => handleSortChange("income")}>Income</button>
+            <button onClick={() => handleSortChange("expense")}>Expense</button>
+          </div>
+        )}
+      </div>
 
       {/* Display Today's Transactions */}
       {groupedTransactions.today.length > 0 && (
         <div>
           <h3>Today</h3>
           <ul className="transactions-list">
-            {groupedTransactions.today.map((transaction) => (
+            {filteredTransactions(groupedTransactions.today).map((transaction) => (
               <li key={transaction._id} className={`transaction-item ${transaction.type.toLowerCase()}`}>
                 <div className="transaction-details">
                   <p className="transaction-description">{transaction.description}</p>
@@ -113,12 +138,32 @@ const Transactions = () => {
         </div>
       )}
 
-      {/* Display Yesterday's Transactions */}
-      {groupedTransactions.yesterday.length > 0 && (
+      {/* Display Weekly Transactions */}
+      {groupedTransactions.thisWeek.length > 0 && (
         <div>
-          <h3>Yesterday</h3>
+          <h3>This Week</h3>
           <ul className="transactions-list">
-            {groupedTransactions.yesterday.map((transaction) => (
+            {filteredTransactions(groupedTransactions.thisWeek).map((transaction) => (
+              <li key={transaction._id} className={`transaction-item ${transaction.type.toLowerCase()}`}>
+                <div className="transaction-details">
+                  <p className="transaction-description">{transaction.description}</p>
+                  <p className="transaction-date">{new Date(transaction.date).toLocaleString()}</p>
+                </div>
+                <div className={`transaction-amount ${transaction.type.toLowerCase()}`}>
+                  {transaction.type === "Income" ? "+" : "-"}₹{transaction.amount}
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+
+      {/* Display Monthly Transactions */}
+      {groupedTransactions.thisMonth.length > 0 && (
+        <div>
+          <h3>This Month</h3>
+          <ul className="transactions-list">
+            {filteredTransactions(groupedTransactions.thisMonth).map((transaction) => (
               <li key={transaction._id} className={`transaction-item ${transaction.type.toLowerCase()}`}>
                 <div className="transaction-details">
                   <p className="transaction-description">{transaction.description}</p>
@@ -138,7 +183,7 @@ const Transactions = () => {
         <div>
           <h3>Earlier</h3>
           <ul className="transactions-list">
-            {groupedTransactions.older.map((transaction) => (
+            {filteredTransactions(groupedTransactions.older).map((transaction) => (
               <li key={transaction._id} className={`transaction-item ${transaction.type.toLowerCase()}`}>
                 <div className="transaction-details">
                   <p className="transaction-description">{transaction.description}</p>
@@ -160,5 +205,3 @@ const Transactions = () => {
 };
 
 export default Transactions;
-
-
