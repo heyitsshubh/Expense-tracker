@@ -13,6 +13,7 @@ import Dashboard from "./Dashboard";
 import ExpenseIncome from "../income/ExpenseIncome";
 import Transactions from "./Transactions";
 import { TransactionsProvider } from "./TransactionContext"; // Context for real-time updates
+import UserProfile from "./UserProfile";
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
             <Route index element={<Dashboard />} /> {/* Default dashboard route */}
             <Route path="income" element={<ExpenseIncome />} />
             <Route path="transactions" element={<Transactions />} />
+            <Route path="user" element={<UserProfile />} />
           </Route>
         </Routes>
       </Router>

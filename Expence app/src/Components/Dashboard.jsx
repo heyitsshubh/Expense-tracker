@@ -1,16 +1,24 @@
 import React from "react";
-import '../Styles/Dashboard.css';// Create a CSS file for styling
-import AverageMoneySpentChart from './Averagemoneychart'; 
-import YearlyAnalysisChart from './YearlyAnalysischart'
-import avtar from '../assets/avatar.png'; // Import the image
-import balance from '../assets/balance.png'; 
-import expense from '../assets/expense.png'; 
-import Income from '../assets/Income.png'; 
+import { useTransactions } from "./Usetransaction";
+import "../Styles/Dashboard.css";
+import AverageMoneySpentChart from "./Averagemoneychart"; 
+import YearlyAnalysisChart from "./YearlyAnalysischart";
+import avtar from "../assets/avatar.png";
+import balance from "../assets/balance.png";
+import expense from "../assets/expense.png";
+import Income from "../assets/Income.png";
 
 function Dashboard() {
+  const { transactions } = useTransactions();
+
+  // Get the 5 most recent transactions
+  const recentTransactions = transactions
+    .sort((a, b) => new Date(b.date) - new Date(a.date))
+    .slice(0, 5);
+
   return (
     <div className="dashboard-container">
-           <div className="top-bar">
+      <div className="top-bar">
         <div className="search-bar">
           <input type="text" placeholder="Search here..." />
         </div>
@@ -35,67 +43,46 @@ function Dashboard() {
           <p>₹1358</p>
           <img src={Income} alt="" />
         </div>
-        {/* <div className="card">
-          <h3>Subscription</h3>
-          <p>₹2909</p>
-        </div> */}
       </div>
 
       <div className="analytics">
         <div className="chart">
           <h3>Average Money Spent</h3>
           <p> ₹1000</p>
-          {/* Add a chart library or static chart */}
-          <AverageMoneySpentChart/>
+          <AverageMoneySpentChart />
         </div>
         <div className="chart">
           <h3>Yearly Analysis</h3>
-          {/* Add a chart library or static chart */}
-          <YearlyAnalysisChart/>
+          <YearlyAnalysisChart />
         </div>
       </div>
 
       <div className="recent-transactions">
-        <h3>Recent Transactions</h3>
-        <ul>
-          <li>
-            <span>Shopping</span> <span>- ₹120</span> <span>10:00 AM</span>
-          </li>
-          <li>
-            <span>Subscription</span> <span>- ₹80</span> <span>03:30 PM</span>
-          </li>
-          <li>
-            <span>Food</span> <span>- ₹32</span> <span>07:30 PM</span>
-          </li>
-          <li>
-            <span>Salary</span> <span>+ ₹5000</span> <span>04:30 PM</span>
-          </li>
-          <li>
-            <span>Transportation</span> <span>- ₹18</span> <span>08:30 PM</span>
-          </li>
-        </ul>
-      </div>
+  <h3>Recent Transactions</h3>
+  <ul>
+    {recentTransactions.length > 0 ? (
+      recentTransactions.map((transaction) => (
+        <li key={transaction._id}>
+          <span>{transaction.description}</span>
+          <span
+            className={`transaction-amount ${
+              transaction.type === "Income" ? "income" : "expense"
+            }`}
+          >
+            {transaction.type === "Income" ? "+" : "-"}₹{transaction.amount}
+          </span>
+          <span>{new Date(transaction.date).toLocaleString()}</span>
+        </li>
+      ))
+    ) : (
+      <p>No recent transactions found.</p>
+    )}
+  </ul>
+</div>
 
-      {/* <div className="activities">
-        <div className="individual-activities">
-          <h3>Individual Activities</h3>
-          <ul>
-            <li>Divya paid you ₹200 (Just now)</li>
-            <li>Vivek received ₹987 (59 minutes ago)</li>
-            <li>Sabih paid you ₹1000 (12 hours ago)</li>
-          </ul>
-        </div>
-        <div className="group-activities">
-          <h3>Group Activities</h3>
-          <ul>
-            <li>Ananya paid Vivek ₹809 (Just now)</li>
-            <li>Divyansh recorded a payment (59 minutes ago)</li>
-            <li>Sabih added "Bhajan" in "City Life" (12 hours ago)</li>
-          </ul>
-        </div>
-      </div> */}
     </div>
   );
 }
 
 export default Dashboard;
+

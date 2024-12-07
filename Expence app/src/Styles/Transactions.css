@@ -131,12 +131,12 @@ h3 {
 }
 
 /* Empty State */
-p {
+ /* p {
   font-size: 1.2rem;
   color: #888;
   text-align: center;
   margin-top: 40px;
-}
+} */
 
 /* Responsive Design for Mobile */
 @media (max-width: 768px) {

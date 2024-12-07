@@ -1,0 +1,159 @@
+.user-profile-container {
+    display: flex;
+    background-color:white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    height: 100vh;
+    scroll-behavior: inherit;
+
+  }
+  
+  .user-profile-left {
+    flex: 1;
+    padding: 90px;
+    border-right: 1px solid #f0f0f0;;
+  }
+  
+  .user-profile-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .user-profile-photo {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 16px;
+  }
+  
+  .user-profile-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .user-profile-info h2 {
+    font-size: 20px;
+    font-weight: 600;
+    color: #333;
+  }
+  
+  .user-profile-sections {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+  }
+  
+  .user-profile-section {
+    border-radius: 8px;
+    padding: 0px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    background-color: white;
+  }
+  
+  .user-profile-section h3{
+    text-align: left;
+  }
+  .user-profile-section.account-balance.expanded {
+    background-color: white;
+  }
+  
+  .user-profile-section-title {
+    font-size: 20px;
+    font-weight: 600;
+    color: #555;
+    margin-bottom: 8px;
+    
+  }
+
+  .user-profile-section img{
+    transform: translate(-120%,-70%);
+    height: 48px;
+    width: 48px;
+  }
+  
+  .user-profile-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 20px;
+  }
+  
+  .user-profile-logout-button,
+  .user-profile-add-balance-button {
+    background-color: rgba(182, 76, 242, 1);
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .user-profile-logout-button:hover,
+  .user-profile-add-balance-button:hover {
+    background-color: rgba(182, 76, 242, 1);
+  }
+  
+  .user-profile-right {
+    flex: 1;
+    background-color: white;
+    padding: 20px;
+    border-left: 2px solid #f0f0f0;
+    box-shadow: 2px 2px 4px white;
+  }
+  
+  .account-balance-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 16px;
+    padding: 50px;
+    text-align: center;
+  }
+  
+  .account-balance-content {
+    margin-top: 16px;
+  }
+
+    
+.account-balance-content p{
+    height: 85px;
+}
+  
+  .add-balance {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 12px;
+  }
+  
+  .add-balance input {
+    flex: 1;
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    margin: 65px;
+    transform: translateX(20%);
+  }
+  
+  .add-balance-button {
+    background-color: rgba(182, 76, 242, 1);
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .add-balance-button:hover {
+    background-color: rgba(182, 76, 242, 1);
+  }
