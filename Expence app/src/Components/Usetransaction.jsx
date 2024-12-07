@@ -1,8 +1,11 @@
+// useTransactions.js
 import { useState, useEffect } from "react";
 import axios from "axios";
 
 export const useTransactions = () => {
   const [transactions, setTransactions] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   const fetchTransactions = async () => {
     try {
@@ -21,13 +24,17 @@ export const useTransactions = () => {
         }
       );
 
+      console.log("Transactions API Response:", response.data); // Log the response
+
       if (response.data.status === "SUCCESS") {
         setTransactions(response.data.transactions);
       } else {
-        console.error("Failed to fetch transactions:", response.data.message);
+        setError("Failed to fetch transactions: " + response.data.message);
       }
     } catch (error) {
-      console.error("Error fetching transactions:", error.response || error.message);
+      setError("Error fetching transactions: " + error.message);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -35,5 +42,7 @@ export const useTransactions = () => {
     fetchTransactions();
   }, []);
 
-  return { transactions };
+  return { transactions, loading, error };
 };
+
+
