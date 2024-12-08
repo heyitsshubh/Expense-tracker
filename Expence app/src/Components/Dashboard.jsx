@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useTransactions } from "./Usetransaction";
 import "../Styles/Dashboard.css";
-import AverageMoneySpentChart from "./Averagemoneychart"; 
+import WeeklyGraph from "./WeeklyGraph"; 
 import YearlyAnalysisChart from "./YearlyAnalysischart";
 import avtar from "../assets/avatar.png";
 import balance from "../assets/balance.png";
@@ -125,16 +125,16 @@ const Dashboard = () => {
 
       <div className="analytics">
         <div className="chart">
-          <h3>Average Money Spent</h3>
+          <h3>Average Weekly Spent</h3>
           <ul>
-            <li>Daily: ₹{accountData.averageDailyExpense}</li>
-            <li>Weekly: ₹{accountData.averageWeeklyExpense}</li>
-            <li>Monthly: ₹{accountData.averageMonthlyExpense}</li>
+            {/* <li>Daily: ₹{accountData.averageDailyExpense}</li> */}
+            <li> ₹{accountData.averageWeeklyExpense}</li>
+            {/* <li>Monthly: ₹{accountData.averageMonthlyExpense}</li> */}
           </ul>
-          <AverageMoneySpentChart />
+          <WeeklyGraph />
         </div>
         <div className="chart">
-          <h3>Yearly Analysis</h3>
+          <h3>Monthly Analysis</h3>
           <YearlyAnalysisChart />
         </div>
       </div>
