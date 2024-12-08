@@ -56,6 +56,7 @@ const Expense = () => {
   };
 
   return (
+    <div className="expense-container">
     <div className="expense-income-form">
       {/* Search Bar */}
       <div className="search-bar">
@@ -120,6 +121,7 @@ const Expense = () => {
       >
         {isExpense ? "Add New Expense" : "Add New Income"}
       </button>
+    </div>
     </div>
   );
 };

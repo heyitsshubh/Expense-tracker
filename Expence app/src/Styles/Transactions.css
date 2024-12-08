@@ -4,6 +4,7 @@
   padding: 20px;
   background-color: #f4f4f4;
   font-family: Arial, sans-serif;
+  border-radius: 5px;
 }
 
 /* Header with hamburger and title */
@@ -11,11 +12,11 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: rgba(185, 104, 231, 1);
+  background-color: white;
   padding: 15px 20px;
-  color: #fff;
+  color: white;
   border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
 }
 
 .header h2 {
@@ -29,7 +30,8 @@
   padding: 10px;
   background-color: transparent;
   border: none;
-  color: #fff;
+  color: black;
+   box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 /* Hamburger Menu */
@@ -56,14 +58,14 @@
   text-align: left;
   border: none;
   background: #f8f8f8;
-  color: #333;
+  color: black;
   font-size: 1rem;
   cursor: pointer;
 }
 
 .hamburger-menu button:hover {
-  background-color: #007bff;
-  color: #fff;
+  background-color: rgba(248, 225, 254, 1);
+  color: black;
 }
 
 /* Transaction Categories */

@@ -103,19 +103,36 @@ const WeeklyGraph = () => {
       {
         label: "Income",
         data: weeklyData.income,
-        backgroundColor: "green",
-        borderColor: "green",
+        backgroundColor: "rgba(229, 234, 252, 1)",
+        borderColor: "rgba(229, 234, 252, 1)",
         borderWidth: 1,
       },
       {
         label: "Expense",
         data: weeklyData.expense,
-        backgroundColor: "red",
-        borderColor: "red",
+        backgroundColor: "rgba(185, 104, 231, 1)",
+        borderColor: "rgba(185, 104, 231, 1)",
         borderWidth: 1,
       },
     ],
   };
+
+  const options = {
+    responsive: true,
+    scales: {
+      x: {
+        grid: {
+          display: false, // Disable grid lines on the x-axis
+        },
+      },
+      y: {
+        grid: {
+          display: false, // Disable grid lines on the y-axis
+        },
+      },
+    },
+  };
+
 
   if (loading) {
     return <div>Loading...</div>;
@@ -128,7 +145,7 @@ const WeeklyGraph = () => {
   return (
     <div className="weekly-graph-container">
       <h2>Weekly Income and Expense Graph</h2>
-      <Bar data={data} options={{ responsive: true }} />
+      <Bar data={data} options={options} />
     </div>
   );
 };
