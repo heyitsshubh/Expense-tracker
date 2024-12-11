@@ -11,9 +11,9 @@ function ExpenseIncome() {
       <div className="form">
         <Expense />
       </div>
-      <div className="recent-expenses-section">
+      {/* <div className="recent-expenses-section">
         <Recentexpense />
-      </div>
+      </div> */}
     </div>
   );
 }

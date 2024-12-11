@@ -125,10 +125,10 @@ const Dashboard = () => {
 
       <div className="analytics">
         <div className="chart">
-          <h3>Average Weekly Spent</h3>
+          <h3> Weekly Analysis</h3>
           <ul>
             {/* <li>Daily: ₹{accountData.averageDailyExpense}</li> */}
-            <li> ₹{accountData.averageWeeklyExpense}</li>
+            {/* <li> ₹{accountData.averageWeeklyExpense}</li> */}
             {/* <li>Monthly: ₹{accountData.averageMonthlyExpense}</li> */}
           </ul>
           <WeeklyGraph />
@@ -166,3 +166,4 @@ const Dashboard = () => {
 }
 
 export default Dashboard;
+

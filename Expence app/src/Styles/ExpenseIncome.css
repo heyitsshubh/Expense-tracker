@@ -4,6 +4,14 @@
     justify-content: space-between;
     padding: 30px;
     gap: 20px;
+    background-image: url('../assets/expens.png'); /* Replace with your image path */
+  background-size: contain; /* Make the image cover the entire container */
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Prevent tiling */
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+
   }
   
   .form-section {

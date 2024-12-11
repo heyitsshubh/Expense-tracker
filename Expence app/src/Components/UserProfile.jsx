@@ -11,35 +11,39 @@ const UserProfile = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [token, setToken] = useState("");
+  const [name, setUsername] = useState("User"); // Default to "User"
 
-  // Retrieve token from sessionStorage when the component mounts
+  // Fetch username and account balance when the component mounts
   useEffect(() => {
     const storedToken = sessionStorage.getItem("authToken");
+
     if (!storedToken) {
       setError("Authentication required. Please log in.");
     } else {
       setToken(storedToken);
-      fetchAccountBalance(storedToken);
+      fetchUserDetails(storedToken); // Fetch both username and account balance
     }
   }, []);
 
-  // Function to fetch account balance
-  const fetchAccountBalance = async (authToken) => {
+  // Function to fetch user details
+  const fetchUserDetails = async (authToken) => {
     try {
-      const response = await axios.get("https://cash-cue.onrender.com/Settings/balance", {
+      const response = await axios.get("https://cash-cue-web.onrender.com/homepage/name", {
         headers: {
           Authorization: `Bearer ${authToken}`,
         },
       });
 
-      const balance = parseFloat(response.data.accountBalance); // Convert string to number
-      if (!isNaN(balance)) {
-        setAccountBalance(balance); // Update with numeric value
+      const { name, accountBalance } = response.data;
+
+      if (name) setUsername(name); // Update username
+      if (!isNaN(parseFloat(accountBalance))) {
+        setAccountBalance(parseFloat(accountBalance)); // Update balance
       } else {
-        throw new Error("Invalid balance value received from the server.");
+        throw new Error("Invalid account balance value received.");
       }
     } catch (err) {
-      setError(err.response?.data?.message || err.message || "Failed to fetch account balance.");
+      setError(err.response?.data?.message || err.message || "Failed to fetch user details.");
     }
   };
 
@@ -104,7 +108,7 @@ const UserProfile = () => {
             <img src={avtar} alt="User Avatar" />
           </div>
           <div className="user-profile-info">
-            <h2 className="user-profile-username">Ananya Singh</h2>
+            <h2 className="user-profile-username">{name}</h2> {/* Display the username */}
           </div>
         </div>
         <div className="user-profile-sections">
@@ -152,6 +156,20 @@ const UserProfile = () => {
 };
 
 export default UserProfile;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

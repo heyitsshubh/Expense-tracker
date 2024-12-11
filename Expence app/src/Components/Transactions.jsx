@@ -46,38 +46,47 @@ const Transactions = () => {
   // Function to categorize transactions by date
   const categorizeTransactions = (transactions) => {
     const today = new Date();
+    today.setHours(0, 0, 0, 0); // Reset to start of the day for accurate comparison
+  
     const grouped = {
       today: [],
       thisWeek: [],
       thisMonth: [],
       older: [],
     };
-
+  
     transactions.forEach((transaction) => {
       const transactionDate = new Date(transaction.date);
-      const diffDays = Math.floor((today - transactionDate) / (1000 * 3600 * 24));
-      const diffWeeks = Math.floor(diffDays / 7);
-      const diffMonths = today.getMonth() - transactionDate.getMonth() + (12 * (today.getFullYear() - transactionDate.getFullYear()));
-
-      if (filter === "daily" && diffDays <= 1) {
+      transactionDate.setHours(0, 0, 0, 0); // Reset to start of the day
+  
+      const diffTime = today - transactionDate; // Time difference in milliseconds
+      const diffDays = diffTime / (1000 * 3600 * 24); // Convert to days
+  
+      if (diffDays === 0) {
         grouped.today.push(transaction);
-      } else if (filter === "weekly" && diffWeeks <= 1) {
+      } else if (diffDays > 0 && diffDays <= 7) {
         grouped.thisWeek.push(transaction);
-      } else if (filter === "monthly" && diffMonths <= 1) {
+      } else if (
+        today.getFullYear() === transactionDate.getFullYear() &&
+        today.getMonth() === transactionDate.getMonth()
+      ) {
         grouped.thisMonth.push(transaction);
       } else {
         grouped.older.push(transaction);
       }
     });
-
+  
     // Sort transactions within each group by date (descending)
-    grouped.today.sort((a, b) => new Date(b.date) - new Date(a.date));
-    grouped.thisWeek.sort((a, b) => new Date(b.date) - new Date(a.date));
-    grouped.thisMonth.sort((a, b) => new Date(b.date) - new Date(a.date));
-    grouped.older.sort((a, b) => new Date(b.date) - new Date(a.date));
-
+    const sortByDateDesc = (a, b) => new Date(b.date) - new Date(a.date);
+  
+    grouped.today.sort(sortByDateDesc);
+    grouped.thisWeek.sort(sortByDateDesc);
+    grouped.thisMonth.sort(sortByDateDesc);
+    grouped.older.sort(sortByDateDesc);
+  
     return grouped;
   };
+  
 
   // Fetch transactions on component mount and whenever `refreshTransactions` or `filter` changes
   useEffect(() => {

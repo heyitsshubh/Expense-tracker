@@ -11,7 +11,7 @@
   .user-profile-left {
     flex: 1;
     padding: 90px;
-    border-right: 1px solid #f0f0f0;;
+    border-right: 1px solid #f0f0f0;
   }
   
   .user-profile-header {
@@ -123,6 +123,7 @@
 
     
 .account-balance-content p{
+  text-align: center;
     height: 85px;
 }
   
