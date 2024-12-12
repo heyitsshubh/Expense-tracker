@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "../Styles/User.css";
 import avtar from "../assets/avatar.png";
@@ -12,6 +13,8 @@ const UserProfile = () => {
   const [error, setError] = useState(null);
   const [token, setToken] = useState("");
   const [name, setUsername] = useState("User"); // Default to "User"
+
+  const navigate = useNavigate(); // React Router's navigate function
 
   // Fetch username and account balance when the component mounts
   useEffect(() => {
@@ -100,6 +103,12 @@ const UserProfile = () => {
     }
   };
 
+  // Handle logout
+  const handleLogout = () => {
+    sessionStorage.clear(); // Clear session storage
+    navigate("/"); // Navigate to login page
+  };
+
   return (
     <div className="user-profile-container">
       <div className="user-profile-left">
@@ -118,10 +127,10 @@ const UserProfile = () => {
           >
             <h3 className="user-profile-section-title">Account Balance</h3>
           </div>
-           {/* <div className="user-profile-section">
+          {/* <div className="user-profile-section">
              <h3 className="user-profile-section-title">About</h3> 
-          </div>  */}
-          <div className="user-profile-section">
+          </div> */}
+          <div className="user-profile-section" onClick={handleLogout}>
             <h3>Logout</h3>
             <img src={logout} alt="Logout Icon" />
           </div>
@@ -156,6 +165,7 @@ const UserProfile = () => {
 };
 
 export default UserProfile;
+
 
 
 
