@@ -1,154 +1,202 @@
 .dashboard-container {
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
 
-  }
-  
-  .overview {
-    display: flex;
-    gap: 20px;
+.overview {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap; /* Allow wrapping of cards for smaller screens */
+  justify-content: space-between;
+}
+
+.overview img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: translateY(-150%);
+  width: 50px;
+  height: 50px;
+}
+
+.card {
+  background: #f9f9f9;
+  padding: 15px;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  flex: 1;
+  width: 140px;
+  height: 90px;
+}
+
+.card h3 {
+  margin-bottom: 10px;
+}
+
+.card p {
+  font-size: 22px;
+  font-weight: 600;
+  font-family: 'Poppins', sans-serif;
+}
+
+.analytics {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap; /* Allow wrapping for smaller screens */
+  justify-content: space-between;
+}
+
+.chart {
+  background: #f9f9f9;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  flex: 1;
+  width: 336px;
+  height: 328px;
+}
+
+.chart h3 {
+  text-align: left;
+}
+
+.chart p {
+  margin: 10px;
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.recent-transactions ul,
+.activities ul {
+  list-style-type: none;
+  padding: 0;
+  gap: 2px;
+}
+
+.recent-transactions ul li,
+.activities ul li {
+  display: flex;
+  justify-content: space-between;
+  padding: 30px 15px;
+  border-radius: 10px;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  background: #f9f9f9;
+  margin: 10px;
+}
+
+.activities {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap; /* Allow wrapping for smaller screens */
+  justify-content: space-between;
+}
+
+.individual-activities,
+.group-activities {
+  background: #f9f9f9;
+  padding: 20px;
+  border-radius: 10px;
+  flex: 1;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.recent-transactions {
+  margin-top: 20px;
+  padding: 15px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.recent-transactions h3 {
+  margin-bottom: 10px;
+  font-size: 24px;
+  color: #333;
+  text-align: left;
+}
+
+.recent-transactions ul {
+  list-style: none;
+  padding: 0;
+}
+
+.recent-transactions li {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.recent-transactions li:last-child {
+  border-bottom: none;
+}
+
+.recent-transactions span {
+  font-size: 14px;
+  color: #555;
+}
+
+.transaction-amount.income {
+  color: #28a745; /* Green for income */
+  font-weight: bold;
+}
+
+.transaction-amount.expense {
+  color: #dc3545; /* Red for expense */
+  font-weight: bold;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .overview,
+  .analytics {
+    flex-direction: column; /* Stack items for tablets */
   }
 
-  .overview img{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transform: translateY(-150%);
-    width: 50px;
-    height: 50px;
+  .chart {
+    width: 100%; /* Full width charts */
+    height: auto;
   }
-  
+}
+
+@media (max-width: 768px) {
+  .overview img {
+    transform: translateY(0); /* Center icons */
+  }
 
   .card {
-    background: #f9f9f9;
-    padding: 15px;
-    border-radius: 20px;
-    text-align: center;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    flex: 1;
-    width: 140px;
-    height: 90px;
+    width: 100%; /* Full width cards */
+    height: auto; /* Adjust height */
   }
 
-  .card h3{
-    margin-bottom: 10px;
-  }
-
-  .card p{
-    /* margin: 5px; */
-    font-size: 22px;
-    font-weight: 600;
-    font-family: 'poppins';
-  }
-  
-  /* .card img{
-    transform: translate(-210%,-100%);
-  } */
-  .analytics {
-    display: flex;
-    gap: 20px;
-  }
-  
-  .chart {
-    background: #f9f9f9;
-    padding: 20px;
-    border-radius: 10px;
-    flex: 1;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    width: 336px;
-    height: 328px;
-    /* width: 40%; */
-  }
-
-  .chart h3{
-    text-align: left;
-  }
-
-  .chart p{
-    margin: 10px;
-    font-size: 22px;
-    font-weight: 600;
-  }
-  
-  .recent-transactions ul,
-  .activities ul {
-    list-style-type: none;
-    padding: 0;
-    gap: 2px;
-  }
-  
   .recent-transactions ul li,
   .activities ul li {
-    display: flex;
-    justify-content: space-between;
-    padding: 30px 15px;
-    /* border-bottom: 1px solid #eee; */
-    border-radius: 10px;
-    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-    background: #f9f9f9;
-    margin: 10px;
-  }
-  
-  .activities {
-    display: flex;
-    gap: 20px;
-  }
-  
-  .individual-activities,
-  .group-activities {
-    background: #f9f9f9;
-    padding: 20px;
-    border-radius: 10px;
-    flex: 1;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  .recent-transactions {
-    margin-top: 20px;
-    padding: 15px;
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  .recent-transactions h3 {
-    margin-bottom: 10px;
-    font-size: 24px;
-    color: #333;
+    flex-direction: column; /* Stack content */
     text-align: left;
+    padding: 15px;
   }
-  
-  .recent-transactions ul {
-    list-style: none;
-    padding: 0;
+}
+
+@media (max-width: 576px) {
+  .dashboard-container {
+    padding: 10px;
   }
-  
-  .recent-transactions li {
-    display: flex;
-    justify-content: space-between;
-    padding: 10px 0;
-    border-bottom: 1px solid #eee;
+
+  .card p {
+    font-size: 18px; /* Reduce font size */
   }
-  
-  .recent-transactions li:last-child {
-    border-bottom: none;
+
+  .chart {
+    padding: 15px;
   }
-  
-  .recent-transactions span {
-    font-size: 14px;
-    color: #555;
+
+  .recent-transactions h3 {
+    font-size: 20px; /* Smaller title font */
   }
-  
-  .transaction-amount.income {
-    color: #28a745; /* Green for income */
-    font-weight: bold;
-  }
-  
-  .transaction-amount.expense {
-    color: #dc3545; /* Red for expense */
-    font-weight: bold;
-  }
+}
+
   
   

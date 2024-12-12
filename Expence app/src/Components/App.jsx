@@ -2,6 +2,7 @@
 // import '../Styles/App.css';
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+// import Groupexpense from "./Groupexpense";
 
 // Import components and pages
 import LoginPage from "./Login";
@@ -15,9 +16,15 @@ import Transactions from "./Transactions";
 import { TransactionsProvider } from "./TransactionContext"; // Context for real-time updates
 import UserProfile from "./UserProfile";
 import Statistics from "./Statistics";
+// import CreateGroup from "./Groups";
+// import Expens from "./Expens";
+// // import Groupexpense from "./Groupexpense";
+// import GroupOptions from "./CreateOptions";
 
 function App() {
-  return (
+  return ( 
+    <>
+   
     <TransactionsProvider>
       <Router>
         <Routes>
@@ -33,11 +40,22 @@ function App() {
             <Route path="income" element={<ExpenseIncome />} />
             <Route path="transactions" element={<Transactions />} /> 
             <Route path="stats" element={<Statistics />} /> 
+             {/* <Route path="groups" element={<CreateGroup />} />   */}
+            {/* <Route path="/group/:groupId" element={<GroupOptions />} /> */}
+            {/* <Route path="//" element={<Groupexpense />} /> */}
+            {/* <Route path="/expens" element={<Expens />} />  */}
             <Route path="user" element={<UserProfile />} />
+                {/* <Route path="/dashboardexpens" element={<Expens />} />  */}
           </Route>
+          {/* <Route path="/groupId" element={<GroupOptions />} /> */}
+
+
         </Routes>
       </Router>
+  
     </TransactionsProvider>
+    {/* <GroupOptions/> */}
+    </>
   );
 }
 

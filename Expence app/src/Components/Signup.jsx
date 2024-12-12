@@ -29,7 +29,7 @@ import Calculator from '../assets/Calculator.png';
   
         if (!passwordRegex.test(password)) {
           setErrorMessage(
-            "Password must be at least 8 characters long and include at least one number and one symbol"
+            "Password must be 8 characters long and include at least one number and one symbol and one capital letter"
           );
           return;
         }
@@ -136,7 +136,7 @@ import Calculator from '../assets/Calculator.png';
                Register
              </button>
            </form>
-           <p>or continue with</p>
+           {/* <p>or continue with</p> */}
            <div className="social-icons">
            {/* <button className="social-button Facebook">
                 <img src={facebk} alt="Facebook" />
@@ -144,9 +144,9 @@ import Calculator from '../assets/Calculator.png';
               {/* <button className="social-button Apple">
                 <img src= {apple} alt="Apple" />
               </button> */}
-              <button className="social-button Google">
+              {/* <button className="social-button Google">
                 <img src={google} alt="Google" />
-              </button>
+              </button> */}
            </div>
          </div>
 

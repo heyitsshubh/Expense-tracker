@@ -118,9 +118,9 @@ const UserProfile = () => {
           >
             <h3 className="user-profile-section-title">Account Balance</h3>
           </div>
-          <div className="user-profile-section">
-            <h3 className="user-profile-section-title">About</h3>
-          </div>
+           {/* <div className="user-profile-section">
+             <h3 className="user-profile-section-title">About</h3> 
+          </div>  */}
           <div className="user-profile-section">
             <h3>Logout</h3>
             <img src={logout} alt="Logout Icon" />

@@ -101,7 +101,7 @@ const Dashboard = () => {
         </div>
         <div className="profile">
           <img src={avtar} alt="Profile" className="profile-img" />
-          <span className="profile-name">Annanya Singh</span>
+          <span className="profile-name">Shubh</span>
         </div>
       </div>
 
@@ -134,7 +134,7 @@ const Dashboard = () => {
           <WeeklyGraph />
         </div>
         <div className="chart">
-          <h3>Monthly Analysis</h3>
+          <h3>Daily Analysis</h3>
           <YearlyAnalysisChart />
         </div>
       </div>

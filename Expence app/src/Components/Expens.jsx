@@ -1,16 +1,13 @@
-import React, { useState, useContext } from "react";
-import axios from "axios";
-import "../Styles/Expense.css";
-import { TransactionsContext } from "./TransactionContext";
+import React, { useState } from "react";
+import "../Styles/Expens.css";
 
-const Expense = () => {
+const Expens = () => {
   const [amount, setAmount] = useState("");
   const [description, setDescription] = useState("");
   const [date, setDatetime] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
   const [isExpense, setIsExpense] = useState(true); // Toggle between expense and income
   const [successMessage, setSuccessMessage] = useState(false); // For showing success box
-  const { triggerRefresh } = useContext(TransactionsContext); // Use triggerRefresh from context
 
   // Get the current date and time in the required format
   const getCurrentDatetime = () => {
@@ -23,50 +20,20 @@ const Expense = () => {
     return `${year}-${month}-${day}T${hours}:${minutes}`;
   };
 
-  const handleAddTransaction = async () => {
-    try {
-      const token = sessionStorage.getItem("authToken");
-      if (!token) {
-        console.error("No token found");
-        return;
-      }
+  // Handle the form submission for adding an expense or income
+  const handleAddTransaction = () => {
+    // Show success box
+    setSuccessMessage(true);
 
-      // API call to add a transaction (income or expense)
-      const response = await axios.post(
-        "https://cash-cue-web.onrender.com/transaction/add",
-        {
-          amount: parseFloat(amount), // Ensure amount is sent as a number
-          description,
-          date,
-          type: isExpense ? "Expense" : "Income", // Distinguish between income and expense
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+    // Clear the form
+    setAmount("");
+    setDescription("");
+    setDatetime("");
 
-      console.log("Transaction added successfully:", response.data);
-
-      // Show success box
-      setSuccessMessage(true);
-
-      // Trigger refresh to update transactions
-      triggerRefresh();
-
-      // Clear the form
-      setAmount("");
-      setDescription("");
-      setDatetime("");
-
-      // Remove success message after 3 seconds
-      setTimeout(() => {
-        setSuccessMessage(false);
-      }, 3000);
-    } catch (error) {
-      console.error("Error adding transaction:", error.response || error.message);
-    }
+    // Remove success message after 3 seconds
+    setTimeout(() => {
+      setSuccessMessage(false);
+    }, 3000);
   };
 
   const handleSearchChange = (e) => {
@@ -74,29 +41,29 @@ const Expense = () => {
   };
 
   return (
-    <div className="expense-container">
-      <div className="expense-income-form">
+    <div className="expense-page-container">
+      <div className="expense-form-container">
         {/* Search Bar */}
-        {/* <div className="search-bar">
+        <div className="search-bar-container">
           <input
             type="text"
-            placeholder="Search"
+            placeholder="Search Transactions"
             className="search-input"
             value={searchQuery}
             onChange={handleSearchChange}
           />
-        </div> */}
+        </div>
 
         {/* Toggle buttons for Expense/Income */}
-        <div className="toggle-buttons">
+        <div className="toggle-buttons-container">
           <button
-            className={isExpense ? "active" : ""}
+            className={isExpense ? "active-toggle" : ""}
             onClick={() => setIsExpense(true)}
           >
             Expense
           </button>
           <button
-            className={!isExpense ? "active" : ""}
+            className={!isExpense ? "active-toggle" : ""}
             onClick={() => setIsExpense(false)}
           >
             Income
@@ -107,7 +74,7 @@ const Expense = () => {
         <h2 className="amount-display">₹ {amount || "0"}</h2>
 
         {/* Form */}
-        <form className="form">
+        <form className="transaction-form">
           <input
             type="number"
             placeholder="Enter amount"
@@ -147,7 +114,7 @@ const Expense = () => {
 
         {/* Success Notification Box */}
         {successMessage && (
-          <div className="success-box">
+          <div className="success-notification-box">
             <div className="success-icon">✔</div>
             <p>{isExpense ? "Expense added successfully!" : "Income added successfully!"}</p>
           </div>
@@ -157,7 +124,7 @@ const Expense = () => {
   );
 };
 
-export default Expense;
+export default Expens;
 
 
 
@@ -170,3 +137,13 @@ export default Expense;
 
 
 
+
+
+
+
+  
+  
+  
+  
+  
+  

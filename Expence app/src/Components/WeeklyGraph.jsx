@@ -144,7 +144,7 @@ const WeeklyGraph = () => {
 
   return (
     <div className="weekly-graph-container">
-      <h2>Weekly Income and Expense Graph</h2>
+      {/* <h2>Weekly Income and Expense Graph</h2> */}
       <Bar data={data} options={options} />
     </div>
   );

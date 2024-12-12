@@ -30,12 +30,19 @@ const LoginPage = () => {
       });
       console.log('Login successful:', response.data);
       const token = response.data.token;
+      const userGroups = response.data.data.groups;  // Get the groups from the response
+
       console.log("login token", token);
-      
+
       if (token) {
         sessionStorage.setItem('authToken', token);  // Store token in sessionStorage
         console.log('Token saved to sessionStorage:', token);
+
+        // Store the user's groups in sessionStorage
+        sessionStorage.setItem('userGroups', JSON.stringify(userGroups));
+        console.log('User groups saved to sessionStorage:', userGroups);
       }
+
       navigate('/dashboard');
 
     } catch (error) {
@@ -53,11 +60,8 @@ const LoginPage = () => {
     navigate('/signup'); 
   };
 
-
-
   const handleGoogleLogin = async () => {
     try {
-
       const response = await axios.get('https://cash-cue.onrender.com/user/auth/google'); 
       window.location.href = response.data.googleAuthUrl;
     } catch (error) {
@@ -65,7 +69,6 @@ const LoginPage = () => {
       setErrorMessage('Failed to initiate Google login.');
     }
   };
-
 
   return (
     <div className={`login-page ${fadeClass}`}>
@@ -96,7 +99,6 @@ const LoginPage = () => {
         </div>
       </div>
 
-    
       <div className="right-side">
         <div className="login-container">
           <h2>Sign in</h2>
@@ -138,7 +140,7 @@ const LoginPage = () => {
           </form>
 
           <div className="social-login">
-            <p>or continue with</p>
+            {/* <p>or continue with</p> */}
             <div className="social-icons">
               {/* <button className="social-btn">
                 <img src={facebk} alt="Facebook" />
@@ -146,9 +148,9 @@ const LoginPage = () => {
               {/* <button className="social-btn">
                 <img src={apple} alt="Apple" />
               </button> */}
-              <button className="social-btn">
+              {/* <button className="social-btn">
                 <img src={google} alt="Google"  onClick={handleGoogleLogin}/>
-              </button>
+              </button> */}
             </div>
           </div>
         </div>
@@ -158,3 +160,4 @@ const LoginPage = () => {
 };
 
 export default LoginPage;
+
