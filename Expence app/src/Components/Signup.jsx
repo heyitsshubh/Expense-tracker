@@ -16,7 +16,7 @@ import Calculator from '../assets/Calculator.png';
    const [confirmPassword, setConfirmPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-
+   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
 
@@ -38,6 +38,7 @@ import Calculator from '../assets/Calculator.png';
       setErrorMessage('Passwords do not match!');
       return;
     }
+    setLoading(true);
   
    try {
   const response = await axios.post(
@@ -58,6 +59,8 @@ import Calculator from '../assets/Calculator.png';
   setSuccessMessage('Signup successful!');
   setErrorMessage('');
   console.log('Signup response:', response.data);
+
+  localStorage.setItem('userEmail', email);
  
   setIsSliding(true);
   setTimeout(() => navigate('/'), 1000); 
@@ -67,6 +70,9 @@ import Calculator from '../assets/Calculator.png';
     error.response?.data?.message || 'An error occurred during signup. Please try again.'
   );
   setSuccessMessage('');
+}
+finally{
+  setLoading(false);
 }
 
   };
@@ -79,6 +85,11 @@ import Calculator from '../assets/Calculator.png';
  
    return (
      <div className="signup-container">
+         {loading && (
+        <div className="loading-overlay">
+          <div className="loading-spinner"></div>
+        </div>
+      )}
        <div className="signup-box">
          <div className="form-section">
            <h2>Sign Up</h2>
