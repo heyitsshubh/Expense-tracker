@@ -52,7 +52,6 @@ import Calculator from '../assets/Calculator.png';
       headers: {
         'Content-Type': 'application/json',
       },
-       withCredentials: true, 
     }
   );
 
@@ -62,8 +61,7 @@ import Calculator from '../assets/Calculator.png';
 
   localStorage.setItem('userEmail', email);
  
-  setIsSliding(true);
-  setTimeout(() => navigate('/'), 1000); 
+  setTimeout(() => navigate('/otp'), 1000); 
 } catch (error) {
   console.error('Error during signup:', error.response?.data || error.message);
   setErrorMessage(
