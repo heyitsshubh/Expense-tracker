@@ -12,7 +12,6 @@ const Expense = () => {
   const [successMessage, setSuccessMessage] = useState(false); // For showing success box
   const { triggerRefresh } = useContext(TransactionsContext); // Use triggerRefresh from context
 
-  // Get the current date and time in the required format
   const getCurrentDatetime = () => {
     const now = new Date();
     const year = now.getFullYear();
@@ -76,18 +75,6 @@ const Expense = () => {
   return (
     <div className="expense-container">
       <div className="expense-income-form">
-        {/* Search Bar */}
-        {/* <div className="search-bar">
-          <input
-            type="text"
-            placeholder="Search"
-            className="search-input"
-            value={searchQuery}
-            onChange={handleSearchChange}
-          />
-        </div> */}
-
-        {/* Toggle buttons for Expense/Income */}
         <div className="toggle-buttons">
           <button
             className={isExpense ? "active" : ""}
@@ -102,16 +89,16 @@ const Expense = () => {
             Income
           </button>
         </div>
-
-        {/* Amount Display */}
-        <h2 className="amount-display">₹ {amount || "0"}</h2>
-
-        {/* Form */}
-        <form className="form">
+        <div className="amount-display">
+          <h2>How much ?</h2>
+        <h2 >₹ {amount || "0"}</h2>
+        </div>
+<div className="form1">
+        <form >
           <input
             type="number"
             placeholder="Enter amount"
-            className="amount-input"
+          
             value={amount}
             onChange={(e) => setAmount(e.target.value)}
             required
@@ -119,7 +106,7 @@ const Expense = () => {
           <input
             type="text"
             placeholder="Description"
-            className="description-input"
+          
             value={description}
             onChange={(e) => setDescription(e.target.value)}
             required
@@ -127,15 +114,15 @@ const Expense = () => {
           <input
             type="datetime-local"
             id="datetime"
-            className="datetime-input"
+        
             value={date}
             onChange={(e) => setDatetime(e.target.value)}
             required
             max={getCurrentDatetime()} // Prevent selecting future dates
           />
         </form>
+        </div>
 
-        {/* Button */}
         <button
           type="button"
           className="add-transaction-btn"
@@ -144,6 +131,7 @@ const Expense = () => {
         >
           {isExpense ? "Add New Expense" : "Add New Income"}
         </button>
+        </div>
 
         {/* Success Notification Box */}
         {successMessage && (
@@ -151,8 +139,8 @@ const Expense = () => {
             <div className="success-icon">✔</div>
             <p>{isExpense ? "Expense added successfully!" : "Income added successfully!"}</p>
           </div>
+        
         )}
-      </div>
     </div>
   );
 };

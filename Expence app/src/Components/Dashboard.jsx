@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
+import { UserContext } from "./Usercontext";
 import { useTransactions } from "./Usetransaction";
 import "../Styles/Dashboard.css";
-import WeeklyGraph from "./WeeklyGraph"; 
+import WeeklyGraph from "./WeeklyGraph";
 import YearlyAnalysisChart from "./YearlyAnalysischart";
 import avtar from "../assets/avatar.png";
 import balance from "../assets/balance.png";
@@ -10,6 +11,7 @@ import expense from "../assets/expense.png";
 import Income from "../assets/Income.png";
 
 const Dashboard = () => {
+  const { name } = useContext(UserContext); // Access username from UserContext
   const { transactions } = useTransactions();
   const [accountData, setAccountData] = useState({
     totalIncome: 0,
@@ -21,20 +23,10 @@ const Dashboard = () => {
   });
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  // const location = useLocation()
-//   console.log("location", location);
-//  console.log("lstate", location.state);
-  
-  const token = sessionStorage.getItem("authToken");
-
-  console.log("Token retrieved from sessionStorage:", token);
-  
 
   useEffect(() => {
     const fetchAccountData = async () => {
-       const token = sessionStorage.getItem("authToken");
-      console.log(token);
-      
+      const token = sessionStorage.getItem("authToken");
 
       if (!token) {
         setError("Authentication required. Please log in.");
@@ -51,11 +43,11 @@ const Dashboard = () => {
         });
 
         const {
-          "totalIncome": totalIncome = 0,
-          "totalExpense": totalExpense = 0,
+          totalIncome = 0,
+          totalExpense = 0,
           remainingBalance = 0,
           averageDailyExpense = "0",
-          "averageWeeklyExpense": averageWeeklyExpense = "0",
+          averageWeeklyExpense = "0",
           averageMonthlyExpense = "0",
         } = response.data.data || {};
 
@@ -101,7 +93,7 @@ const Dashboard = () => {
         </div>
         <div className="profile">
           <img src={avtar} alt="Profile" className="profile-img" />
-          <span className="profile-name">Shubh</span>
+          <span className="profile-name">{name || "User"}</span> {/* Display username */}
         </div>
       </div>
 
@@ -126,11 +118,6 @@ const Dashboard = () => {
       <div className="analytics">
         <div className="chart">
           <h3> Weekly Analysis</h3>
-          <ul>
-            {/* <li>Daily: ₹{accountData.averageDailyExpense}</li> */}
-            {/* <li> ₹{accountData.averageWeeklyExpense}</li> */}
-            {/* <li>Monthly: ₹{accountData.averageMonthlyExpense}</li> */}
-          </ul>
           <WeeklyGraph />
         </div>
         <div className="chart">
@@ -163,7 +150,8 @@ const Dashboard = () => {
       </div>
     </div>
   );
-}
+};
 
 export default Dashboard;
+
 

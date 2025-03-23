@@ -1,5 +1,4 @@
 
-
 .signup-container {
   width: 100%;
   height: 100vh; 
@@ -30,15 +29,15 @@
 .form-section h2 {
   margin-bottom: 20px; 
   font-size: 30px;
-  /* transform: translate(-80%,190%); */
   color: white;
-  transform: translateX(-85%);
+  transform: translate(-215%,145%);
+
 }
 
 .form-section form {
   width: 100%;
   max-width: 300px;
-  /* margin-top: 70px; */
+  transform: translate(-45%,15%);
 }
 
 .form-section input {
@@ -48,6 +47,7 @@
   border: none;
   border-radius: 5px;
   background: white;
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .form-section p{
@@ -58,14 +58,14 @@
 }
 
 .password-wrapper {
-  position: relative; /* Enables absolute positioning for the icon */
+  position: relative; 
   display: flex;
   align-items: center;
 }
 
 .password-wrapper input {
   flex-grow: 1;
-  padding-right: 40px; /* Add space for the icon */
+  padding-right: 40px; 
   width: 100%;
   margin-bottom: 15px;
   padding: 15px;
@@ -75,23 +75,20 @@
   font-size: 1rem;
 }
 
-/* Icon inside the password field */
 .toggle-password {
   position: absolute;
-  right: 10px; /* Align to the right edge of the input */
+  right: 10px; 
   top: 50%;
   transform: translateY(-70%);
-  font-size: 1.2rem; /* Adjust size as needed */
+  font-size: 1.2rem; 
   cursor: pointer;
   color: #666;
   transition: color 0.3s ease;
 }
 
-/* Change color on hover */
 .toggle-password:hover {
   color: #333;
 }
-
 
 .register-button {
   background-color: #a300ff;
@@ -158,33 +155,6 @@
   text-shadow:5px 5px 4px #b968e7;
 }
 
-@font-palette-values  {
-	base-palette: 2;
-}
-
-
-.info-section span {
-	animation: depth 1s ease-in-out alternate infinite;
-	position: relative;
-	display: inline-block;
-	font-variation-settings: "EDPT" 30;
-	@for $i from 1 through 12 {
-		&:nth-child(#{$i}) {
-			animation-delay: $i * 0.1s;
-		}
-	}
-}
-
-@keyframes depth {
-	0% {
-		transform: translatex(0) translatey(0);
-	}
-	100% {
-		font-variation-settings: "EDPT" 200;
-		transform: translatex(0.15em) translatey(0.1em);
-	}
-} 
-  
 
 .info-section a {
   color:  #b968e7;;
@@ -194,6 +164,14 @@
 
 .info-section a:hover {
   text-decoration: underline;
+}
+
+.content{
+  transform: translate(-50%,-30%);
+}
+
+.content2{
+  transform: translateY(40px);
 }
 
 .images-container {
@@ -209,37 +187,34 @@
 }
 
 .images-container {
-  position: relative; /* Set parent container as relative */
-  /* width: 300px; 
-  height: 200px;  */
+  position: relative; 
 }
 
 .images-container img:nth-child(1) {
   position: absolute;
-  bottom: 0; /* Top-left corner */
+  bottom: 0; 
   right: 0;
-  height: 250px;
-  width: 250px;
-  transform: translateY(-80%);
+  height: 270px;
+  width: 270px;
+  transform: translate(-50%,-100%);
 }
 
 .images-container img:nth-child(2) {
   position: absolute;
-  top: 50%; /* Center vertically */
-  left: 50%; /* Center horizontally */
-  /* transform: translate(-50%, -50%); */
-  width: 250px;
-  height: 250px;
-  transform: translate(20%,-110%);
+  top: 50%;
+  left: 50%; 
+  width: 350px;
+  height: 350px;
+  transform: translate(-15%,-110%) rotate(180deg);
 }
 
 .images-container img:nth-child(3) {
   position: absolute;
-  bottom: 0; /* Bottom-right corner */
+  bottom: 0; 
   right: 0;
-  width: 250px;
-  height: 250px;
-  transform: translate( 45%,80%);
+  width: 350px;
+  height: 350px;
+  transform: translate( 25%,80%) rotate(180deg);
 }
 
 

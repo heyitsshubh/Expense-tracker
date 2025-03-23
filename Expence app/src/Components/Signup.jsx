@@ -151,19 +151,23 @@ import Calculator from '../assets/Calculator.png';
          </div>
 
          <div className="info-section">
+          <div className='content'>
            <h2>
              Sign Up to <br />
              <span>Cash Cue</span>
            </h2>
-           <p>
+           <div className='content2'>
+           <p style={{color:'black'}}>
              If you already have an account
              <br />
              You can <a href="#register" onClick={handleclick}>Sign In</a>!
            </p>
+           </div>
+           </div>
            <div className="images-container">
              <img src={Calculator} alt="Calculator" className='calc' />
-             <img src={Money} alt="Money" />
-             <img src={Chart} alt="Chart" />
+             <img src={Money} alt="Money"  className='money'/>
+             <img src={Chart} alt="Chart" className='char' />
            </div>
          </div>
        </div>

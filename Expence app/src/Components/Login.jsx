@@ -30,15 +30,15 @@ const LoginPage = () => {
       });
       console.log('Login successful:', response.data);
       const token = response.data.token;
-      const userGroups = response.data.data.groups;  // Get the groups from the response
+      const userGroups = response.data.data.groups;  
 
       console.log("login token", token);
 
       if (token) {
-        sessionStorage.setItem('authToken', token);  // Store token in sessionStorage
+        sessionStorage.setItem('authToken', token);  
         console.log('Token saved to sessionStorage:', token);
 
-        // Store the user's groups in sessionStorage
+
         sessionStorage.setItem('userGroups', JSON.stringify(userGroups));
         console.log('User groups saved to sessionStorage:', userGroups);
       }
@@ -60,15 +60,15 @@ const LoginPage = () => {
     navigate('/signup'); 
   };
 
-  const handleGoogleLogin = async () => {
-    try {
-      const response = await axios.get('https://cash-cue.onrender.com/user/auth/google'); 
-      window.location.href = response.data.googleAuthUrl;
-    } catch (error) {
-      console.error('Error initiating Google login:', error.response?.data || error.message);
-      setErrorMessage('Failed to initiate Google login.');
-    }
-  };
+  // const handleGoogleLogin = async () => {
+  //   try {
+  //     const response = await axios.get('https://cash-cue.onrender.com/user/auth/google'); 
+  //     window.location.href = response.data.googleAuthUrl;
+  //   } catch (error) {
+  //     console.error('Error initiating Google login:', error.response?.data || error.message);
+  //     setErrorMessage('Failed to initiate Google login.');
+  //   }
+  // };
 
   return (
     <div className={`login-page ${fadeClass}`}>
@@ -81,7 +81,7 @@ const LoginPage = () => {
           <div className="text-content">
             <h1>Sign in to</h1>
             <h2>Cash Cue</h2>
-            <span
+           <div className='text'> <span
                 style={{ cursor:'pointer' ,color: '#b968e7' }} 
                 onClick={handleclick}
               >
@@ -90,6 +90,7 @@ const LoginPage = () => {
             <p className="register-text">
               If you don't have an account  <br />
              </p>
+             </div>
           </div>
         </div>
 
@@ -101,7 +102,7 @@ const LoginPage = () => {
 
       <div className="right-side">
         <div className="login-container">
-          <h2>Sign in</h2>
+          <h2 style={{color: "white"}}>Sign in</h2>
           {errorMessage && <p className="error-message">{errorMessage}</p>}
 
           <form onSubmit={handleSubmit}>

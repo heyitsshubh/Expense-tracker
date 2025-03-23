@@ -2,32 +2,31 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'poppins',sans-serif;
+  font-weight: medium;
 }
 
 
 
-html, body {
- 
+html, body { 
   width: 100%;
   height: 100%;
   font-family: 'poppins',sans-serif;
   overflow-x: hidden;
-  /* overflow-y: hidden; */
 }
+
 .register-text span {
   color: #b968e7;
   cursor: pointer;
-  text-decoration: underline; /* Indicate it is clickable */
+  text-decoration: underline; 
 }
 
-/* LoginPage.css */
 .login-page {
     display: flex;
     height: 100vh;
     background: #ffffff;
   }
   
-  /* Left Side Styles */
   .left-side {
     flex: 1;
     padding: 1.5rem; 
@@ -36,8 +35,7 @@ html, body {
     justify-content: space-between;
     position: relative;
   }
-
-  
+ 
   .top-section {
     display: flex;
     flex-direction: column;
@@ -60,8 +58,8 @@ html, body {
   }
 
   .text-content{
-    margin-left: 117px;
-    margin-top: 114px;
+    margin-left: 200px;
+    margin-top: 144px;;
   }
   
   .text-content h1 {
@@ -69,7 +67,6 @@ html, body {
     font-weight: 600;
     margin: 0;
     font-family: 'poppins',sans-serif;
-
   }
   
   .text-content h2 {
@@ -82,34 +79,13 @@ html, body {
     text-shadow:5px 5px 4px #b968e7;
   }
 
-   /* @font-palette-values  {
-	base-palette: 2;
-}
-
-.text-content h2 {
-	animation: depth 1s ease-in-out alternate infinite;
-	position: relative;
-	display: inline-block;
-	font-variation-settings: "EDPT" 30;
-	@for $i from 1 through 12 {
-		&:nth-child(#{$i}) {
-			animation-delay: $i * 0.1s;
-		}
-	}
-}
-
-@keyframes depth {
-	0% {
-		transform: translatex(0) translatey(0);
-	}
-	100% {
-		font-variation-settings: "EDPT" 200;
-		transform: translatex(0.15em) translatey(0.1em);
-	}
-}  */
+  .text{
+    transform: translateY(50px);
+  }
   
   .register-text {
     color: black;
+    
   }
 
   .bottom-section {
@@ -121,37 +97,21 @@ html, body {
     position: absolute;
     bottom: 0;
     left: 0;
-    width: 280px;
-    height: 280px;
-    transform: translateX(62px);
+    width: 310px;
+    height: 310px;
+    transform: translateX(108px);
   }
   
   .chart-icon {
     position: absolute;
     bottom: 0;
     right: 0;
-    transform: translateX(115px);
-    width: 287px;
-    height: 287px;
-    margin-bottom: 210px;
+    transform: translateX(135px);
+    width: 350px;
+    height: 350px;
+    margin-bottom: 270px;
   }
- 
-/* .calculator-icon,
-.money-icon,
-.chart-icon {
-  transition: transform 0.3s ease, opacity 0.3s ease;
-}
 
-.calculator-icon:hover,
-.money-icon:hover,
-.chart-icon:hover {
-  transform: scale(1.1); /* Slightly enlarge on hover */
-   /* opacity: 0.9;          */
-
-
-  
-
-  /* Right Side Styles */
   .right-side {
     flex: 1;
     background: #b968e7;
@@ -162,12 +122,11 @@ html, body {
     padding: 7rem;
   }
 
-  
-  
   .login-container {
     width: 100%;
     max-width: 400px;
     color: white;
+    transform: translateY(-30px);
   }
   
   .login-container h2 {
@@ -176,10 +135,9 @@ html, body {
   }
   
   .input-field {
-    position: relative; /* Ensure relative positioning for child elements */
-    margin-bottom: 1.5rem;
+    position: relative; 
   }
-   /* In Login.css */
+
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -199,18 +157,14 @@ html, body {
 
   .input-field input {
     width: 100%;
-    padding: 12px 40px 12px 12px; /* Add right padding to make space for the emoji */
+    padding: 16px 44px 16px 16px;
     border: none;
     border-radius: 8px;
     font-size: 1rem;
     background: rgba(255, 255, 255, 0.9);
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2);
   }
-  
-  /* .login-page a{
-  color: #b968e7;
-  cursor: pointer;
-  } */
-  /* Add the emoji container */
+
   .password-emoji {
     position: absolute;
     right: 10px;
@@ -222,7 +176,6 @@ html, body {
     transition: color 0.3s ease;
   }
   
-  /* Emoji hover effect */
   .password-emoji:hover {
     color: #333;
   }
@@ -241,7 +194,7 @@ html, body {
   
   .login-button {
     width: 100%;
-    padding: 12px;
+    padding: 16px 44px 16px 16px;
     background: #a300ff;
     border: none;
     border-radius: 8px;
@@ -252,13 +205,7 @@ html, body {
     transition: background 0.3s ease;
     box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2);
   }
-  /* In Login.css */
-
-/* .login-button:hover {
-  /* transform: scale(1.05); */
-  /* box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2); */
  
-
   .social-login {
     text-align: center;
   }
@@ -295,16 +242,13 @@ html, body {
   .social-btn img {
     width: 40px;
     height: 40px;
-    /* object-fit: contain; */
   }
   
-  /* For the images in the right-side (Calculator, Money, and Chart) */
 .calculator-icon, .money-icon, .chart-icon {
   animation-duration: 2s;
-  animation-fill-mode: both; /* Retain the final state of the animation */
+  animation-fill-mode: both; 
 }
 
-/* Calculator icon animation */
 .calculator-icon {
   animation: bounceIn 2s ease-in-out;
 }
@@ -315,7 +259,6 @@ html, body {
 100% { transform: scale(1); opacity: 1; }
 }
 
-/* Money icon animation */
 .money-icon {
   animation: shakeX 2s ease-in-out;
 }
@@ -327,7 +270,6 @@ html, body {
 75% { transform: translateX(-10px); }
 }
 
-/* Chart icon animation */
 .chart-icon {
   animation: flipInX 2s ease-in-out;
 }
@@ -336,16 +278,6 @@ html, body {
 0% { transform: rotateX(90deg); opacity: 0; }
 100% { transform: rotateX(0deg); opacity: 1; }
 }
-
-/* .fade-out {
-  opacity: 0;
-  transition: opacity 0.5s ease-out;
-}
-
-.fade-in {
-  opacity: 1;
-  transition: opacity 0.5s ease-in;
-} */
 
   /* Responsive Design */
   @media (max-width: 768px) {

@@ -6,7 +6,7 @@ export const TransactionsProvider = ({ children }) => {
   const [refreshTransactions, setRefreshTransactions] = useState(false);
 
   const triggerRefresh = () => {
-    setRefreshTransactions((prev) => !prev); // Toggle value to trigger useEffect
+    setRefreshTransactions((prev) => !prev); 
   };
 
   return (

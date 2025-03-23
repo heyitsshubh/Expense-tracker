@@ -15,7 +15,7 @@ function Sidebar() {
     { path: "/dashboard", label: "Dashboard" , icon: homeIcon },
     { path: "/dashboard/income", label: "Expense/Income", icon: walletIcon},
     { path: "/dashboard/transactions", label: "Transactions" , icon: transaction },
-    // { path: "/dashboard/groups", label: "Groups" , icon: groupIcon},
+    { path: "/dashboard/groups", label: "Groups" , icon: groupIcon},
     { path: "/dashboard/stats", label: "Statistics", icon: graphIcon },
     { path: "/dashboard/user", label: "User", icon:userIcon },
 
