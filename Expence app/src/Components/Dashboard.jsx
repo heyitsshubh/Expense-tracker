@@ -23,10 +23,27 @@ const Dashboard = () => {
   });
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const refreshToken = async () => {
+    try {
+      const refreshToken = localStorage.getItem("refreshToken");
+      const response = await axios.post("https://cash-cue-web.onrender.com/user/refresh-token", {
+        token: refreshToken,
+      });
+      const { accessToken } = response.data;
+      localStorage.setItem("accessToken", accessToken);
+      return accessToken;
+    } catch (err) {
+      console.error("Error refreshing token:", err);
+      setError("Session expired. Please log in again.");
+      setLoading(false);
+      return null;
+    }
+  };
 
   useEffect(() => {
     const fetchAccountData = async () => {
-      const token = sessionStorage.getItem("authToken");
+      const token = localStorage.getItem("accessToken");
+      console.log("Token:", token);
 
       if (!token) {
         setError("Authentication required. Please log in.");
@@ -60,13 +77,20 @@ const Dashboard = () => {
           averageMonthlyExpense: parseFloat(averageMonthlyExpense),
         });
         setLoading(false);
-      } catch (err) {
-        setError(
-          err.response?.status === 401
-            ? "Unauthorized. Please log in again."
-            : err.response?.data?.message || "Failed to fetch account data"
-        );
-        setLoading(false);
+      }catch (err) {
+        if (err.response?.status === 401) {
+          // Token might be expired, try refreshing it
+          const newToken = await refreshToken();
+          if (newToken) {
+            fetchAccountData(); // Retry fetching data with the new token
+          } else {
+            setError("Unauthorized. Please log in again.");
+            setLoading(false);
+          }
+        } else {
+          setError(err.response?.data?.message || "Failed to fetch account data");
+          setLoading(false);
+        }
       }
     };
 

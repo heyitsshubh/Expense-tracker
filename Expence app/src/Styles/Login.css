@@ -21,6 +21,10 @@ html, body {
   text-decoration: underline; 
 }
 
+.errormessage{
+  color: white;
+}
+
 .login-page {
     display: flex;
     height: 100vh;

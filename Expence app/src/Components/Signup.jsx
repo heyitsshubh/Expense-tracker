@@ -54,7 +54,6 @@ import Calculator from '../assets/Calculator.png';
       },
     }
   );
-
   setSuccessMessage('Signup successful!');
   setErrorMessage('');
   console.log('Signup response:', response.data);

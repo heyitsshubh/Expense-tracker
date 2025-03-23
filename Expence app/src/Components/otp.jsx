@@ -6,6 +6,7 @@ import axios from 'axios';
 const OtpPage = () => {
   const navigate = useNavigate();
   const [otp, setOtp] = useState(new Array(6).fill(''));
+  const [email, setEmail] = useState(localStorage.getItem('userEmail') || '');
   const [message, setMessage] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
@@ -15,7 +16,6 @@ const OtpPage = () => {
 
     setOtp([...otp.map((d, idx) => (idx === index ? element.value : d))]);
 
-    // Focus next input
     if (element.nextSibling) {
       element.nextSibling.focus();
     }
@@ -27,14 +27,27 @@ const OtpPage = () => {
     setMessage('');
     setError('');
 
+    
+    console.log('Email:', email);
+
     try {
       const response = await axios.post(
         'https://cash-cue-web.onrender.com/user/verify-otp',
-        { otp: otp.join('') }
+        { email,otp: otp.join('') }
       );
+      console.log('OTP verification response:', response.data);
+ 
+      if (response.data.accessToken && response.data.refreshToken) {
+        localStorage.setItem('accessToken',response.data.accessToken);
+        localStorage.setItem('refreshToken', response.data.refreshToken);
 
-      setMessage('OTP verified successfully.');
-      setError('');
+        setMessage('OTP verified successfully.');
+        setError('');
+
+        setTimeout(() => navigate('/dashboard'), 1000);
+      } else {
+        setError('Tokens are missing in the response.');
+      }
     } catch (err) {
       setError(
         err.response?.data?.message || 'Error verifying OTP. Please try again.'

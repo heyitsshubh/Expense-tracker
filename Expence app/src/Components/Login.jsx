@@ -28,24 +28,22 @@ const LoginPage = () => {
         email,
         password,
       });
-      console.log('Login successful:', response.data);
-      const token = response.data.token;
-      const userGroups = response.data.data.groups;  
+      console.log("API Response:", response.data);
 
-      console.log("login token", token);
+      const { accessToken, refreshToken } = response.data;
+      console.log("Access Token:", accessToken);
+      console.log("Refresh Token:", refreshToken);
 
-      if (token) {
-        sessionStorage.setItem('authToken', token);  
-        console.log('Token saved to sessionStorage:', token);
+      if (refreshToken && accessToken) {
+      localStorage.setItem("accessToken", response.data.accessToken);
+      localStorage.setItem("refreshToken", response.data.refreshToken);
 
+        console.log("Login Successful! Tokens Stored.");
+        navigate("/dashboard"); 
 
-        sessionStorage.setItem('userGroups', JSON.stringify(userGroups));
-        console.log('User groups saved to sessionStorage:', userGroups);
-      }
-
-      navigate('/dashboard');
-
-    } catch (error) {
+    }  else {
+    setErrorMessage("Invalid email or password");
+  } }catch (error) {
       console.error('Error logging in:', error.response?.data || error.message);
       setErrorMessage(error.response?.data?.message || 'Failed to log in.');
     }
@@ -103,7 +101,7 @@ const LoginPage = () => {
       <div className="right-side">
         <div className="login-container">
           <h2 style={{color: "white"}}>Sign in</h2>
-          {errorMessage && <p className="error-message">{errorMessage}</p>}
+          {errorMessage && <p  className="errormessage " >{errorMessage}</p>}
 
           <form onSubmit={handleSubmit}>
             <div className="input-field">
