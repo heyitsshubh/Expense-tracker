@@ -1,6 +1,7 @@
 import React from "react";
 import HeroSection from "./hero";
 import Hero1 from "./heroo"; // Assuming Hero1 is the component you want to display after HeroSection
+import Feature from "./Feature";
 import "../Styles/LandingPage.css"; 
 
 const LandingPage = () => {
@@ -8,6 +9,7 @@ const LandingPage = () => {
     <div className="landing-page">
       <HeroSection />
       <Hero1 />
+      <Feature />
     </div>
   );
 };
