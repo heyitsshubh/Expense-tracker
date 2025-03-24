@@ -4,10 +4,10 @@
   justify-content: space-between;
   padding: 30px;
   gap: 20px;
-  background-image: url('../assets/expens.png'); /* Replace with your image path */
-  background-size: contain; /* Make the image cover the entire container */
-  background-position: center; /* Center the image */
-  background-repeat: no-repeat; /* Prevent tiling */
+  /* background-image: url('../assets/expens.png'); 
+  background-size: contain; 
+  background-position: center; 
+  background-repeat: no-repeat;  */
   height: 100%;
   width: 100%;
   overflow: hidden;

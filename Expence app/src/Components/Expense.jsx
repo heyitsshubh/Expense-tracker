@@ -2,15 +2,18 @@ import React, { useState, useContext } from "react";
 import axios from "axios";
 import "../Styles/Expense.css";
 import { TransactionsContext } from "./TransactionContext";
+import { useTransactions } from "./Usetransaction";
 
 const Expense = () => {
+  const { transactions } = useTransactions();
+
   const [amount, setAmount] = useState("");
   const [description, setDescription] = useState("");
   const [date, setDatetime] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
-  const [isExpense, setIsExpense] = useState(true); // Toggle between expense and income
-  const [successMessage, setSuccessMessage] = useState(false); // For showing success box
-  const { triggerRefresh } = useContext(TransactionsContext); // Use triggerRefresh from context
+  const [isExpense, setIsExpense] = useState(true); 
+  const [successMessage, setSuccessMessage] = useState(false); 
+  const { triggerRefresh } = useContext(TransactionsContext); 
 
   const getCurrentDatetime = () => {
     const now = new Date();
@@ -29,15 +32,13 @@ const Expense = () => {
         console.error("No token found");
         return;
       }
-
-      // API call to add a transaction (income or expense)
       const response = await axios.post(
         "https://cash-cue-web.onrender.com/transaction/add",
         {
-          amount: parseFloat(amount), // Ensure amount is sent as a number
+          amount: parseFloat(amount), 
           description,
           date,
-          type: isExpense ? "Expense" : "Income", // Distinguish between income and expense
+          type: isExpense ? "Expense" : "Income", 
         },
         {
           headers: {
@@ -48,18 +49,13 @@ const Expense = () => {
 
       console.log("Transaction added successfully:", response.data);
 
-      // Show success box
       setSuccessMessage(true);
 
-      // Trigger refresh to update transactions
       triggerRefresh();
 
-      // Clear the form
       setAmount("");
       setDescription("");
       setDatetime("");
-
-      // Remove success message after 3 seconds
       setTimeout(() => {
         setSuccessMessage(false);
       }, 3000);
@@ -71,6 +67,11 @@ const Expense = () => {
   const handleSearchChange = (e) => {
     setSearchQuery(e.target.value);
   };
+
+  const recentTransactions = transactions
+  .filter(transaction => transaction.type === "Expense") 
+    .sort((a, b) => new Date(b.date) - new Date(a.date))
+    .slice(0, 5);
 
   return (
     <div className="expense-container">
@@ -91,38 +92,34 @@ const Expense = () => {
         </div>
         <div className="amount-display">
           <h2>How much ?</h2>
-        <h2 >₹ {amount || "0"}</h2>
+          <h2>₹ {amount || "0"}</h2>
         </div>
-<div className="form1">
-        <form >
-          <input
-            type="number"
-            placeholder="Enter amount"
-          
-            value={amount}
-            onChange={(e) => setAmount(e.target.value)}
-            required
-          />
-          <input
-            type="text"
-            placeholder="Description"
-          
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-            required
-          />
-          <input
-            type="datetime-local"
-            id="datetime"
-        
-            value={date}
-            onChange={(e) => setDatetime(e.target.value)}
-            required
-            max={getCurrentDatetime()} // Prevent selecting future dates
-          />
-        </form>
+        <div className="form1">
+          <form>
+            <input
+              type="number"
+              placeholder="Enter amount"
+              value={amount}
+              onChange={(e) => setAmount(e.target.value)}
+              required
+            />
+            <input
+              type="text"
+              placeholder="Description"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              required
+            />
+            <input
+              type="datetime-local"
+              id="datetime"
+              value={date}
+              onChange={(e) => setDatetime(e.target.value)}
+              required
+              max={getCurrentDatetime()}
+            />
+          </form>
         </div>
-
         <button
           type="button"
           className="add-transaction-btn"
@@ -131,16 +128,35 @@ const Expense = () => {
         >
           {isExpense ? "Add New Expense" : "Add New Income"}
         </button>
-        </div>
-
-        {/* Success Notification Box */}
         {successMessage && (
           <div className="success-box">
             <div className="success-icon">✔</div>
             <p>{isExpense ? "Expense added successfully!" : "Income added successfully!"}</p>
           </div>
-        
         )}
+      </div>
+      <div className="recent-transactions1">
+        <h3>Recent Expenses</h3>
+        <ul>
+          {recentTransactions.length > 0 ? (
+            recentTransactions.map((transaction) => (
+              <li key={transaction._id}>
+                <span>{transaction.description}</span>
+                <span
+                  className={`transaction-amount1 ${
+                    transaction.type === "Income" ? "income" : "expense"
+                  }`}
+                >
+                  {transaction.type === "Income" ? "+" : "-"}₹{transaction.amount}
+                </span>
+                <span>{new Date(transaction.date).toLocaleString()}</span>
+              </li>
+            ))
+          ) : (
+            <p>No recent Expenses found.</p>
+          )}
+        </ul>
+      </div>
     </div>
   );
 };
