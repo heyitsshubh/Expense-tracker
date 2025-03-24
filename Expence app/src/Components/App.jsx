@@ -32,8 +32,8 @@ function App() {
           <Routes>
             {/* Public Routes */}
             
-            <Route path="/page" element={<LandingPage />} />
-            <Route path="/" element={<LoginPage />} />
+            <Route path="/" element={<LandingPage />} />
+            <Route path="/login" element={<LoginPage />} />
             <Route path="/signup" element={<SignUp />} />
             <Route path="/forgot" element={<Forgot1 />} />
             <Route path="/otp" element={<OtpPage />} />
