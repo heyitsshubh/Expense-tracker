@@ -1,0 +1,15 @@
+.full-size-image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full viewport height */
+    width: 100vw; /* Full viewport width */
+    overflow: hidden; /* Hide any overflow */
+  }
+  
+  .full-size-image {
+    width: 1700px;
+    height: 850px;
+    object-fit: cover; /* Ensure the image covers the container */
+    margin: 1% 0 0 0;
+  }

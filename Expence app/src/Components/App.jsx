@@ -6,7 +6,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { UserContext } from "./Usercontext";
 
 // Import components and pages
-import HeroSection from "./hero";
+import LandingPage from "./LandingPage"; 
 import LoginPage from "./Login";
 import SignUp from "./Signup";
 import Forgot1 from "./Forgot1";
@@ -31,7 +31,8 @@ function App() {
         <Router>
           <Routes>
             {/* Public Routes */}
-            <Route path="/hero" element={<HeroSection />} />
+            
+            <Route path="/page" element={<LandingPage />} />
             <Route path="/" element={<LoginPage />} />
             <Route path="/signup" element={<SignUp />} />
             <Route path="/forgot" element={<Forgot1 />} />
