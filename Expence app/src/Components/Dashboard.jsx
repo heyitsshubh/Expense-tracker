@@ -4,14 +4,14 @@ import { UserContext } from "./Usercontext";
 import { useTransactions } from "./Usetransaction";
 import "../Styles/Dashboard.css";
 import WeeklyGraph from "./WeeklyGraph";
-import YearlyAnalysisChart from "./YearlyAnalysischart";
 import avtar from "../assets/avatar.png";
 import balance from "../assets/balance.png";
 import expense from "../assets/expense.png";
 import Income from "../assets/Income.png";
+import DailyAnalysisChart from "./DailyAnalysischart";
 
 const Dashboard = () => {
-  const { name } = useContext(UserContext); // Access username from UserContext
+  const { name } = useContext(UserContext); 
   const { transactions } = useTransactions();
   const [accountData, setAccountData] = useState({
     totalIncome: 0,
@@ -79,10 +79,9 @@ const Dashboard = () => {
         setLoading(false);
       }catch (err) {
         if (err.response?.status === 401) {
-          // Token might be expired, try refreshing it
           const newToken = await refreshToken();
           if (newToken) {
-            fetchAccountData(); // Retry fetching data with the new token
+            fetchAccountData(); 
           } else {
             setError("Unauthorized. Please log in again.");
             setLoading(false);
@@ -117,7 +116,7 @@ const Dashboard = () => {
         </div>
         <div className="profile">
           <img src={avtar} alt="Profile" className="profile-img" />
-          <span className="profile-name">{name || "User"}</span> {/* Display username */}
+          <span className="profile-name">{name || "User"}</span> 
         </div>
       </div>
 
@@ -146,7 +145,7 @@ const Dashboard = () => {
         </div>
         <div className="chart">
           <h3>Daily Analysis</h3>
-          <YearlyAnalysisChart />
+          <DailyAnalysisChart />
         </div>
       </div>
 
