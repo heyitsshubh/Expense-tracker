@@ -6,10 +6,12 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { UserContext } from "./Usercontext";
 
 // Import components and pages
+import HeroSection from "./hero";
 import LoginPage from "./Login";
 import SignUp from "./Signup";
 import Forgot1 from "./Forgot1";
 import OtpPage from "./otp";
+import OtpPage2 from "./otp2";
 import ResetPassword from "./Resetpass";
 import DashboardLayout from "../layouts/DashboardLayout";
 import Dashboard from "./Dashboard";
@@ -29,10 +31,12 @@ function App() {
         <Router>
           <Routes>
             {/* Public Routes */}
+            <Route path="/hero" element={<HeroSection />} />
             <Route path="/" element={<LoginPage />} />
             <Route path="/signup" element={<SignUp />} />
             <Route path="/forgot" element={<Forgot1 />} />
             <Route path="/otp" element={<OtpPage />} />
+            <Route path="/otp2" element={<OtpPage2 />} />
             <Route path="/reset-password/:token" element={<ResetPassword />} />
 
             {/* Protected Dashboard Routes */}

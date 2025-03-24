@@ -23,6 +23,7 @@ import axios from 'axios';
       );
 
       setMessage('If this email exists in our system, a reset link has been sent to your email.');
+      navigate('/otp2')
       setError('');
     } catch (err) {
       setError(
