@@ -26,6 +26,7 @@ const Expense = () => {
   };
 
   const handleAddTransaction = async () => {
+   
     try {
       const token = localStorage.getItem("accessToken");
       if (!token) {
@@ -71,7 +72,7 @@ const Expense = () => {
   const recentTransactions = transactions
   .filter(transaction => transaction.type === "Expense") 
     .sort((a, b) => new Date(b.date) - new Date(a.date))
-    .slice(0, 5);
+    .slice(0, 8);
 
   return (
     <div className="expense-container">

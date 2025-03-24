@@ -4,7 +4,7 @@ import axios from "axios";
 import "../Styles/User.css";
 import avtar from "../assets/avatar.png";
 import logout from "../assets/logout.png";
-import { UserContext } from "./Usercontext"; // Importing UserContext
+import { UserContext } from "./Usercontext"; 
 
 const UserProfile = () => {
   const [isAccountBalanceExpanded, setIsAccountBalanceExpanded] = useState(false);
@@ -13,7 +13,7 @@ const UserProfile = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [token, setToken] = useState("");
-  const { setUserName } = useContext(UserContext); // Accessing UserContext
+  const { setUserName } = useContext(UserContext); 
 
   const navigate = useNavigate();
 
@@ -24,7 +24,7 @@ const UserProfile = () => {
       setError("Authentication required. Please log in.");
     } else {
       setToken(storedToken);
-      fetchUserDetails(storedToken); // Fetch both username and account balance
+      fetchUserDetails(storedToken); 
     }
   }, []);
 
@@ -38,7 +38,7 @@ const UserProfile = () => {
 
       const { name, accountBalance } = response.data;
 
-      if (name) setUserName(name); // Update username globally using context
+      if (name) setUserName(name); 
       if (!isNaN(parseFloat(accountBalance))) {
         setAccountBalance(parseFloat(accountBalance));
       } else {
@@ -54,7 +54,8 @@ const UserProfile = () => {
   };
 
   const handleAddBalance = async () => {
-    if (addBalanceAmount <= 0) {
+    const amount = parseFloat(addBalanceAmount);
+    if (isNaN(amount) || amount <= 0) {
       setError("Please enter a valid amount greater than 0.");
       return;
     }
@@ -69,8 +70,8 @@ const UserProfile = () => {
 
     try {
       const response = await axios.put(
-        "https://cash-cue-web.onrender.com/Settings/balance",
-        { amount: parseFloat(addBalanceAmount) },
+        "https://cash-cue-web.onrender.com/settings/balance",
+        { accountBalance: amount },
         {
           headers: {
             "Content-Type": "application/json",
@@ -78,14 +79,16 @@ const UserProfile = () => {
           },
         }
       );
+      console.log("API Response:", response.data);
 
-      if (response.data.success) {
-        setAccountBalance(parseFloat(response.data.updatedBalance) || accountBalance);
+      if (response.data.success || response.data.message === "Account balance updated successfully!") {
+        setAccountBalance(prevBalance => prevBalance + amount);
         setAddBalanceAmount("");
       } else {
         throw new Error(response.data.message || "Unable to add balance.");
       }
     } catch (err) {
+      console.error("Error adding balance:", err.response?.data || err.message);
       setError(err.response?.data?.message || "An error occurred.");
     } finally {
       setLoading(false);
@@ -94,7 +97,7 @@ const UserProfile = () => {
 
   const handleLogout = () => {
     sessionStorage.clear();
-    navigate("/");
+    navigate("/login");
   };
 
   return (
@@ -105,7 +108,6 @@ const UserProfile = () => {
             <img src={avtar} alt="User Avatar" />
           </div>
           <div className="user-profile-info">
-            {/* Username will now be fetched from context in other components */}
             <h2 className="user-profile-username">shubh</h2>
           </div>
         </div>
