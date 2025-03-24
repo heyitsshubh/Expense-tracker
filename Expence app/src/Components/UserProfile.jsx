@@ -18,7 +18,7 @@ const UserProfile = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const storedToken = sessionStorage.getItem("authToken");
+    const storedToken = localStorage.getItem("accessToken");
 
     if (!storedToken) {
       setError("Authentication required. Please log in.");

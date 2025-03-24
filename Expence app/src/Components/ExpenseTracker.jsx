@@ -9,7 +9,7 @@ function ExpenseTracker() {
   // Function to fetch expenses from the API
   const fetchExpenses = async () => {
     try {
-      const token = sessionStorage.getItem('authToken');
+      const token = localStorage.getItem('accessToken');
       if (!token) {
         console.error('No token found');
         return;

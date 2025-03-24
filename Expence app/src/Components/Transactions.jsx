@@ -13,7 +13,7 @@ const Transactions = () => {
   // Function to fetch transactions
   const fetchTransactions = async () => {
     try {
-      const token = sessionStorage.getItem("authToken"); // Get the token from sessionStorage
+      const token = localStorage.getItem("accessToken"); // Get the token from sessionStorage
       if (!token) {
         console.error("No token found. Please log in.");
         return;

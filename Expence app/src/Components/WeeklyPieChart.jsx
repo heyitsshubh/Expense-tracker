@@ -19,7 +19,7 @@ const WeeklyPieChart = () => {
   const [weeklyData, setWeeklyData] = useState({ income: [], expense: [], labels: [] });
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const token = sessionStorage.getItem("authToken");
+  const token = localStorage.getItem("accessToken");
 
   useEffect(() => {
     const fetchWeeklyGraphData = async () => {

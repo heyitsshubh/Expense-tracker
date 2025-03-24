@@ -28,7 +28,7 @@ const DailyPieChart = () => {
   useEffect(() => {
     const fetchPieChartData = async () => {
       try {
-        const token = sessionStorage.getItem("authToken");
+        const token = localtorage.getItem("accessToken");
         const response = await axios.get(
           "https://cash-cue-web.onrender.com/transaction/graph1",
           {

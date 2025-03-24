@@ -25,7 +25,7 @@ const DailyAnalysisChart1 = () => {
   useEffect(() => {
     const fetchChartData = async () => {
       try {
-        const token = sessionStorage.getItem("authToken");
+        const token = localStorage.getItem("accessToken");
         const response = await axios.get(
           "https://cash-cue-web.onrender.com/transaction/graph1",
           {

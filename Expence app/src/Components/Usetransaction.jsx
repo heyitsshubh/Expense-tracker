@@ -9,7 +9,7 @@ export const useTransactions = () => {
 
   const fetchTransactions = async () => {
     try {
-      const token = sessionStorage.getItem("authToken");
+      const token = localStorage.getItem("accessToken");
       if (!token) {
         console.error("No token found. Please log in.");
         return;

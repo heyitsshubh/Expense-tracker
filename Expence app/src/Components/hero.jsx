@@ -1,8 +1,16 @@
 import React from "react";
 import "../Styles/Hero.css"; // Import CSS file
+import { useNavigate } from "react-router-dom";
 import heroImage from "../assets/hero.svg";
 
 const HeroSection = () => {
+  const navigate = useNavigate();
+  const handleclick = () => {
+    navigate("/login");
+  }
+  const handlesearchclick = () => {
+    navigate("/signup");
+  }
   return (
     <div className="hero-container">
       {/* Navbar */}
@@ -15,8 +23,8 @@ const HeroSection = () => {
           <li>App</li>
         </ul>
         <div className="buttons">
-          <button className="sign-in">Sign In</button>
-          <button className="create-account">Create an account</button>
+          <button onClick={handleclick}className="sign-in">Sign In</button>
+          <button onClick={handlesearchclick}className="create-account">Create an account</button>
         </div>
       </nav>
       
