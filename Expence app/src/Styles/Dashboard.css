@@ -8,8 +8,12 @@
 .overview {
   display: flex;
   gap: 20px;
-  flex-wrap: wrap; /* Allow wrapping of cards for smaller screens */
-  justify-content: space-between;
+  flex-wrap: wrap; 
+  justify-content: flex-start;
+}
+
+.profile{
+  margin-bottom: 20px;
 }
 
 .overview img {
@@ -21,15 +25,30 @@
   height: 50px;
 }
 
+.over h2{
+  font-size: 22px;
+  font-weight: 600;
+  font-family: 'Poppins', sans-serif;
+}
+
 .card {
-  background: #f9f9f9;
+  background: rgba(159, 159, 248, 0.2);
   padding: 15px;
   border-radius: 20px;
   text-align: center;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  flex: 1;
-  width: 140px;
+  width: 270px;
   height: 90px;
+}
+
+.cards{
+  padding: 15px;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 330px;
+  height: 180px;
+  transform: translateY(-50%);
 }
 
 .card h3 {
@@ -47,23 +66,43 @@
   gap: 20px;
   flex-wrap: wrap; /* Allow wrapping for smaller screens */
   justify-content: space-between;
+transform: translateY(-20%);
 }
 
-.chart {
-  /* background: #f9f9f9; */
+.chart1 {
   padding: 20px;
   border-radius: 10px;
-  /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
   flex: 1;
   width: 336px;
-  height: 328px;
+  height: 358px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.chart h3 {
+
+.chart2 {
+  padding: 20px;
+  border-radius: 10px;
+  flex: 1;
+  width: 336px;
+  height: 358px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.chart1 h3 {
   text-align: left;
+  margin: 10px;
+}
+.chart2 h3 {
+  text-align: left;
+  margin: 10px;
 }
 
-.chart p {
+.chart1 p {
+  margin: 10px;
+  font-size: 22px;
+  font-weight: 600;
+}
+.chart2 p {
   margin: 10px;
   font-size: 22px;
   font-weight: 600;
@@ -104,11 +143,11 @@
 }
 
 .recent-transactions {
-  margin-top: 20px;
   padding: 15px;
   background-color: white;
   border-radius: 10px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+   transform: translateY(-10%);
 }
 
 .recent-transactions h3 {

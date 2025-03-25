@@ -7,8 +7,7 @@
 
 .sidebar {
   width: 250px; /* Default width */
-  background-color: #f4f4f4; /* Sidebar background color */
-  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+ 
   transition: width 0.3s ease;
 }
 

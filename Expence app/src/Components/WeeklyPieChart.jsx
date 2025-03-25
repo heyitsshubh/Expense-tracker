@@ -82,7 +82,7 @@ const WeeklyPieChart = () => {
 
   // Pie Chart Data
   const data = {
-    labels: ["Income", "Expense"],
+    labels: [],
     datasets: [
       {
         data: [weeklyData.income, weeklyData.expense],
@@ -97,7 +97,7 @@ const WeeklyPieChart = () => {
     plugins: {
       title: {
         display: true,
-        text: "Weekly Income vs Expense",
+        // text: "Weekly Income vs Expense",
       },
     },
   };

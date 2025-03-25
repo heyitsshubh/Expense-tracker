@@ -46,9 +46,9 @@ const WeeklyGraph = () => {
               return;
             }
             labels.push(formattedDate.toLocaleDateString("en-US", {
-              year: "numeric",
-              month: "short",
-              day: "numeric",
+            
+              weekday: "short",
+            
             }));
           });
 
@@ -94,6 +94,7 @@ const WeeklyGraph = () => {
         backgroundColor: "rgba(229, 234, 252, 1)",
         borderColor: "rgba(229, 234, 252, 1)",
         borderWidth: 1,
+        borderRadius: 30,
       },
       {
         label: "Expense",
@@ -101,6 +102,7 @@ const WeeklyGraph = () => {
         backgroundColor: "rgba(185, 104, 231, 1)",
         borderColor: "rgba(185, 104, 231, 1)",
         borderWidth: 1,
+        borderRadius: 30,
       },
     ],
   };
@@ -121,6 +123,11 @@ const WeeklyGraph = () => {
           display: true,
           text: "Amount (₹)",
         },
+        ticks: {
+          callback: function(value) {
+            return value >= 1000 ? `${value / 1000}k` : value;
+          }
+        }
       },
     },
   };
@@ -135,7 +142,7 @@ const WeeklyGraph = () => {
   }
 
   return (
-    <div className="weekly-graph">
+    <div className="weekly-graph" style={{ height: "100%", width: "100%" }}>
       <Bar data={data} options={options} />
     </div>
   );

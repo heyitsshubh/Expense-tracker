@@ -6,6 +6,7 @@ import WeeklyGraph from "./WeeklyGraph";
 import avtar from "../assets/avatar.png";
 import balance from "../assets/balance.png";
 import expense from "../assets/expense.png";
+import WeeklyPieChart from './WeeklyPieChart'
 import Income from "../assets/Income.png";
 import DailyAnalysisChart from "./DailyAnalysischart";
 
@@ -150,7 +151,8 @@ const Dashboard = () => {
           <span className="profile-name">{name || "User"}</span> 
         </div>
       </div>
-
+      <div className="over"><h2>Overview</h2>
+      </div>
       <div className="overview">
         <div className="card">
           <h1>Balance</h1>
@@ -167,14 +169,17 @@ const Dashboard = () => {
           <p>₹{accountData.totalExpense}</p>
           <img src={expense} alt="Expense" />
         </div>
+        <div className="cards">
+  <WeeklyPieChart/>
+</div>
       </div>
 
       <div className="analytics">
-        <div className="chart">
+        <div className="chart1">
           <h3> Weekly Analysis</h3>
           <WeeklyGraph />
         </div>
-        <div className="chart">
+        <div className="chart2">
           <h3>Daily Analysis</h3>
           <DailyAnalysisChart />
         </div>
