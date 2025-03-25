@@ -5,7 +5,21 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     height: 100vh;
     scroll-behavior: inherit;
+    justify-content: space-between;
+    padding: 20px;
+  }
 
+  .notification-box {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #d4edda;
+    color: #155724;
+    padding: 10px 20px;
+    border-radius: 5px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 10000; /* Ensure it is on top */
   }
   
   .user-profile-left {

@@ -1,6 +1,5 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { UserContext } from "./Usercontext";
 import { useTransactions } from "./Usetransaction";
 import "../Styles/Dashboard.css";
 import WeeklyGraph from "./WeeklyGraph";
@@ -11,7 +10,7 @@ import Income from "../assets/Income.png";
 import DailyAnalysisChart from "./DailyAnalysischart";
 
 const Dashboard = () => {
-  const { name } = useContext(UserContext); 
+  const [name, setName] = useState(""); // Local state for user name
   const { transactions } = useTransactions();
   const [accountData, setAccountData] = useState({
     totalIncome: 0,
@@ -23,6 +22,7 @@ const Dashboard = () => {
   });
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
   const refreshToken = async () => {
     try {
       const refreshToken = localStorage.getItem("refreshToken");
@@ -40,60 +40,91 @@ const Dashboard = () => {
     }
   };
 
-  useEffect(() => {
-    const fetchAccountData = async () => {
-      const token = localStorage.getItem("accessToken");
-      console.log("Token:", token);
+  const fetchUserDetails = async (authToken) => {
+    try {
+      console.log("Fetching user details with token:", authToken); // Log the token being used
+      const response = await axios.get("https://cash-cue-web.onrender.com/homepage/name", {
+        headers: {
+          Authorization: `Bearer ${authToken}`,
+        },
+      });
+      console.log("User Details:", response.data);
 
-      if (!token) {
-        setError("Authentication required. Please log in.");
-        setLoading(false);
-        return;
+      const { name } = response.data;
+
+      if (name) {
+        console.log("Fetched user name:", name);
+        setName(name);
+      } else {
+        console.error("Name not found in response");
       }
+    } catch (err) {
+      console.error("Error fetching user details:", err);
+      if (err.response) {
+        console.error("Error response data:", err.response.data);
+        console.error("Error response status:", err.response.status);
+        console.error("Error response headers:", err.response.headers);
+      }
+      setError(err.response?.data?.message || err.message || "Failed to fetch user details.");
+    }
+  };
 
-      try {
-        const response = await axios.get("https://cash-cue.onrender.com/homepage/home", {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-        });
+  const fetchAccountData = async (token) => {
+    try {
+      await fetchUserDetails(token); // Fetch user details
 
-        const {
-          totalIncome = 0,
-          totalExpense = 0,
-          remainingBalance = 0,
-          averageDailyExpense = "0",
-          averageWeeklyExpense = "0",
-          averageMonthlyExpense = "0",
-        } = response.data.data || {};
+      const response = await axios.get("https://cash-cue-web.onrender.com/homepage/home", {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
 
-        setAccountData({
-          totalIncome,
-          totalExpense,
-          remainingBalance,
-          averageDailyExpense: parseFloat(averageDailyExpense),
-          averageWeeklyExpense: parseFloat(averageWeeklyExpense),
-          averageMonthlyExpense: parseFloat(averageMonthlyExpense),
-        });
-        setLoading(false);
-      }catch (err) {
-        if (err.response?.status === 401) {
-          const newToken = await refreshToken();
-          if (newToken) {
-            fetchAccountData(); 
-          } else {
-            setError("Unauthorized. Please log in again.");
-            setLoading(false);
-          }
+      const {
+        totalIncome = 0,
+        totalExpense = 0,
+        remainingBalance = 0,
+        averageDailyExpense = "0",
+        averageWeeklyExpense = "0",
+        averageMonthlyExpense = "0",
+      } = response.data.data || {};
+
+      setAccountData({
+        totalIncome,
+        totalExpense,
+        remainingBalance,
+        averageDailyExpense: parseFloat(averageDailyExpense),
+        averageWeeklyExpense: parseFloat(averageWeeklyExpense),
+        averageMonthlyExpense: parseFloat(averageMonthlyExpense),
+      });
+      setLoading(false);
+    } catch (err) {
+      if (err.response?.status === 401) {
+        const newToken = await refreshToken();
+        if (newToken) {
+          fetchAccountData(newToken); 
         } else {
-          setError(err.response?.data?.message || "Failed to fetch account data");
+          setError("Unauthorized. Please log in again.");
           setLoading(false);
         }
+      } else {
+        setError(err.response?.data?.message || "Failed to fetch account data");
+        setLoading(false);
       }
-    };
+    }
+  };
 
-    fetchAccountData();
+  useEffect(() => {
+    const token = localStorage.getItem("accessToken");
+    console.log("Token:", token);
+
+    if (!token) {
+      setError("Authentication required. Please log in.");
+      setLoading(false);
+      return;
+    }
+
+    fetchAccountData(token);
   }, []);
 
   if (loading) {
