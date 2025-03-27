@@ -92,9 +92,9 @@ const Expense = () => {
           </button>
         </div>
         <div className="amount-display">
-          <h2>How much ?</h2>
-          <h2>₹ {amount || "0"}</h2>
+          <h2>How much?</h2>
         </div>
+        <div className="amount">  <h2>₹ {amount || "0"}</h2></div>
         <div className="form1">
           <form>
             <input

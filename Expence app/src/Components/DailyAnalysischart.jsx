@@ -55,9 +55,11 @@ const DailyAnalysisChart = () => {
             {
               label: "Hourly Expenses",
               data: expensesByHour,
-              borderColor: "rgba(185, 104, 231, 1)",
-              backgroundColor: "rgba(185, 104, 231, 1)",
+              borderColor: "#FF4267",
+              backgroundColor: "#FF4267",
               borderWidth: 2,
+              tension: 0.3,
+              fill: true,
             },
             {
               label: "Hourly Income",
@@ -65,6 +67,8 @@ const DailyAnalysisChart = () => {
               borderColor: "rgba(229, 234, 252, 1)",
               backgroundColor: "rgba(229, 234, 252, 1)",
               borderWidth: 2,
+              tension: 0.3,
+              fill: true,
             },
           ],
         });
@@ -98,7 +102,8 @@ const DailyAnalysisChart = () => {
           display: true,
         },
         grid: {
-          display: false, 
+          display: true, 
+          color:" rgba(193, 187, 235, 1)",
         },
       },
     },

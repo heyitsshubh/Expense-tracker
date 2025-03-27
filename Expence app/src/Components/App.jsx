@@ -20,6 +20,7 @@ import Transactions from "./Transactions";
 import { TransactionsProvider } from "./TransactionContext"; // Context for real-time updates
 import UserProfile from "./UserProfile";
 import Statistics from "./Statistics";
+import Groups from "./Groups";
 
 function App() {
   // State to manage the username
@@ -45,6 +46,7 @@ function App() {
               <Route index element={<Dashboard />} /> {/* Default dashboard route */}
               <Route path="income" element={<ExpenseIncome />} />
               <Route path="transactions" element={<Transactions />} />
+              <Route path="groups" element={<Groups />} />
               <Route path="stats" element={<Statistics />} />
               <Route path="user" element={<UserProfile />} />
             </Route>

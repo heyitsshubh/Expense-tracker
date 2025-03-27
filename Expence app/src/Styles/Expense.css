@@ -1,9 +1,9 @@
 
 .expense-income-form {
-    background-color:rgba(13,14,15,0.1);
+    /* background-color:rgba(13,14,15,0.1); */
     padding: 85px;
     border-radius: 15px;
-    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
+    /* box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); */
     display: flex;
     flex-direction: column;
     max-width: 800px;
@@ -34,10 +34,12 @@
     display: flex;
     justify-content: space-between;
     margin-bottom: 20px;
+    transform: translateY(-90%);
   }
 
-  .expeneform{
-   margin-right: 200px;
+  .toggle-buttons button{
+    width: 120px;
+    height: 50px;
   }
   
   .toggle-buttons button {
@@ -71,7 +73,7 @@
   
   .form h2 {
     font-size: 24px;
-    color: rgba(182, 76, 242, 1);
+    color: rgba(30, 18, 43, 0.5);
     margin-bottom: 30px;
     font-weight: bold;
     text-align: center;
@@ -80,13 +82,14 @@
   }
     
   .form1 input {
-    width: 100%;
+    width: 300px;
     padding: 15px;
     margin-bottom: 20px;
-    border: 1px solid #e0e0e0;
+    /* border: 1px solid #e0e0e0; */
     border-radius: 10px;
     font-size: 16px;
-    background-color: #f9f9f9;
+    background-color:white;
+    border: 2px solid rgba(182, 76, 242, 0.5);
   }
 
   .amount-input:focus,
@@ -98,6 +101,10 @@
   .amount-display{
     margin: 30px;
   }
+
+  .amount{
+    transform: translateY(-80%); 
+  font-weight: bold;; }
   
   .datetime-label {
     font-size: 16px;
@@ -167,9 +174,9 @@
   
   .recent-transactions1 {
     flex: 1;
-    width: 800px;
+    width: 700px;
     margin-left: 100px;
-    transform: translateY(-8%);
+    transform: translateY(-2%);
   }
   
   .recent-transactions1 ul {

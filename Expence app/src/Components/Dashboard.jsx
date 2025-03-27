@@ -37,6 +37,8 @@ const Dashboard = () => {
       console.error("Error refreshing token:", err);
       setError("Session expired. Please log in again.");
       setLoading(false);
+      localStorage.removeItem("accessToken");
+      localStorage.removeItem("refreshToken");
       return null;
     }
   };
@@ -170,7 +172,9 @@ const Dashboard = () => {
           <img src={expense} alt="Expense" />
         </div>
         <div className="cards">
+          <h1>Total Expense</h1>
   <WeeklyPieChart/>
+
 </div>
       </div>
 

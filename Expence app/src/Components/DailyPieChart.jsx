@@ -28,7 +28,11 @@ const DailyPieChart = () => {
   useEffect(() => {
     const fetchPieChartData = async () => {
       try {
-        const token = localtorage.getItem("accessToken");
+        const token = localStorage.getItem("accessToken");
+        if (!token) {
+          throw new Error("No access token found. Please log in.");
+        }
+
         const response = await axios.get(
           "https://cash-cue-web.onrender.com/transaction/graph1",
           {
@@ -52,19 +56,19 @@ const DailyPieChart = () => {
         });
 
         setPieData({
-          labels: ["Expenses", "Income"],
+          labels: [],
           datasets: [
             {
               data: [totalExpenses, totalIncome],
-              backgroundColor: [ "rgba(185, 104, 231, 1)", "rgba(229, 234, 252, 1)"],
-              // hoverBackgroundColor: ["rgba(255, 99, 132, 1)", "rgba(54, 162, 235, 1)"],
+              backgroundColor: ["rgba(185, 104, 231, 1)", "rgba(229, 234, 252, 1)"],
+              hoverBackgroundColor: ["rgba(185, 104, 231, 0.8)", "rgba(229, 234, 252, 0.8)"],
             },
           ],
         });
         setLoading(false);
       } catch (err) {
         console.error("Error fetching pie chart data:", err.response || err.message);
-        setError(err.response?.data?.message || "Failed to fetch pie chart data");
+        setError(err.response?.data?.message || err.message || "Failed to fetch pie chart data");
         setLoading(false);
       }
     };
