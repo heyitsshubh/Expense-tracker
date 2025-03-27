@@ -11,7 +11,6 @@ import {
 } from "chart.js";
 import axios from "axios";
 
-// Register Chart.js components
 ChartJS.register(BarElement, LinearScale, CategoryScale, Tooltip, Legend, Title);
 
 const DailyAnalysisChart1 = () => {
@@ -37,12 +36,10 @@ const DailyAnalysisChart1 = () => {
 
         const rawData = response.data?.data || [];
 
-        // Generate hourly labels (0:00 to 23:00)
         const timeLabels = Array.from({ length: 24 }, (_, i) => `${i}:00`);
         const expensesByHour = Array(24).fill(0);
         const incomeByHour = Array(24).fill(0);
 
-        // Process data
         rawData.forEach((transaction) => {
           const hour = parseInt(transaction.time.split(":")[0], 10);
           if (transaction.type === "Expense") {
