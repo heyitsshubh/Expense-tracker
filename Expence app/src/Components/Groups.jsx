@@ -5,7 +5,7 @@ function Groups() {
     const navigate = useNavigate();
 
     const handleCreateGroup = () => {
-        navigate('/create-group'); // Navigate to the "Create Group" page
+        navigate('/dashboard/create-group'); // Navigate to the "Create Group" page
     };
 
     return (
