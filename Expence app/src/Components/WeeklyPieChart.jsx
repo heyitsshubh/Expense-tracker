@@ -97,13 +97,13 @@ const WeeklyPieChart = () => {
     plugins: {
       title: {
         display: true,
-        // text: "Weekly Income vs Expense",
+        //  text: "Weekly",
       },
     },
   };
 
   return (
-    <div className="weekly-pie-chart-container" style={{ height:"100%", width:"100%" ,transform: "translateY(-20%)"}}>
+    <div className="weekly-pie-chart-container" style={{ height:"100%", width:"100%" ,transform: "translateY(-10%)"}}>
       <Pie data={data} options={options} />
     </div>
   );

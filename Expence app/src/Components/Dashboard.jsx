@@ -10,6 +10,7 @@ import WeeklyPieChart from './WeeklyPieChart'
 import Income from "../assets/Income.png";
 import Spinner from "./Spinner";
 import DailyAnalysisChart from "./DailyAnalysischart";
+import DailyPieChart from "./DailyPieChart";
 
 const Dashboard = () => {
   const [name, setName] = useState(""); 
@@ -173,8 +174,8 @@ const Dashboard = () => {
           <img src={expense} alt="Expense" />
         </div>
         <div className="cards">
-          <h1>Total Expense</h1>
   <WeeklyPieChart/>
+<DailyPieChart/>
 
 </div>
       </div>
