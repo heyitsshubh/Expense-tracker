@@ -8,10 +8,11 @@ import balance from "../assets/balance.png";
 import expense from "../assets/expense.png";
 import WeeklyPieChart from './WeeklyPieChart'
 import Income from "../assets/Income.png";
+import Spinner from "./Spinner";
 import DailyAnalysisChart from "./DailyAnalysischart";
 
 const Dashboard = () => {
-  const [name, setName] = useState(""); // Local state for user name
+  const [name, setName] = useState(""); 
   const { transactions } = useTransactions();
   const [accountData, setAccountData] = useState({
     totalIncome: 0,
@@ -131,7 +132,7 @@ const Dashboard = () => {
   }, []);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <Spinner />; 
   }
 
   if (error) {

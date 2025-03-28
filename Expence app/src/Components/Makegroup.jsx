@@ -8,7 +8,7 @@ function MakeGroup() {
     const navigate = useNavigate();
 
     const redirect = () => {
-        navigate('/dashboard/addmembers'); 
+        navigate('/dashboard/groupname'); 
     };
 
     return (

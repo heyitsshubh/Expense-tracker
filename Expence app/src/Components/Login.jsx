@@ -12,6 +12,7 @@ import { useNavigate } from 'react-router-dom';
 const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false); 
   const [errorMessage, setErrorMessage] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [fadeClass, setFadeClass] = useState('');  
@@ -23,6 +24,7 @@ const LoginPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     try {
       const response = await axios.post('https://cash-cue-web.onrender.com/user/signin', {
         email,
@@ -47,6 +49,9 @@ const LoginPage = () => {
       console.error('Error logging in:', error.response?.data || error.message);
       setErrorMessage(error.response?.data?.message || 'Failed to log in.');
     }
+    finally {
+      setLoading(false); // Set loading to false when login is complete
+    }
   };
 
   const togglePasswordVisibility = () => {
@@ -70,6 +75,11 @@ const LoginPage = () => {
 
   return (
     <div className={`login-page ${fadeClass}`}>
+           {loading && (
+        <div className="loading-overlay">
+          <div className="loading-spinner"></div>
+        </div>
+      )}
 
       <div className="left-side">
         <div className="top-section">

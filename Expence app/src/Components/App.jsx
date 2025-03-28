@@ -23,6 +23,7 @@ import Statistics from "./Statistics";
 import Groups from "./Groups";
 import CreateGroup from "./Creategroup";
 import MakeGroup from "./Makegroup";
+import Groupname from "./Groupname";
 
 function App() {
   // State to manage the username
@@ -51,6 +52,7 @@ function App() {
               <Route path="groups" element={<Groups />} />
               <Route path="create-group" element={<CreateGroup />} />
               <Route path="addmembers" element={<MakeGroup />} />
+              <Route path="groupname" element={<Groupname />} />
               <Route path="stats" element={<Statistics />} />
               <Route path="user" element={<UserProfile />} />
             </Route>
