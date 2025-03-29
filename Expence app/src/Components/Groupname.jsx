@@ -1,40 +1,40 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import "../Styles/Groupname.css";
+// import React, { useContext } from "react";
+// import { GroupContext } from "./GroupContext";
+// import { useNavigate } from "react-router-dom";
+// import "../Styles/Groupname.css";
 
-function Groupname() {
-    const navigate = useNavigate();
+// function Groupname() {
+//     const navigate = useNavigate();
+//     const { groups } = useContext(GroupContext);
 
-    const [groups, setGroups] = useState([
-        { name: 'Group 1', description: 'This is the first group' },
-        { name: 'Group 2', description: 'This is the second group' },
-    ]);
+//     console.log("Groups in Groupname component:", groups);
 
-    const handleCreateGroup = () => {
-        navigate('/dashboard/create-group');
-    };
+//     const handleCreateGroup = () => {
+//         navigate('/dashboard/create-group');
+//     };
 
-    return (
-        <>
-            <div className="name-group">
-                <button
-                    style={{ width: '310px', height: '53px' }}
-                    onClick={handleCreateGroup}
-                >
-                    Create New Group
-                </button>
-            </div>
-            <div className="group-list">
-                <ul>
-                    {groups.map((group, index) => (
-                        <li key={index}>
-                            <strong>{group.name}</strong>: {group.description}
-                        </li>
-                    ))}
-                </ul>
-            </div>
-        </>
-    );
-}
+//     return (
+//         <>
+//             <div className="name-group">
+//                 <button
+//                     style={{ width: '310px', height: '53px' }}
+//                     onClick={handleCreateGroup}
+//                 >
+//                     Create New Group
+//                 </button>
+//             </div>
+//             <div className="group-list">
+//                 {groups.map((group, index) => (
+//                     <ul key={index} className="group-box">
+//                         <li>
+//                             <strong>{group.title}</strong>
+//                         </li>
+//                         {/* <li>{group.description}</li> */}
+//                     </ul>
+//                 ))}
+//             </div>
+//         </>
+//     );
+// }
 
-export default Groupname;
+// export default Groupname;

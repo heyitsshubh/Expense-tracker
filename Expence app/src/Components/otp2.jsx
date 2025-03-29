@@ -9,6 +9,7 @@ const OtpPage = () => {
   const [email, setEmail] = useState(localStorage.getItem('userEmail') || '');
   const [message, setMessage] = useState('');
   const [error, setError] = useState('');
+  const [isInvalidOtp, setIsInvalidOtp] = useState(false);
   const [loading, setLoading] = useState(false);
 
   const handleChange = (element, index) => {
@@ -26,27 +27,26 @@ const OtpPage = () => {
     setLoading(true);
     setMessage('');
     setError('');
-
-    
+  
     console.log('Email:', email);
-
+  
     try {
       const response = await axios.post(
-        'https://cash-cue-web.onrender.com/user/verify-otp',
-        { email,otp: otp.join('') }
+        'https://cash-cue-web.onrender.com/user/verify-otp1',
+        { email, otp: otp.join('') }
       );
       console.log('OTP verification response:', response.data);
- 
-      if (response.data.accessToken && response.data.refreshToken) {
-        localStorage.setItem('accessToken',response.data.accessToken);
-        localStorage.setItem('refreshToken', response.data.refreshToken);
-
-        setMessage('OTP verified successfully.');
+  
+      if (response.data.status === 'SUCCESS') {
+        // OTP verified successfully
+        setMessage(response.data.message || 'OTP verified successfully.');
         setError('');
-
-        setTimeout(() => navigate('/reset-password/:token'), 1000);
+  
+        // Redirect to reset password page after a short delay
+        setTimeout(() => navigate('/reset-password'), 1000);
       } else {
-        setError('Tokens are missing in the response.');
+        // Handle unexpected cases
+        setError('Unexpected response from the server.');
       }
     } catch (err) {
       setError(

@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
-import "../Styles/Creategroup.css";
+import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { GroupContext } from './GroupContext'; // Import GroupContext
+import '../Styles/Creategroup.css'; // Import your CSS file
 
 function CreateGroup() {
+    const { addGroup } = useContext(GroupContext); // Use addGroup from context
     const navigate = useNavigate();
 
     const [title, setTitle] = useState('');
@@ -27,14 +29,12 @@ function CreateGroup() {
             return;
         }
 
-        // Validate email format for all members
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (members.some((member) => !emailRegex.test(member))) {
             setError('One or more email addresses are invalid.');
             return;
         }
 
-        // Remove duplicate emails
         const uniqueMembers = [...new Set(members)];
         if (uniqueMembers.some((member) => !member)) {
             setError('All member fields must be filled.');
@@ -69,12 +69,16 @@ function CreateGroup() {
 
             const data = await response.json();
             console.log('Response Data:', data);
+
+            // Add the group to the context
+            addGroup({ title, description, members: uniqueMembers });
+            console.log("Group added to context:", { title, description, members: uniqueMembers }); // Debug log
             setSuccess('Group created successfully!');
             setError('');
             setTitle('');
             setDescription('');
             setMembers(['']);
-            navigate('/dashboard/groupname');
+            navigate('/dashboard/groups');
         } catch (err) {
             console.error('Fetch Error:', err);
             setError('An error occurred. Please try again.');
