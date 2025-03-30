@@ -4,7 +4,7 @@ import Hero1 from "./heroo"; // Assuming Hero1 is the component you want to disp
 import Feature from "./Feature";
 import Feature2 from "./Feature2";
 import Feature3 from "./Feature3";
-import "../Styles/LandingPage.css"; 
+// import "../Styles/LandingPage.css"; 
 
 const LandingPage = () => {
   return (
