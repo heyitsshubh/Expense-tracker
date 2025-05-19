@@ -15,7 +15,7 @@ const HeroSection = () => {
     <div className="hero-container">
       {/* Navbar */}
       <nav className="navbar">
-        <div className="logo">🔄 Cash Cue</div>
+        <div className="logo">Cash Cue</div>
         <ul className="nav-links">
           <li>Home</li>
           <li>Features</li>

@@ -147,9 +147,10 @@ const Dashboard = () => {
   return (
     <div className="dashboard-container">
       <div className="top-bar">
-        <div className="search-bar">
+        {/* <div className="search-bar">
           <input type="text" placeholder="Search here..." />
-        </div>
+        </div> */}
+        <h2 className="title">Dashboard</h2>
         <div className="profile">
           <img src={avtar} alt="Profile" className="profile-img" />
           <span className="profile-name">{name || "User"}</span> 

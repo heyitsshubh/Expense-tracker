@@ -75,7 +75,7 @@ finally{
   };
   const handleclick = () => {
     setIsSliding(true);
-    setTimeout(() => navigate('/'), 500);
+    setTimeout(() => navigate('/login'), 500);
   };
   
 
