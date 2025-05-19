@@ -20,7 +20,7 @@ const HeroSection = () => {
           <li>Home</li>
           <li>Features</li>
           <li>About us</li>
-          <li>App</li>
+          {/* <li>App</li> */}
         </ul>
         <div className="buttons">
           <button onClick={handleclick}className="sign-in">Sign In</button>

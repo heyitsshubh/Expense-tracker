@@ -25,7 +25,7 @@ function Sidebar() {
   return (
       <aside className="sidebar">
         <div className="lg">
-        <img src={logo} alt="Cash Cue Logo" className="logo" />
+        <img src={logo} alt="Cash Cue Logo" className="logoo" />
         <h2 className="sidebar-title">Cash Cue</h2>
         </div>
         <ul className="menu-items">
