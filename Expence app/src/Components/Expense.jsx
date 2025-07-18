@@ -3,6 +3,8 @@ import axios from "axios";
 import "../Styles/Expense.css";
 import { TransactionsContext } from "./TransactionContext";
 import { useTransactions } from "./Usetransaction";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Expense = () => {
   const { transactions } = useTransactions();
@@ -12,7 +14,6 @@ const Expense = () => {
   const [date, setDatetime] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
   const [isExpense, setIsExpense] = useState(true); 
-  const [successMessage, setSuccessMessage] = useState(false); 
   const { triggerRefresh } = useContext(TransactionsContext); 
 
   const getCurrentDatetime = () => {
@@ -26,11 +27,10 @@ const Expense = () => {
   };
 
   const handleAddTransaction = async () => {
-   
     try {
       const token = localStorage.getItem("accessToken");
       if (!token) {
-        console.error("No token found");
+        toast.error("No token found");
         return;
       }
       const response = await axios.post(
@@ -50,17 +50,15 @@ const Expense = () => {
 
       console.log("Transaction added successfully:", response.data);
 
-      setSuccessMessage(true);
+      toast.success(isExpense ? "Expense added successfully!" : "Income added successfully!");
 
       triggerRefresh();
 
       setAmount("");
       setDescription("");
       setDatetime("");
-      setTimeout(() => {
-        setSuccessMessage(false);
-      }, 3000);
     } catch (error) {
+      toast.error("Error adding transaction");
       console.error("Error adding transaction:", error.response || error.message);
     }
   };
@@ -70,12 +68,13 @@ const Expense = () => {
   };
 
   const recentTransactions = transactions
-  .filter(transaction => transaction.type === "Expense") 
+    .filter(transaction => transaction.type === "Expense") 
     .sort((a, b) => new Date(b.date) - new Date(a.date))
     .slice(0, 8);
 
   return (
     <div className="expense-container">
+      <ToastContainer />
       <div className="expense-income-form">
         <div className="toggle-buttons">
           <button
@@ -129,12 +128,6 @@ const Expense = () => {
         >
           {isExpense ? "Add New Expense" : "Add New Income"}
         </button>
-        {successMessage && (
-          <div className="success-box">
-            <div className="success-icon">✔</div>
-            <p>{isExpense ? "Expense added successfully!" : "Income added successfully!"}</p>
-          </div>
-        )}
       </div>
       <div className="recent-transactions1">
         <h3>Recent Expenses</h3>
@@ -163,15 +156,3 @@ const Expense = () => {
 };
 
 export default Expense;
-
-
-
-
-
-
-
-
-
-
-
-

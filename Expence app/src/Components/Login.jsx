@@ -3,9 +3,6 @@ import '../Styles/Login.css';
 import Calculator from '../assets/Calculator.png';
 import Money from '../assets/Money.png';
 import Chart from '../assets/Chart.png';
-import facebk from '../assets/facebk.png';
-import apple from '../assets/apple.png';
-import google from '../assets/google.png';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom'; 
 

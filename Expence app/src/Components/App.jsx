@@ -18,6 +18,8 @@ import UserProfile from "./UserProfile";
 import Statistics from "./Statistics";
 import Groups from "./Groups";
 import CreateGroup from "./Creategroup";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 // import Groupname from "./Groupname";
 
 function App() {
@@ -28,6 +30,7 @@ function App() {
       <TransactionsProvider>
         <GroupProvider> {/* Wrap the app with GroupProvider */}
           <Router>
+             <ToastContainer />
             <Routes>
               <Route path="/" element={<LandingPage />} />
               <Route path="/login" element={<LoginPage />} />

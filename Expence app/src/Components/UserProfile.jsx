@@ -5,6 +5,8 @@ import "../Styles/User.css";
 import avtar from "../assets/avatar.png";
 import logout from "../assets/logout.png";
 import { UserContext } from "./Usercontext"; 
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const UserProfile = () => {
   const [isAccountBalanceExpanded, setIsAccountBalanceExpanded] = useState(false);
@@ -42,7 +44,7 @@ const UserProfile = () => {
       if (!isNaN(parseFloat(accountBalance))) {
         setAccountBalance(parseFloat(accountBalance));
       } else {
-        throw new Error("Invalid account balance value received.");
+        throw new Error("");
       }
     } catch (err) {
       setError(err.response?.data?.message || err.message || "Failed to fetch user details.");
@@ -80,10 +82,10 @@ const UserProfile = () => {
         }
       );
       console.log("API Response:", response.data);
-
-      if (response.data.success || response.data.message === "Account balance updated successfully!") {
+     if (response.data.success || response.data.message === "Account balance updated successfully!") {
         setAccountBalance(prevBalance => prevBalance + amount);
         setAddBalanceAmount("");
+        toast.success("Balance added successfully!"); // Show toast on success
       } else {
         throw new Error(response.data.message || "Unable to add balance.");
       }

@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import '../Styles/OtpPage.css';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const OtpPage = () => {
   const navigate = useNavigate();
@@ -27,32 +29,34 @@ const OtpPage = () => {
     setMessage('');
     setError('');
 
-    
     console.log('Email:', email);
 
     try {
       const response = await axios.post(
         'https://cash-cue-web.onrender.com/user/verify-otp',
-        { email,otp: otp.join('') }
+        { email, otp: otp.join('') }
       );
       console.log('OTP verification response:', response.data);
- 
+
       if (response.data.accessToken && response.data.refreshToken) {
-        localStorage.setItem('accessToken',response.data.accessToken);
+        localStorage.setItem('accessToken', response.data.accessToken);
         localStorage.setItem('refreshToken', response.data.refreshToken);
 
-        setMessage('OTP verified successfully.');
+        toast.success('OTP verified successfully.');
+        setMessage('');
         setError('');
 
         setTimeout(() => navigate('/dashboard'), 1000);
       } else {
-        setError('Tokens are missing in the response.');
+        toast.error('Tokens are missing in the response.');
+        setError('');
       }
     } catch (err) {
-      setError(
+      toast.error(
         err.response?.data?.message || 'Error verifying OTP. Please try again.'
       );
       setMessage('');
+      setError('');
     } finally {
       setLoading(false);
     }
@@ -60,14 +64,12 @@ const OtpPage = () => {
 
   return (
     <div className="otp-container">
+      <ToastContainer />
       <div className="otp-card">
         <h1 className="otp-title">Verify OTP</h1>
         <p className="otp-subtitle">
           Please enter the OTP sent to your email address.
         </p>
-
-        {message && <p className="message success">{message}</p>}
-        {error && <p className="message error">{error}</p>}
 
         <form onSubmit={handleOtpSubmit}>
           <div className="otp-inputs">
