@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
-import '../Styles/OtpPage.css';
+import '../../Styles/OtpPage.css';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const OtpPage = () => {
   const navigate = useNavigate();
@@ -9,7 +11,6 @@ const OtpPage = () => {
   const [email, setEmail] = useState(localStorage.getItem('userEmail') || '');
   const [message, setMessage] = useState('');
   const [error, setError] = useState('');
-  const [isInvalidOtp, setIsInvalidOtp] = useState(false);
   const [loading, setLoading] = useState(false);
 
   const handleChange = (element, index) => {
@@ -27,32 +28,35 @@ const OtpPage = () => {
     setLoading(true);
     setMessage('');
     setError('');
-  
+
     console.log('Email:', email);
-  
+
     try {
       const response = await axios.post(
-        'https://cash-cue-web.onrender.com/user/verify-otp1',
+        'https://cash-cue-web.onrender.com/user/verify-otp',
         { email, otp: otp.join('') }
       );
       console.log('OTP verification response:', response.data);
-  
-      if (response.data.status === 'SUCCESS') {
-        // OTP verified successfully
-        setMessage(response.data.message || 'OTP verified successfully.');
+
+      if (response.data.accessToken && response.data.refreshToken) {
+        localStorage.setItem('accessToken', response.data.accessToken);
+        localStorage.setItem('refreshToken', response.data.refreshToken);
+
+        toast.success('OTP verified successfully.');
+        setMessage('');
         setError('');
-  
-        // Redirect to reset password page after a short delay
-        setTimeout(() => navigate('/reset-password'), 1000);
+
+        setTimeout(() => navigate('/dashboard'), 1000);
       } else {
-        // Handle unexpected cases
-        setError('Unexpected response from the server.');
+        toast.error('Tokens are missing in the response.');
+        setError('');
       }
     } catch (err) {
-      setError(
+      toast.error(
         err.response?.data?.message || 'Error verifying OTP. Please try again.'
       );
       setMessage('');
+      setError('');
     } finally {
       setLoading(false);
     }
@@ -60,14 +64,12 @@ const OtpPage = () => {
 
   return (
     <div className="otp-container">
+      <ToastContainer />
       <div className="otp-card">
         <h1 className="otp-title">Verify OTP</h1>
         <p className="otp-subtitle">
           Please enter the OTP sent to your email address.
         </p>
-
-        {message && <p className="message success">{message}</p>}
-        {error && <p className="message error">{error}</p>}
 
         <form onSubmit={handleOtpSubmit}>
           <div className="otp-inputs">

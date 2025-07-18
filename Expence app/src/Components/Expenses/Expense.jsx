@@ -1,8 +1,8 @@
 import React, { useState, useContext } from "react";
 import axios from "axios";
-import "../Styles/Expense.css";
-import { TransactionsContext } from "./TransactionContext";
-import { useTransactions } from "./Usetransaction";
+import "../../Styles/Expense.css";
+import { TransactionsContext } from "../TransactionContext";
+import { useTransactions } from "../Usetransaction";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 

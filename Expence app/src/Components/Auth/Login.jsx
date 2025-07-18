@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import '../Styles/Login.css';
-import Calculator from '../assets/Calculator.png';
-import Money from '../assets/Money.png';
-import Chart from '../assets/Chart.png';
+import '../../Styles/Login.css';
+import Calculator from '../../assets/Calculator.png';
+import Money from '../../assets/Money.png';
+import Chart from '../../assets/Chart.png';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom'; 
 

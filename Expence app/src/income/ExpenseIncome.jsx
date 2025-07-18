@@ -1,7 +1,7 @@
 // ExpenseIncome.jsx
 // ExpenseIncomePage.jsx
 import React from 'react';
-import Expense from '../Components/Expense'; // Import the ExpenseIncomeForm component
+import Expense from '../Components/Expenses/Expense'; // Import the ExpenseIncomeForm component
 import '../Styles/ExpenseIncome.css'; // Styles for the page layout
 
 function ExpenseIncome() {

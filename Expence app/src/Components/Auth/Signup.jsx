@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import '../Styles/Signup.css'
+import '../../Styles/Signup.css'
 import { useNavigate } from 'react-router-dom';
-import Calculator from '../assets/Calculator.png';
-import Money from '../assets/Money.png';
-import Chart from '../assets/Chart.png';
+import Calculator from '../../assets/Calculator.png';
+import Money from '../../assets/Money.png';
+import Chart from '../../assets/Chart.png';
 import axios from 'axios';
 import { toast, ToastContainer } from 'react-toastify'; // Add these imports
 import 'react-toastify/dist/ReactToastify.css'; // Add this import
@@ -73,7 +73,7 @@ function Signup() {
 
   const handleclick = () => {
     setIsSliding(true);
-    setTimeout(() => navigate('/login'), 500);
+    setTimeout(() => navigate('/'), 500);
   };
 
   return (

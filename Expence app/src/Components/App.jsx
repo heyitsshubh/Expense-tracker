@@ -2,13 +2,13 @@ import React, { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { UserContext } from "./Usercontext";
 import { GroupProvider } from "./GroupContext"; // Import GroupProvider
-import LandingPage from "./LandingPage";
-import LoginPage from "./Login";
-import SignUp from "./Signup";
-import Forgot1 from "./Forgot1";
-import OtpPage from "./otp";
-import OtpPage2 from "./otp2";
-import ResetPassword from "./Resetpass";
+// import LandingPage from "./HeroPage/LandingPage";
+import LoginPage from "./Auth/Login";
+import SignUp from "./Auth/Signup";
+import Forgot1 from "./Auth/Forgot1";
+import OtpPage from "./Auth/otp";
+import OtpPage2 from "./Auth/otp2";
+import ResetPassword from "./Auth/Resetpass";
 import DashboardLayout from "../layouts/DashboardLayout";
 import Dashboard from "./Dashboard";
 import ExpenseIncome from "../income/ExpenseIncome";
@@ -32,8 +32,8 @@ function App() {
           <Router>
              <ToastContainer />
             <Routes>
-              <Route path="/" element={<LandingPage />} />
-              <Route path="/login" element={<LoginPage />} />
+              {/* <Route path="/" element={<LandingPage />} /> */}
+              <Route path="/" element={<LoginPage />} />
               <Route path="/signup" element={<SignUp />} />
               <Route path="/forgot" element={<Forgot1 />} />
               <Route path="/otp" element={<OtpPage />} />
