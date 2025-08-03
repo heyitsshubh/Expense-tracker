@@ -175,8 +175,9 @@ const Dashboard = () => {
           <img src={expense} alt="Expense" />
         </div>
         <div className="cards">
-  <WeeklyPieChart/>
-<DailyPieChart/>
+         
+   <WeeklyPieChart/>
+   <DailyPieChart/>
 
 </div>
       </div>

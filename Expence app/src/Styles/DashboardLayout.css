@@ -12,12 +12,12 @@
 }
 
 .dashboard-content {
-width: 100%;
+  margin-left: 280px;
+  width: calc(100% - 280px);
   flex: 1; /* Fill remaining space */
   height: 100%;
- padding: 10px;
+  padding: 10px;
   background-color: #ffffff; /* Main content background color */
-
 }
 
 /* Responsive Design */
@@ -26,24 +26,23 @@ width: 100%;
     flex-direction: row; /* Row layout for larger screens */
   }
 
-  .sidebar {
-    width: 250px; /* Maintain width on medium screens */
+  .dashboard-content {
+    margin-left: 280px;
+    width: calc(100% - 280px);
   }
 }
 
 @media (max-width: 767px) {
-  .sidebar {
-    width: 200px; /* Reduce width on smaller screens */
+  .dashboard-content {
+    margin-left: 200px;
+    width: calc(100% - 200px);
   }
 }
 
 @media (max-width: 576px) {
-  .sidebar {
-    width: 100%; /* Full width for very small screens */
-    box-shadow: none; /* Remove box shadow */
-  }
-
   .dashboard-content {
+    margin-left: 0;
+    width: 100%;
     padding: 10px; /* Reduce padding for smaller screens */
   }
 }

@@ -1,5 +1,8 @@
 /* Sidebar styles */
 .sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 280px;
   height: 100vh;
   display: flex;
