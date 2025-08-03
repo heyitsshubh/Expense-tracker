@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
-import "../Styles/Transactions.css";
+import "../../Styles/Transactions.css";
 import { TransactionsContext } from "./TransactionContext"; // Custom context for real-time updates
 import axios from "axios";
 

@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useTransactions } from "./Usetransaction";
+import { useTransactions } from "./Transactions/Usetransaction";
 import "../Styles/Dashboard.css";
-import WeeklyGraph from "./WeeklyGraph";
+import WeeklyGraph from "./Charts/WeeklyGraph";
 import avtar from "../assets/avatar.png";
 import balance from "../assets/balance.png";
 import expense from "../assets/expense.png";
-import WeeklyPieChart from './WeeklyPieChart'
+import WeeklyPieChart from './Charts/WeeklyPieChart'
 import Income from "../assets/Income.png";
 import Spinner from "./Spinner";
-import DailyAnalysisChart from "./DailyAnalysischart";
-import DailyPieChart from "./DailyPieChart";
+import DailyAnalysisChart from "./Charts/DailyAnalysischart";
+import DailyPieChart from "./Charts/DailyPieChart";
 
 const Dashboard = () => {
   const [name, setName] = useState(""); 

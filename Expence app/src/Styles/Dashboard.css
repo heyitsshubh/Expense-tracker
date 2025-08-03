@@ -72,7 +72,7 @@
 .analytics {
   display: flex;
   gap: 20px;
-  flex-wrap: wrap; /* Allow wrapping for smaller screens */
+  flex-wrap: wrap;
   justify-content: space-between;
 transform: translateY(-20%);
 }
@@ -137,7 +137,7 @@ transform: translateY(-20%);
 .activities {
   display: flex;
   gap: 20px;
-  flex-wrap: wrap; /* Allow wrapping for smaller screens */
+  flex-wrap: wrap; 
   justify-content: space-between;
 }
 
@@ -187,41 +187,40 @@ transform: translateY(-20%);
 }
 
 .transaction-amount.income {
-  color: #28a745; /* Green for income */
+  color: #28a745; 
   font-weight: bold;
 }
 
 .transaction-amount.expense {
-  color: #dc3545; /* Red for expense */
+  color: #dc3545; 
   font-weight: bold;
 }
 
-/* Responsive Design */
 @media (max-width: 1024px) {
   .overview,
   .analytics {
-    flex-direction: column; /* Stack items for tablets */
+    flex-direction: column;
   }
 
   .chart {
-    width: 100%; /* Full width charts */
+    width: 100%; 
     height: auto;
   }
 }
 
 @media (max-width: 768px) {
   .overview img {
-    transform: translateY(0); /* Center icons */
+    transform: translateY(0);
   }
 
   .card {
-    width: 100%; /* Full width cards */
-    height: auto; /* Adjust height */
+    width: 100%; 
+    height: auto;
   }
 
   .recent-transactions ul li,
   .activities ul li {
-    flex-direction: column; /* Stack content */
+    flex-direction: column;
     text-align: left;
     padding: 15px;
   }
@@ -233,7 +232,7 @@ transform: translateY(-20%);
   }
 
   .card p {
-    font-size: 18px; /* Reduce font size */
+    font-size: 18px; 
   }
 
   .chart {
@@ -241,7 +240,7 @@ transform: translateY(-20%);
   }
 
   .recent-transactions h3 {
-    font-size: 20px; /* Smaller title font */
+    font-size: 20px;
   }
 }
 

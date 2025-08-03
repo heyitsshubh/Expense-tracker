@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { UserContext } from "./Usercontext";
-import { GroupProvider } from "./GroupContext"; // Import GroupProvider
-// import LandingPage from "./HeroPage/LandingPage";
+// import { GroupProvider } from "./GroupContext"; 
 import LoginPage from "./Auth/Login";
 import SignUp from "./Auth/Signup";
 import Forgot1 from "./Auth/Forgot1";
@@ -12,12 +11,11 @@ import ResetPassword from "./Auth/Resetpass";
 import DashboardLayout from "../layouts/DashboardLayout";
 import Dashboard from "./Dashboard";
 import ExpenseIncome from "../income/ExpenseIncome";
-import Transactions from "./Transactions";
-import { TransactionsProvider } from "./TransactionContext";
+import Transactions from "./Transactions/Transactions";
+import { TransactionsProvider } from "./Transactions/TransactionContext";
 import UserProfile from "./UserProfile";
-import Statistics from "./Statistics";
-import Groups from "./Groups";
-import CreateGroup from "./Creategroup";
+// import Groups from "./Groups";
+// import CreateGroup from "./Creategroup";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 // import Groupname from "./Groupname";
@@ -28,11 +26,10 @@ function App() {
   return (
     <UserContext.Provider value={{ name, setUserName }}>
       <TransactionsProvider>
-        <GroupProvider> {/* Wrap the app with GroupProvider */}
+        {/* <GroupProvider> */}
           <Router>
              <ToastContainer />
             <Routes>
-              {/* <Route path="/" element={<LandingPage />} /> */}
               <Route path="/" element={<LoginPage />} />
               <Route path="/signup" element={<SignUp />} />
               <Route path="/forgot" element={<Forgot1 />} />
@@ -43,15 +40,14 @@ function App() {
                 <Route index element={<Dashboard />} />
                 <Route path="income" element={<ExpenseIncome />} />
                 <Route path="transactions" element={<Transactions />} />
-                <Route path="groups" element={<Groups />} />
-                <Route path="create-group" element={<CreateGroup />} />
+                {/* <Route path="groups" element={<Groups />} />
+                <Route path="create-group" element={<CreateGroup />} /> */}
                 {/* <Route path="groupname" element={<Groupname />} /> */}
-                <Route path="stats" element={<Statistics />} />
                 <Route path="user" element={<UserProfile />} />
               </Route>
             </Routes>
           </Router>
-        </GroupProvider>
+        {/* </GroupProvider> */}
       </TransactionsProvider>
     </UserContext.Provider>
   );
