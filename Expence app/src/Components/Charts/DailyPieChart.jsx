@@ -8,7 +8,6 @@ import {
 } from "chart.js";
 import axios from "axios";
 
-// Register Chart.js components
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 const DailyPieChart = () => {
@@ -16,7 +15,7 @@ const DailyPieChart = () => {
     labels: ["Expenses", "Income"],
     datasets: [
       {
-        data: [0, 0], // Placeholder
+        data: [0, 0], 
         backgroundColor: ["rgba(255, 99, 132, 0.8)", "rgba(54, 162, 235, 0.8)"],
         hoverBackgroundColor: ["rgba(255, 99, 132, 1)", "rgba(54, 162, 235, 1)"],
       },
@@ -45,8 +44,6 @@ const DailyPieChart = () => {
         const rawData = response.data?.data || [];
         let totalExpenses = 0;
         let totalIncome = 0;
-
-        // Process data
         rawData.forEach((transaction) => {
           if (transaction.type === "Expense") {
             totalExpenses += transaction.amount;

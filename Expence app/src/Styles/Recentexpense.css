@@ -1,6 +1,4 @@
-/* Recentexpense.css */
 
-/* Styling for the Recent Expenses section */
 .recent-expenses {
     background-color: #ffffff;
     padding: 20px;
@@ -16,7 +14,6 @@
     margin-bottom: 20px;
   }
   
-  /* Styling for the expenses list */
   .recent-expenses ul {
     list-style: none;
     padding: 0;

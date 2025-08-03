@@ -1,10 +1,10 @@
 import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { GroupContext } from './GroupContext'; // Import GroupContext
-import '../Styles/Creategroup.css'; // Import your CSS file
+import { GroupContext } from './GroupContext'; 
+import '../Styles/Creategroup.css'; 
 
 function CreateGroup() {
-    const { addGroup } = useContext(GroupContext); // Use addGroup from context
+    const { addGroup } = useContext(GroupContext); 
     const navigate = useNavigate();
 
     const [title, setTitle] = useState('');
@@ -69,8 +69,6 @@ function CreateGroup() {
 
             const data = await response.json();
             console.log('Response Data:', data);
-
-            // Add the group to the context
             addGroup({ title, description, members: uniqueMembers });
             console.log("Group added to context:", { title, description, members: uniqueMembers }); // Debug log
             setSuccess('Group created successfully!');

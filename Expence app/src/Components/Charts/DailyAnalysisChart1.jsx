@@ -99,7 +99,7 @@ const DailyAnalysisChart1 = () => {
           text: "Time (Hours)",
         },
         grid: {
-          display: false, // Disable grid lines for x-axis
+          display: false, 
         },
       },
     },

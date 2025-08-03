@@ -52,7 +52,6 @@ const WeeklyGraph = () => {
             }));
           });
 
-          // Check if valid data exists
           if (income.length === 0 || expense.length === 0 || labels.length === 0) {
             setError("No valid data available for this week.");
           } else {

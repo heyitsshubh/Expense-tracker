@@ -76,7 +76,7 @@ const Dashboard = () => {
 
   const fetchAccountData = async (token) => {
     try {
-      await fetchUserDetails(token); // Fetch user details
+      await fetchUserDetails(token); 
 
       const response = await axios.get("https://cash-cue-web.onrender.com/homepage/home", {
         headers: {

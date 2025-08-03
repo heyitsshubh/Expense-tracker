@@ -85,7 +85,7 @@ const UserProfile = () => {
      if (response.data.success || response.data.message === "Account balance updated successfully!") {
         setAccountBalance(prevBalance => prevBalance + amount);
         setAddBalanceAmount("");
-        toast.success("Balance added successfully!"); // Show toast on success
+        toast.success("Balance added successfully!");
       } else {
         throw new Error(response.data.message || "Unable to add balance.");
       }

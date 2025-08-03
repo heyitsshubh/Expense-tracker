@@ -13,8 +13,6 @@ const ResetPassword = () => {
   const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
-
-  // Updated password regex to match backend requirements
   const passwordRegex = /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
 
   const handleSubmit = async (e) => {
@@ -23,7 +21,7 @@ const ResetPassword = () => {
     setMessage("");
     setLoading(true);
 
-    const email = localStorage.getItem("email"); // Retrieve email from localStorage
+    const email = localStorage.getItem("email"); 
 
     if (!email) {
       setError("Email is missing. Please try again.");
@@ -46,12 +44,11 @@ const ResetPassword = () => {
     }
 
     try {
-      console.log("New Password:", newPassword); // Log the password being sent
       const response = await axios.post(
         `https://cash-cue-web.onrender.com/user/reset-password`,
         {
-          email, // Include email from localStorage
-          newPassword, // Include newPassword in the request payload
+          email,
+          newPassword, // 
         },
         {
           headers: { "Content-Type": "application/json" },
@@ -61,7 +58,7 @@ const ResetPassword = () => {
       if (response.status === 200) {
         setMessage("Password has been reset successfully!");
         setTimeout(() => {
-          navigate("/login"); // Redirect to the login page after success
+          navigate("/login"); 
         }, 2000);
       }
     } catch (err) {

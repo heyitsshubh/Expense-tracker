@@ -1,5 +1,5 @@
 import React from 'react';
-import '../Styles/Recentexpense.css'; // Ensure to link the specific CSS for recent expenses
+import '../Styles/Recentexpense.css'; 
 
 function Recentexpense({ expenses }) {
   if (!expenses || expenses.length === 0) {

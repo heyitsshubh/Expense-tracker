@@ -12,7 +12,6 @@ import {
   Legend,
 } from "chart.js";
 
-// Register Chart.js components
 ChartJS.register(CategoryScale, LinearScale, BarElement, ArcElement, Title, Tooltip, Legend);
 
 const WeeklyPieChart = () => {
@@ -80,14 +79,12 @@ const WeeklyPieChart = () => {
     return <div>Error: {error}</div>;
   }
 
-  // Pie Chart Data
   const data = {
     labels: [],
     datasets: [
       {
         data: [weeklyData.income, weeklyData.expense],
         backgroundColor: ["rgba(229, 234, 252, 1)", "rgba(185, 104, 231, 1)"],
-        // hoverBackgroundColor: ["#4A8", "#C73A4F"],
       },
     ],
   };

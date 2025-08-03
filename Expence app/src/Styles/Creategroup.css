@@ -40,7 +40,7 @@
 .button-group button:first-child {
     background-color: white;
     color: black;
-    border: 1px solid  rgba(185, 104, 231, 0.5); /* Optional border for better visibility */
+    border: 1px solid  rgba(185, 104, 231, 0.5); 
 }
 
 

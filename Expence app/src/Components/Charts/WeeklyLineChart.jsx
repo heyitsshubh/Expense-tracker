@@ -12,7 +12,6 @@ import {
   Legend,
 } from "chart.js";
 
-// Register Chart.js components
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
 const WeeklyLineChart = () => {
@@ -109,7 +108,7 @@ const WeeklyLineChart = () => {
         borderColor: "rgba(229, 234, 252, 1)",
         backgroundColor: "rgba(229, 234, 252, 0.5)",
         fill: true,
-        tension: 0.3, // Add curve to the line
+        tension: 0.3,
         pointBorderColor: "rgba(229, 234, 252, 1)",
         pointBackgroundColor: "rgba(229, 234, 252, 1)",
       },
@@ -119,7 +118,7 @@ const WeeklyLineChart = () => {
         borderColor: "rgba(185, 104, 231, 1)",
         backgroundColor: "rgba(185, 104, 231, 0.5)",
         fill: true,
-        tension: 0.3, // Add curve to the line
+        tension: 0.3, 
         pointBorderColor: "rgba(185, 104, 231, 1)",
         pointBackgroundColor: "rgba(185, 104, 231, 1)",
       },

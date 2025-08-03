@@ -1,5 +1,4 @@
-/* Container for Transactions Page */
-/* Container for Transactions Page */
+
 .transactions-container {
   padding: 20px;
   background-color: #f4f4f4;
@@ -7,7 +6,6 @@
   border-radius: 5px;
 }
 
-/* Header with hamburger and title */
 .header {
   display: flex;
   justify-content: space-between;
@@ -34,7 +32,6 @@
    box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-/* Hamburger Menu */
 .hamburger-menu {
   position: absolute;
   top: 60px;
@@ -68,7 +65,6 @@
   color: black;
 }
 
-/* Transaction Categories */
 h3 {
   font-size: 1.6rem;
   color: #333;

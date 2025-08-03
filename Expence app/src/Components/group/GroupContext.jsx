@@ -4,11 +4,7 @@ export const GroupContext = createContext();
 
 export const GroupProvider = ({ children }) => {
   const [groups, setGroups] = useState([]);
-
-  // Add group locally (optional, for instant UI update)
   const addGroup = (group) => setGroups((prev) => [...prev, group]);
-
-  // Fetch groups from backend
   const fetchGroups = useCallback(async () => {
     const token = localStorage.getItem("accessToken");
     if (!token) return;

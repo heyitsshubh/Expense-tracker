@@ -5,8 +5,8 @@ import Calculator from '../../assets/Calculator.png';
 import Money from '../../assets/Money.png';
 import Chart from '../../assets/Chart.png';
 import axios from 'axios';
-import { toast, ToastContainer } from 'react-toastify'; // Add these imports
-import 'react-toastify/dist/ReactToastify.css'; // Add this import
+import { toast, ToastContainer } from 'react-toastify'; 
+import 'react-toastify/dist/ReactToastify.css'; 
 
 function Signup() {   
   const [email, setEmail] = useState("");

@@ -5,8 +5,6 @@ import Expense from './Expense';
 
 function ExpenseTracker() {
   const [expenses, setExpenses] = useState([]);
-
-  // Function to fetch expenses from the API
   const fetchExpenses = async () => {
     try {
       const token = localStorage.getItem('accessToken');
@@ -17,7 +15,7 @@ function ExpenseTracker() {
 
       const response = await axios.get('https://cash-cue-web.onrender.com/expense/list', 
         {
-          amount, // Ensure amount is sent as a number
+          amount, 
           description,
           date,
         },
@@ -28,19 +26,18 @@ function ExpenseTracker() {
       });
 
       console.log('Fetched expenses:', response.data.expenses);
-      setExpenses(response.data.expenses || []); // Update the state with fetched expenses
+      setExpenses(response.data.expenses || []); 
     } catch (error) {
       console.error('Error fetching expenses:', error.response || error.message);
     }
   };
 
   useEffect(() => {
-    fetchExpenses(); // Fetch expenses when the component mounts
+    fetchExpenses(); 
   }, []);
 
-  // Function to handle adding a new expense
   const handleAddExpense = () => {
-    fetchExpenses(); // Re-fetch expenses to update the list after adding a new one
+    fetchExpenses(); 
   };
 
   return (

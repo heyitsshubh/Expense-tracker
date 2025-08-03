@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 import "../../Styles/Transactions.css";
-import { TransactionsContext } from "./TransactionContext"; // Custom context for real-time updates
+import { TransactionsContext } from "./TransactionContext"; 
 import axios from "axios";
 
 const Transactions = () => {
@@ -8,33 +8,25 @@ const Transactions = () => {
   const [filter, setFilter] = useState("daily");
   const [sortType, setSortType] = useState("all");
   const [showMenu, setShowMenu] = useState(false);
-  const { refreshTransactions } = useContext(TransactionsContext); // Refresh trigger from context
+  const { refreshTransactions } = useContext(TransactionsContext); 
 
-  // Function to fetch transactions
   const fetchTransactions = async () => {
     try {
-      const token = localStorage.getItem("accessToken"); // Get the token from sessionStorage
+      const token = localStorage.getItem("accessToken"); 
       if (!token) {
         console.error("No token found. Please log in.");
         return;
       }
-
-      // Make API call with token in Authorization header
       const response = await axios.get(
         "https://cash-cue-web.onrender.com/transaction/list",
         {
           headers: {
-            Authorization: `Bearer ${token}`, // Include the token for authentication
+            Authorization: `Bearer ${token}`,
           },
         }
       );
-
-      // Log the full response to check the structure
-      console.log("Transactions fetched:", response.data);
-
-      // Access the transactions array from the response
       if (response.data.status === "SUCCESS") {
-        setTransactions(response.data.transactions); // Update state with the transactions array
+        setTransactions(response.data.transactions); 
       } else {
         console.error("Failed to fetch transactions:", response.data.message);
       }
@@ -42,11 +34,9 @@ const Transactions = () => {
       console.error("Error fetching transactions:", error.response || error.message);
     }
   };
-
-  // Function to categorize transactions by date
   const categorizeTransactions = (transactions) => {
     const today = new Date();
-    today.setHours(0, 0, 0, 0); // Reset to start of the day for accurate comparison
+    today.setHours(0, 0, 0, 0); 
   
     const grouped = {
       today: [],
@@ -57,10 +47,10 @@ const Transactions = () => {
   
     transactions.forEach((transaction) => {
       const transactionDate = new Date(transaction.date);
-      transactionDate.setHours(0, 0, 0, 0); // Reset to start of the day
+      transactionDate.setHours(0, 0, 0, 0); 
   
-      const diffTime = today - transactionDate; // Time difference in milliseconds
-      const diffDays = diffTime / (1000 * 3600 * 24); // Convert to days
+      const diffTime = today - transactionDate; 
+      const diffDays = diffTime / (1000 * 3600 * 24); 
   
       if (diffDays === 0) {
         grouped.today.push(transaction);
@@ -76,7 +66,6 @@ const Transactions = () => {
       }
     });
   
-    // Sort transactions within each group by date (descending)
     const sortByDateDesc = (a, b) => new Date(b.date) - new Date(a.date);
   
     grouped.today.sort(sortByDateDesc);
@@ -86,9 +75,7 @@ const Transactions = () => {
   
     return grouped;
   };
-  
 
-  // Fetch transactions on component mount and whenever `refreshTransactions` or `filter` changes
   useEffect(() => {
     fetchTransactions();
   }, [refreshTransactions, filter]);
@@ -126,8 +113,6 @@ const Transactions = () => {
           </div>
         )}
       </div>
-
-      {/* Display Today's Transactions */}
       {groupedTransactions.today.length > 0 && (
         <div>
           <h3>Today</h3>
@@ -146,8 +131,6 @@ const Transactions = () => {
           </ul>
         </div>
       )}
-
-      {/* Display Weekly Transactions */}
       {groupedTransactions.thisWeek.length > 0 && (
         <div>
           <h3>This Week</h3>
@@ -166,8 +149,6 @@ const Transactions = () => {
           </ul>
         </div>
       )}
-
-      {/* Display Monthly Transactions */}
       {groupedTransactions.thisMonth.length > 0 && (
         <div>
           <h3>This Month</h3>
@@ -186,8 +167,6 @@ const Transactions = () => {
           </ul>
         </div>
       )}
-
-      {/* Display Older Transactions */}
       {groupedTransactions.older.length > 0 && (
         <div>
           <h3>Earlier</h3>

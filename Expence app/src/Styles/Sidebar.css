@@ -1,4 +1,4 @@
-/* Sidebar styles */
+
 .sidebar {
   position: fixed;
   top: 0;
@@ -56,7 +56,7 @@ h2{
   padding: 12px 20px;
   display: flex;
   align-items: center;
-  gap: 10px; /* Spacing between icon and text */
+  gap: 10px; 
   width: 100%;
   border-radius: 8px;
   transition: background-color 0.3s ease, color 0.3s ease;
@@ -68,7 +68,7 @@ h2{
 }
 
 .menu-item img {
-  width: 20px; /* Size of the icons */
+  width: 20px; 
   height: 20px;
 }
 .top-bar {

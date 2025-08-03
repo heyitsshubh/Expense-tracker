@@ -38,14 +38,10 @@ const OtpPage = () => {
       console.log('OTP verification response:', response.data);
   
       if (response.data.status === 'SUCCESS') {
-        // OTP verified successfully
         setMessage(response.data.message || 'OTP verified successfully.');
         setError('');
-  
-        // Redirect to reset password page after a short delay
         setTimeout(() => navigate('/reset-password'), 1000);
       } else {
-        // Handle unexpected cases
         setError('Unexpected response from the server.');
       }
     } catch (err) {
