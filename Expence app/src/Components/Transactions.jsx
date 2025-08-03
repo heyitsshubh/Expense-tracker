@@ -206,9 +206,6 @@ const Transactions = () => {
           </ul>
         </div>
       )}
-
-      {/* Message if no transactions are found */}
-      {transactions.length === 0 && <p>No transactions found or invalid data format.</p>}
     </div>
   );
 };

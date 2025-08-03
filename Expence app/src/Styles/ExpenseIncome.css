@@ -2,21 +2,13 @@
 .expense-income-page {
   display: flex;
   justify-content: space-between;
-  padding: 30px;
-  gap: 20px;
-  /* background-image: url('../assets/expens.png'); 
-  background-size: contain; 
-  background-position: center; 
-  background-repeat: no-repeat;  */
-  height: 100%;
-  width: 100%;
   overflow: hidden;
 
   }
   
   .form-section {
     flex: 1;
-    /* max-width: 480px; */
+     max-width: 480px; 
   }
   
   .recent-expenses-section {

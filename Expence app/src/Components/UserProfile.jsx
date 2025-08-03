@@ -81,7 +81,7 @@ const UserProfile = () => {
           },
         }
       );
-      console.log("API Response:", response.data);
+      
      if (response.data.success || response.data.message === "Account balance updated successfully!") {
         setAccountBalance(prevBalance => prevBalance + amount);
         setAddBalanceAmount("");
@@ -90,7 +90,6 @@ const UserProfile = () => {
         throw new Error(response.data.message || "Unable to add balance.");
       }
     } catch (err) {
-      console.error("Error adding balance:", err.response?.data || err.message);
       setError(err.response?.data?.message || "An error occurred.");
     } finally {
       setLoading(false);
@@ -146,7 +145,6 @@ const UserProfile = () => {
                 {loading ? "Adding..." : "Add"}
               </button>
             </div>
-            {error && <p className="error-message">{error}</p>}
           </div>
         </div>
       )}
