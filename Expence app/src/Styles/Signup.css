@@ -253,7 +253,7 @@
   transform: translate(-15%,100%);
 }
 
-@media (max-width: 768px) {
+/* @media (max-width: 768px) {
   .signup-box {
     flex-direction:  column; 
   }
@@ -284,5 +284,101 @@
 
   .images-container img:nth-child(2){
     display: none;
+  }
+} */
+
+/* Additional smaller-screen tweaks */
+@media (max-width: 768px) {
+  .signup-container {
+    padding-bottom: 24px;
+    align-items: flex-start;
+  }
+
+  .signup-box {
+    height: auto;
+    min-height: 90vh;
+    flex-direction: column;
+     gap: 12px;
+  }
+
+  .form-section {
+    width: 100%;
+    padding: 32px 18px;
+    border-radius: 0;
+    box-shadow: none;
+    align-items: stretch;
+  }
+
+  .form-section h2 {
+    transform: none;
+    margin: 0 0 12px 0;
+    font-size: 24px;
+    text-align: left;
+  }
+
+  .form-section form {
+    transform: none;
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .form-section input,
+  .password-wrapper input {
+    padding: 12px;
+    font-size: 1rem;
+  }
+
+  .toggle-password {
+    top: 50%;
+    transform: translateY(-70%);
+  }
+
+  .info-section {
+    width: 100%;
+    padding: 20px 14px;
+    text-align: left;
+  }
+
+  .info-section h2 {
+    font-size: 28px;
+    transform: none;
+    margin: 0 0 8px 0;
+  }
+
+  .info-section p,
+  .content,
+  .content2,
+  .error-message,
+  .success-message {
+    transform: none;
+  }
+
+  /* Hide big decorative images on small screens to save space */
+ 
+     .calc {
+      margin: 0 auto 30px auto;
+    }
+    .money,
+    .char {
+      display: none;
+    }
+}
+
+/* Very small phones */
+@media (max-width: 420px) {
+  .form-section {
+    padding: 20px 12px;
+  }
+
+  .register-button {
+    padding: 12px;
+  }
+
+  .info-section h2 {
+    font-size: 22px;
+  }
+
+  .form-section input {
+    padding: 10px;
   }
 }

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import  { useState } from 'react';
 import '../../Styles/Signup.css'
 import { useNavigate } from 'react-router-dom';
 import Calculator from '../../assets/Calculator.png';
@@ -17,8 +17,8 @@ function Signup() {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
-  const [successMessage, setSuccessMessage] = useState('');
-  const [isSliding, setIsSliding] = useState(false); 
+  // const [successMessage, setSuccessMessage] = useState('');
+  // const [isSliding, setIsSliding] = useState(false); 
   const navigate = useNavigate();
 
   const passwordRegex = /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
@@ -56,9 +56,16 @@ function Signup() {
       toast.success('Signup successful!'); // Only toast, no successMessage state
       console.log('Signup response:', response.data);
 
+      // store user email for OTP flow
       localStorage.setItem('userEmail', email);
 
-      setTimeout(() => navigate('/otp'), 1000); 
+      // If the signup response already includes tokens, store them too
+      if (response.data && response.data.accessToken && response.data.refreshToken) {
+        localStorage.setItem('accessToken', response.data.accessToken);
+        localStorage.setItem('refreshToken', response.data.refreshToken);
+      }
+
+      setTimeout(() => navigate('/otp'), 1000);
     } catch (error) {
       console.error('Error during signup:', error.response?.data || error.message);
       toast.error(
@@ -72,8 +79,8 @@ function Signup() {
   };
 
   const handleclick = () => {
-    setIsSliding(true);
-    setTimeout(() => navigate('/'), 500);
+    // setIsSliding(true);
+    setTimeout(() => navigate('/dashboard'), 500);
   };
 
   return (
@@ -87,8 +94,8 @@ function Signup() {
       <div className="signup-box">
         <div className="form-section">
           <h2>Sign Up</h2>
-          {errorMessage && <p className="error-message">{errorMessage}</p>}
-          {successMessage && <p className="success-message">{successMessage}</p>}
+           {errorMessage && <p className="error-message">{errorMessage}</p>}
+          {/* {successMessage && <p className="success-message">{successMessage}</p>}  */}
           <form onSubmit={handleSubmit}>
             <input
               type="text"
