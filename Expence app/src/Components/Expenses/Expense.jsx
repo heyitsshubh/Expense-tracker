@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import { useState, useContext } from "react";
 import axios from "axios";
 import "../../Styles/Expense.css";
 import { TransactionsContext } from "../Transactions/TransactionContext";
@@ -12,7 +12,7 @@ const Expense = () => {
   const [amount, setAmount] = useState("");
   const [description, setDescription] = useState("");
   const [date, setDatetime] = useState("");
-  const [searchQuery, setSearchQuery] = useState("");
+  const [ setSearchQuery] = useState("");
   const [isExpense, setIsExpense] = useState(true); 
   const { triggerRefresh } = useContext(TransactionsContext); 
 

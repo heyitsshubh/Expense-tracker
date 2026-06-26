@@ -65,7 +65,7 @@ function Signup() {
         localStorage.setItem('refreshToken', response.data.refreshToken);
       }
 
-      setTimeout(() => navigate('/otp'), 1000);
+      setTimeout(() => navigate('/dashboard'), 1000);
     } catch (error) {
       console.error('Error during signup:', error.response?.data || error.message);
       toast.error(
